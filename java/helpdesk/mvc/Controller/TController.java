@@ -103,15 +103,30 @@ public class TController implements Runnable{
             if ("".equals(_view.edt_topic.getText()) || "".equals(_view.edt_problem.getText())){
                 Error_Frame.Error("Please fill out: Topic and Problem"); 
             } else {
+                    String sol = null,note = null;
+                    Integer noEm = null;
+                    ID = null;
+                    if ("".equals(_view.edt_solution.getText())) {
+                        sol = _view.edt_solution.getText();
+                    }
+                    if ("".equals(_view.edt_note.getText())) {
+                        note = _view.edt_note.getText();
+                    }
+                
                 //check checkbox "new Ticket"
                 if (_view.chb_new.getSelectedObjects() == null) {
                     String Str = _view.edt_ID.getText();
                     ID = Integer.parseInt (Str);  
-                    Integer noEm = null;
                     if (_view.cmb_eID.getSelectedItem() != "") {
                         noEm = (Integer)_view.cmb_eID.getSelectedItem();
                     }
                     //get timestamp and string from textfield and update ticket
+                    if ("".equals(_view.edt_solution.getText())) {
+                        sol = _view.edt_solution.getText();
+                    }
+                    if ("".equals(_view.edt_note.getText())) {
+                        note = _view.edt_note.getText();
+                    }
                     Ticket updateTicket = new Ticket (ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),
                     noEm,
@@ -125,8 +140,6 @@ public class TController implements Runnable{
                     currentTimestamp.toString());
                     updateTicket.updateTicket(ID);
                 } else {
-           ID = null;
-           Integer noEm = null;
                 if (_view.cmb_eID.getSelectedItem() != "") {
                     noEm = (Integer)_view.cmb_eID.getSelectedItem();
                 }
@@ -138,8 +151,8 @@ public class TController implements Runnable{
                 (Integer)_view.cmb_status.getSelectedItem(),
                 _view.edt_topic.getText(),
                 _view.edt_problem.getText(),
-                _view.edt_note.getText(),
-                _view.edt_solution.getText(),
+                note,
+                sol,
                 currentTimestamp.toString(),
                 currentTimestamp.toString());
                 newTicket.newTicket();
