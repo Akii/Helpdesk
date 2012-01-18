@@ -47,7 +47,7 @@ class mysql extends ds\DataSource
 			throw new Error\SQLException(0, "Could not connect to the database: Please check the settings.");
 		
 		$url = sprintf("%s:host=%s;dbname=%s", strtolower($db_vars["type"]), $db_vars["host"], $db_vars["name"]);
-		$this->DBH = new \PDO($url, $db_vars["user"], $db_vars["pass"]);
+		$this->DBH = new \PDO($url, $db_vars["user"], $db_vars["pass"], array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 		$this->DBH->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 	}
 	

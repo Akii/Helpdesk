@@ -18,7 +18,7 @@ class TicketHistoryModel extends Model
 	public static function getHistory($ticket_id)
 	{
 		$db = Datasource\DataSource::getInstance();
-		$query = sprintf("SELECT * FROM %s WHERE ticket_TID = %u", self::$table_name, $ticket_id);
+		$query = sprintf("SELECT * FROM %s WHERE ticket_TID = %u ORDER BY changed_on DESC", self::$table_name, $ticket_id);
 		
 		$db->query($query);
 		

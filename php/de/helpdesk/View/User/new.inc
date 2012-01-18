@@ -6,7 +6,7 @@
 <div id="content">
 	<?php echo $new_error; ?>
 	<div id="new" class="content_form">
-		<form accept="utf-8" method="POST" action="/user/panel/new" class="box_shadow_02 gradient_04 corners_01">
+		<form accept="UTF-8" method="POST" action="/user/panel/new" class="box_shadow_02 gradient_04 corners_01">
 			<fieldset>
 				<label for="category">Category:</label>
 					<select name="category">

@@ -46,6 +46,10 @@ table {
 	border-spacing: 0;
 }
 
+li {
+	list-style-position: inside;
+}
+
 /* Generic stuff, shadows, corners and so on */
 .corners_01 {
     border-radius: 5px;

@@ -28,8 +28,16 @@
 				<textarea name="problem" disabled><?php echo $problem; ?></textarea>
 		</fieldset>
 		<fieldset class="gradient_04 corners_01">
+			<legend>Products</legend>
+			<ul>
+				<?php echo $products; ?>
+			</ul>
+		</fieldset>
+		<fieldset class="gradient_04 corners_01">
 			<legend>Solution</legend>
-			<?php echo $solution; ?>
+			<ul>
+				<?php echo $solution; ?>
+			</ul>
 		</fieldset>
 		<fieldset class="gradient_04 corners_01">
 			<legend>Changelog</legend>

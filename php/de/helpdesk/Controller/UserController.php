@@ -22,8 +22,13 @@ class UserController extends Controller
 	/**
 	 * @var array standard messages for changes for the customer
 	 */
-	private $changelog = array(
-		"employee_EID" => "An employee has been assigned to the",
+	private $changes = array(
+		"employee_EID" 	=> "A new employee has been assigned to this ticket or has been changed.",
+		"Problem"		=> "The problem has been modified.",
+		"Solution"		=> "A solution has been added or changed.",
+		"CategoryID"	=> "The category has been changed.",
+		"StatusID"		=> "The status has been changed",
+		"Topic"			=> "The topic has been changed"
 	);
 	
 	/**
@@ -164,8 +169,8 @@ class UserController extends Controller
 			else
 			{
 				$this->view_params["new_error"] = '<div class="warning gradient_06  box_shadow_02">Please fill in all the fields.</div>';
-				$this->view_params["topic"] 	= htmlentities($data["topic"]);
-				$this->view_params["problem"] 	= htmlentities($data["problem"]);
+				$this->view_params["topic"] 	= $data["topic"];
+				$this->view_params["problem"] 	= $data["problem"];
 			}
 		}
 		
@@ -204,8 +209,8 @@ class UserController extends Controller
 		$employee = Model\EmployeeModel::getByID($ticket->employee_EID);
 		
 		$this->view_params["category"] = Model\ProblemModel::getByID($ticket->CategoryID);
-		$this->view_params["topic"] = htmlentities($ticket->Topic);
-		$this->view_params["problem"] = htmlentities($ticket->Problem);
+		$this->view_params["topic"] = htmlentities($ticket->Topic, ENT_COMPAT, "UTF-8");
+		$this->view_params["problem"] = htmlentities($ticket->Problem, ENT_COMPAT, "UTF-8");
 		
 		$this->view_params["ticket_id"] = $ticket->TID;
 		$this->view_params["assigned_to"] = ($employee != null) ? $employee->__toString() : "none";
@@ -215,8 +220,22 @@ class UserController extends Controller
 		
 		$this->view_params["solution"] = ($ticket->Solution != "") ? $ticket->Solution : "No solution available yet.";
 		
-		$this->view_params["changelog"] = "lol";
-		var_dump(Model\TicketHistoryModel::getHistory($ticket->TID));
+		$changes = Model\TicketHistoryModel::getHistory($ticket->TID);
+		if(is_array($changes))
+		{
+			foreach($changes as $row)
+			{
+				if(array_key_exists($row["column_name"], $this->changes))
+				{
+					$this->view_params["changelog"] .= sprintf('
+						<li>
+							<span><b>%s:</b></span>
+							<span>%s</span>
+						</li>
+					', 	date("j M, Y | h:i", strtotime($row["changed_on"])), $this->changes[$row["column_name"]]);
+				}
+			}
+		}
 	}
 	
 	private function processTabs($action)
