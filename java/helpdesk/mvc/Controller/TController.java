@@ -106,10 +106,10 @@ public class TController implements Runnable{
                     String sol = null,note = null;
                     Integer noEm = null;
                     ID = null;
-                    if ("".equals(_view.edt_solution.getText())) {
+                    if (!"".equals(_view.edt_solution.getText())) {
                         sol = _view.edt_solution.getText();
                     }
-                    if ("".equals(_view.edt_note.getText())) {
+                    if (!"".equals(_view.edt_note.getText())) {
                         note = _view.edt_note.getText();
                     }
                 
@@ -121,12 +121,6 @@ public class TController implements Runnable{
                         noEm = (Integer)_view.cmb_eID.getSelectedItem();
                     }
                     //get timestamp and string from textfield and update ticket
-                    if ("".equals(_view.edt_solution.getText())) {
-                        sol = _view.edt_solution.getText();
-                    }
-                    if ("".equals(_view.edt_note.getText())) {
-                        note = _view.edt_note.getText();
-                    }
                     Ticket updateTicket = new Ticket (ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),
                     noEm,
@@ -134,8 +128,8 @@ public class TController implements Runnable{
                     (Integer)_view.cmb_status.getSelectedItem(),
                     _view.edt_topic.getText(),
                     _view.edt_problem.getText(),
-                    _view.edt_note.getText(),
-                    _view.edt_solution.getText(),
+                    note,
+                    sol,
                     _view.edt_created.getText(),
                     currentTimestamp.toString());
                     updateTicket.updateTicket(ID);
