@@ -112,6 +112,7 @@ public class Ticket extends MainModel {
                         if (this.employee_EID != null) {
                             noEmployee = this.employee_EID.toString();
                         }
+                         
 			db.prepare(query);
                         db.bind_param(1, this.customer_CID.toString());
                         db.bind_param(2, noEmployee);

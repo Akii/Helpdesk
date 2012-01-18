@@ -104,19 +104,23 @@ public class TController implements Runnable{
             if ("".equals(_view.edt_topic.getText()) || "".equals(_view.edt_problem.getText())){
                 Error_Frame.Error("Please fill out: Topic and Problem"); 
             } else {
+                
                     String sol = null,note = null;
                     Integer noEm = null;
                     ID = null;
-                    if (!"".equals(_view.edt_solution.getText())) {
+                    
+                    if (!"".equals(_view.edt_solution.getText()) && !"NULL".equals(_view.edt_solution.getText()) &&
+                        !" ".equals(_view.edt_solution.getText()) && !"null".equals(_view.edt_solution.getText()) &&
+                        _view.edt_solution.getText() != null) {
                         sol = _view.edt_solution.getText();
                     }
-                    if (!"".equals(_view.edt_note.getText())) {
+                    if (!"".equals(_view.edt_note.getText()) && !"NULL".equals(_view.edt_note.getText()) &&
+                        !" ".equals(_view.edt_note.getText()) && !"null".equals(_view.edt_note.getText()) &&
+                        _view.edt_note.getText() != null) {
                         note = _view.edt_note.getText();
                     }
                     if (_view.cmb_eID.getSelectedItem() != "") {
                         noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
-                        System.out.println((String)_view.cmb_eID.getSelectedItem());
-                        System.out.println(noEm);
                     }
                     
                 //check checkbox "new Ticket"
