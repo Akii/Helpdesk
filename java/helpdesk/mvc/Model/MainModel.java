@@ -12,7 +12,7 @@ import lib.db.MysqlDatabase;
 
 public abstract class MainModel {
 
-    protected static Database dbconnect() {
+    public static Database dbconnect() {
 	   Database db = null;
 	try {
 		// working example of select with placeholders

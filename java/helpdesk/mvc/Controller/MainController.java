@@ -620,7 +620,7 @@ public class MainController {
                 Integer integer = (Integer)_view.table_fullticket.getValueAt(
 		_view.table_fullticket.getSelectedRow(), 0);
                 Ticket_Frame _tview = new Ticket_Frame(f_model);
-                Thread Controller=new Thread (new TController(integer, f_model,h_model , _view, _tview));
+                Thread Controller=new Thread (new TController(integer, f_model, h_model , _view, _tview));
                 Controller.start();
             } else if ("Product".equals(select)) {
                 Integer integer = (Integer)_view.table_product.getValueAt(

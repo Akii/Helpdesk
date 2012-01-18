@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import lib.ComboBox;
 import lib.refreshTable;
 import mvc.Model.Counter;
 import mvc.Model.FullticketTable;
@@ -50,14 +51,14 @@ public class TController implements Runnable{
     }
     
     private void init() {
-        _view.cmb_status.setModel(new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(4).toArray(
-                                  new Object[mvc.Model.Ticket.Ticket_ComboBox(4).size()])));
-        _view.cmb_category.setModel(new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(3).toArray(
-                                    new Object[mvc.Model.Ticket.Ticket_ComboBox(3).size()])));
-        _view.cmb_eID.setModel(new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(2).toArray(
-                               new Object[mvc.Model.Ticket.Ticket_ComboBox(2).size()])));
-        _view.cmb_cID.setModel(new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(1).toArray(
-                               new Object[mvc.Model.Ticket.Ticket_ComboBox(1).size()])));
+        _view.cmb_status.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(4).toArray(
+                                  new Object[Ticket.Ticket_ComboBox(4).size()])));
+        _view.cmb_category.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(3).toArray(
+                                    new Object[Ticket.Ticket_ComboBox(3).size()])));
+        _view.cmb_eID.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(2).toArray(
+                               new Object[Ticket.Ticket_ComboBox(2).size()])));
+        _view.cmb_cID.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(1).toArray(
+                               new Object[Ticket.Ticket_ComboBox(1).size()])));
 
     }
     
@@ -117,40 +118,37 @@ public class TController implements Runnable{
                 if (_view.chb_new.getSelectedObjects() == null) {
                     String Str = _view.edt_ID.getText();
                     ID = Integer.parseInt (Str);  
+                    
                     if (_view.cmb_eID.getSelectedItem() != "") {
-                        noEm = (Integer)_view.cmb_eID.getSelectedItem();
+                        noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
                     }
+                    
                     //get timestamp and string from textfield and update ticket
                     Ticket updateTicket = new Ticket (ID,
-                    (Integer)_view.cmb_cID.getSelectedItem(),
-                    noEm,
-                    (Integer)_view.cmb_category.getSelectedItem(),
-                    (Integer)_view.cmb_status.getSelectedItem(),
-                    _view.edt_topic.getText(),
-                    _view.edt_problem.getText(),
-                    note,
-                    sol,
-                    _view.edt_created.getText(),
+                    (Integer)_view.cmb_cID.getSelectedItem(),noEm,
+                    getcmbID((String)_view.cmb_category.getSelectedItem()),
+                    getcmbID((String)_view.cmb_status.getSelectedItem()),
+                    _view.edt_topic.getText(), _view.edt_problem.getText(),
+                    note, sol, _view.edt_created.getText(),
                     currentTimestamp.toString());
                     updateTicket.updateTicket(ID);
+                    
                 } else {
-                if (_view.cmb_eID.getSelectedItem() != "") {
-                    noEm = (Integer)_view.cmb_eID.getSelectedItem();
-                }
+                    if (_view.cmb_eID.getSelectedItem() != "") {
+                        noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
+                    }
+                    
                 //get timestamp and string from textfield and create ticket
                 Ticket newTicket = new Ticket (ID,
-                (Integer)_view.cmb_cID.getSelectedItem(),
-                noEm,
-                (Integer)_view.cmb_category.getSelectedItem(),
-                (Integer)_view.cmb_status.getSelectedItem(),
-                _view.edt_topic.getText(),
-                _view.edt_problem.getText(),
-                note,
-                sol,
-                currentTimestamp.toString(),
+                (Integer)_view.cmb_cID.getSelectedItem(),noEm,
+                getcmbID((String)_view.cmb_category.getSelectedItem()),
+                getcmbID((String)_view.cmb_status.getSelectedItem()),
+                _view.edt_topic.getText(), _view.edt_problem.getText(),
+                note,sol,currentTimestamp.toString(),
                 currentTimestamp.toString());
                 newTicket.newTicket();
-                }                     
+                }
+                
                 //refresh jtable
                 refreshTable A1;
                 A1 = new refreshTable(null, null, f_model, h_model, null);
@@ -160,6 +158,7 @@ public class TController implements Runnable{
                 Timer timer = new Timer();
                 timer.schedule  (new Task(), 500);
                 _view.dispose();
+                
             }
         } catch (NumberFormatException ev) {
               Error_Frame.Error("Please use only number for ID");
@@ -235,25 +234,19 @@ public class TController implements Runnable{
                     _view.cmb_cID.setSelectedIndex(i);
                  }
             }
+            
             if (Array[1]!=null) {
+               String username = ComboBox.getEUsername(Integer.parseInt(Array[1]));
                 for (int i=0; i<= _view.cmb_eID.getItemCount()-1;i++) {
-                    if (Array[1].equals(_view.cmb_eID.getItemAt(i).toString())) {
+                    if (username.equals(_view.cmb_eID.getItemAt(i).toString())) {
                         _view.cmb_eID.setSelectedIndex(i);
                     }
                 }
             }
-            
-            for (int i=0; i<= _view.cmb_category.getItemCount()-1;i++) {
-                if (Array[2].equals(_view.cmb_category.getItemAt(i).toString())) {
-                    _view.cmb_category.setSelectedIndex(i);
-                 }
-            }
-            
-            for (int i=0; i<= _view.cmb_status.getItemCount()-1;i++) {
-                if (Array[3].equals(_view.cmb_status.getItemAt(i).toString())) {
-                    _view.cmb_status.setSelectedIndex(i);
-                 }
-            }
+
+           _view.cmb_category.setSelectedIndex(Integer.parseInt(Array[2])-1);
+           _view.cmb_status.setSelectedIndex(Integer.parseInt(Array[3])-1);
+
         } catch (NullPointerException E){
             Error_Frame.Error("ID not found");
         } catch (NumberFormatException E) {
@@ -282,4 +275,31 @@ public class TController implements Runnable{
         main.btn_setprocess.setText("In Process [" + processCount +"]");
         main.btn_setclosed.setText("Closed [" + closedCount +"]");
     }
+    
+    
+    
+     /*****************************************************************
+     *  Ugly function, but is neccessary 
+     *  Other idea is to use database and search 
+     *  the IDs 
+     ********************************************************************/
+    public Integer getcmbID (String Text) {
+        Integer ID = null;
+        if ("Hardware Problem".equals(Text) || ("Open".equals(Text))) {
+            ID = 1;
+            return ID;
+        }
+        if ("Software Problem".equals(Text) || ("Closed".equals(Text))) {
+            ID = 2;
+            return ID;
+        }
+        if ("Activation Problems".equals(Text) || ("In process".equals(Text))) {
+            ID = 3;
+            return ID;
+        } else {
+            ID = 4;
+            return ID;
+        }
+    }
+    
 }

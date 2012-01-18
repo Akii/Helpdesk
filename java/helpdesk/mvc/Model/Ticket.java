@@ -172,22 +172,28 @@ public class Ticket extends MainModel {
             Database db = dbconnect();
             String query;
             Object noEmployee = "";
+            boolean _int = false;
 	try {
                 switch (ID) {
                 case 1:  query = ("SELECT CID FROM customer WHERE bDeleted = 0 ORDER BY CID");
+                         _int = true;
                          break;
-                case 2:  query = ("SELECT EID FROM employee WHERE bDeleted = 0 ORDER BY EID");
+                case 2:  query = ("SELECT username FROM employee WHERE bDeleted = 0 ORDER BY EID");
                          number.add(noEmployee);
                          break;
-                case 3:  query = ("SELECT CategoryID FROM problem_category WHERE bDeleted = 0 ORDER BY CategoryID");
+                case 3:  query = ("SELECT description FROM problem_category WHERE bDeleted = 0 ORDER BY CategoryID");
                          break;
-                default: query = ("SELECT StatusID FROM ticket_status WHERE bDeleted = 0 ORDER BY StatusID");
+                default: query = ("SELECT description FROM ticket_status WHERE bDeleted = 0 ORDER BY StatusID");
                          break;
                 }
                 db.prepare(query);
 		ResultSet rs = db.executeQuery();   
                 while(rs.next()) {
-                    number.add(rs.getInt(1));
+                    if (_int) {
+                        number.add(rs.getInt(1));
+                    } else {
+                        number.add(rs.getString(1));
+                    }
 		}
 	        db.close();      
 
@@ -230,6 +236,4 @@ public class Ticket extends MainModel {
                                 this.last_update};
         return Array;
     }
-    
-    
 }
