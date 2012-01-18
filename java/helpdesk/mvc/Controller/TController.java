@@ -113,16 +113,16 @@ public class TController implements Runnable{
                     if (!"".equals(_view.edt_note.getText())) {
                         note = _view.edt_note.getText();
                     }
-                
+                    if (_view.cmb_eID.getSelectedItem() != "") {
+                        noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
+                        System.out.println((String)_view.cmb_eID.getSelectedItem());
+                        System.out.println(noEm);
+                    }
+                    
                 //check checkbox "new Ticket"
                 if (_view.chb_new.getSelectedObjects() == null) {
                     String Str = _view.edt_ID.getText();
                     ID = Integer.parseInt (Str);  
-                    
-                    if (_view.cmb_eID.getSelectedItem() != "") {
-                        noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
-                    }
-                    
                     //get timestamp and string from textfield and update ticket
                     Ticket updateTicket = new Ticket (ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),noEm,
@@ -132,21 +132,16 @@ public class TController implements Runnable{
                     note, sol, _view.edt_created.getText(),
                     currentTimestamp.toString());
                     updateTicket.updateTicket(ID);
-                    
                 } else {
-                    if (_view.cmb_eID.getSelectedItem() != "") {
-                        noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
-                    }
-                    
-                //get timestamp and string from textfield and create ticket
-                Ticket newTicket = new Ticket (ID,
-                (Integer)_view.cmb_cID.getSelectedItem(),noEm,
-                getcmbID((String)_view.cmb_category.getSelectedItem()),
-                getcmbID((String)_view.cmb_status.getSelectedItem()),
-                _view.edt_topic.getText(), _view.edt_problem.getText(),
-                note,sol,currentTimestamp.toString(),
-                currentTimestamp.toString());
-                newTicket.newTicket();
+                    //get timestamp and string from textfield and create ticket
+                    Ticket newTicket = new Ticket (ID,
+                    (Integer)_view.cmb_cID.getSelectedItem(),noEm,
+                    getcmbID((String)_view.cmb_category.getSelectedItem()),
+                    getcmbID((String)_view.cmb_status.getSelectedItem()),
+                    _view.edt_topic.getText(), _view.edt_problem.getText(),
+                    note,sol,currentTimestamp.toString(),
+                    currentTimestamp.toString());
+                    newTicket.newTicket();
                 }
                 
                 //refresh jtable
