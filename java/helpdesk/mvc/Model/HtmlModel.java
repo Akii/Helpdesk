@@ -2,6 +2,7 @@ package Helpdesk.java.helpdesk.mvc.Model;
 /******************
  * Imports
  ******************/
+import Helpdesk.java.helpdesk.lib.ComboBox;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,11 @@ public class HtmlModel {
     public static StringBuilder Htmlfullticket (Integer integer) {
         // Display the selected item
                 String [] Array = FullTicket.searchFullTicket(integer);
+                String product = "";
+                try {
+                    product = ComboBox.getProductName(ComboBox.getPID(integer,null));
+                } catch (Exception e) {}
+                
                 //Set color for ticket status
                 String color = "red";
                 if (Array[1].equals("Open")) color = "green";
@@ -107,6 +113,11 @@ public class HtmlModel {
                         + "Note:"
                         + "</b></font></td><td>"+ Array[12] +"</td>"
                 +"</tr><tr>"
+                +"<td>"
+                        + "<font color='#708090'><b>"
+                        + "Involved Product:"
+                        + "</b></font></td><td>"+ product +"</td>"
+                +"</tr><tr>"
                 +"<td align='left'   valign='top'>"
                         + "<font color='#708090'><b>"
                         + "Solution:"
@@ -128,6 +139,15 @@ public class HtmlModel {
                     if (Array[i] == null || "null".equals(Array [i])) {
                         Array[i] = "";
                     }
+                    
+                    if (Array[2].equals("1") && Array[1].equals("CategoryID")) Array[2] = "Hardware Problem";
+                    if (Array[2].equals("2") && Array[1].equals("CategoryID")) Array[2] = "Software Problem";
+                    if (Array[2].equals("3") && Array[1].equals("CategoryID")) Array[2] = "Activation Problems";
+                    if (Array[2].equals("4") && Array[1].equals("CategoryID")) Array[2] = "Other";
+                    if (Array[2].equals("1") && Array[1].equals("StatusID")) Array[2] = "Open";
+                    if (Array[2].equals("2") && Array[1].equals("StatusID")) Array[2] = "In process";
+                    if (Array[2].equals("3") && Array[1].equals("StatusID")) Array[2] = "Closed";
+                    
                 }
                 //html formatted text for history Editor pane
                 StringBuilder builder = new StringBuilder("<h2>Ticket ID: " + ID +"</h2> "
