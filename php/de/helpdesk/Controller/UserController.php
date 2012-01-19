@@ -69,8 +69,9 @@ class UserController extends Controller
 	{
 		if(!$this->components["User"]->loggedIn())
 		{
-			header("Location: /user/login");
-			die();
+			//header("Location: /user/login");
+			$this->response->header("Location: /user/login");
+			return;
 		}
 		
 		// sub-action
@@ -228,15 +229,15 @@ class UserController extends Controller
 		$this->view_params["topic"] 	= htmlspecialchars($ticket->Topic);
 		$this->view_params["problem"] 	= htmlspecialchars($ticket->Problem);
 		
-		$this->view_params["ticket_id"] = $ticket->TID;
-		$this->view_params["assigned_to"] = ($employee != null) ? $employee->__toString() : "none";
-		$this->view_params["status"] = Model\StatusModel::getByID($ticket->StatusID);
-		$this->view_params["created_on"] = $ticket->created_on;
-		$this->view_params["last_update"] = $ticket->last_update;
+		$this->view_params["ticket_id"] 	= $ticket->TID;
+		$this->view_params["assigned_to"] 	= ($employee != null) ? $employee->__toString() : "none";
+		$this->view_params["status"] 		= Model\StatusModel::getByID($ticket->StatusID);
+		$this->view_params["created_on"] 	= ($ticket->created_on != null) ? date("j M, Y | h:i", strtotime($ticket->created_on)) : "n/a";
+		$this->view_params["last_update"] 	= ($ticket->last_update != null) ? date("j M, Y | h:i", strtotime($ticket->last_update)) : "n/a";
 		
-		$this->view_params["solution"] = ($ticket->Solution != "") ? $ticket->Solution : "No solution available yet.";
+		$this->view_params["solution"] 	= ($ticket->Solution != "") ? $ticket->Solution : "No solution available yet.";
 		
-		$this->view_params["products"] = Model\ProductModel::getForTicket($ticket->TID, function($db) {
+		$this->view_params["products"] 	= Model\ProductModel::getForTicket($ticket->TID, function($db) {
 			while($row = $db->fetch_array("assoc"))
 			{
 				$out .= sprintf('<li>%s</li>', $row["name"]);

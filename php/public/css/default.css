@@ -1,4 +1,4 @@
-/*
+/* Basic colors I used
  R   G   B  Hex
 >>> login head
 13	130	181	#0D82B5 	| top
@@ -13,6 +13,10 @@
 >>> nav
 0	78	140	#004E8C		| top
 10	60	112	#0A3C70		| bottom
+*/
+
+/*
+GENERIC STUFF
 */
 
 * {
@@ -50,7 +54,7 @@ li {
 	list-style-position: inside;
 }
 
-/* Generic stuff, shadows, corners and so on */
+/* shadows, corners and so on */
 .corners_01 {
     border-radius: 5px;
     -o-border-radius: 5px;
@@ -162,10 +166,16 @@ li {
 	text-shadow: 1px 1px 3px #666666;
 }
 
+/* ALIGNMENT */
 .center_margin {
 	width: 960px;
 	margin: 0 auto;
 }
+
+.align_left 	{ float: left; }
+.align_right 	{ float: right; }
+
+/* LOGIN STATUS MENUBAR */
 
 #login_head {
 	font-size: 0.8em;
@@ -187,6 +197,8 @@ li {
 	color: white;
 }
 
+/* LOGO & COMPANY NAME */
+
 header {
 	color: white;
 	height: 100px;
@@ -204,6 +216,8 @@ header span {
 	padding-left: 20px;
 	vertical-align: middle;
 }
+
+/* NAVIGATION BAR */
 
 nav {
 	color: white;
@@ -240,6 +254,8 @@ nav input {
 	float: right;
 }
 
+/* TABLE GENERIC */
+
 table {
 	width: 100%;
 	padding: 5px;
@@ -274,6 +290,12 @@ table tr:nth-child(2n+3) {
 	background: #EEE;
 }
 
+table tr:nth-child(n+2):hover {
+	background: #d4e7ff;
+}
+
+/* TABS IN CONTENT */
+
 #tabs {
 	font-size: 1.2em;
 	padding: 0 10px;
@@ -298,6 +320,8 @@ table tr:nth-child(2n+3) {
 	padding: 10px;
 }
 
+/* PRODUCT PAGE SPECIFIC */
+
 #product img {
 	display: inline-block;
 	vertical-align: middle;
@@ -310,6 +334,8 @@ table tr:nth-child(2n+3) {
 	white-space: normal;
 }
 
+/* CONTENT CONTAINER */
+
 #content {
 	position:relative;
 	background: white;
@@ -317,6 +343,7 @@ table tr:nth-child(2n+3) {
 	padding: 5px;
 }
 
+/* LOGIN ERROR MSG */
 #login .error {
 	width: 150px;
 	border: 1px solid gray;
@@ -344,6 +371,16 @@ table tr:nth-child(2n+3) {
 
 #ticket input[type="text"] {
 	width: 50%;
+}
+
+#ticket_head span {
+	width: 250px;
+	display: block;
+	border-bottom: 1px dotted black;
+}
+
+#ticket_head b {
+	float: right;
 }
 
 .content_form form {

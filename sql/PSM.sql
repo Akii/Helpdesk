@@ -24,11 +24,7 @@ END;;
 --		@param Problem 		contains the problem
 --		@param Note 		custom note for employees only (NULL)
 --		@param Solution 	solution for the problem once finished (NULL)
-<<<<<<< HEAD
---		@return				Insert id in case of successful insert, otherwise 0 
-=======
---		@return				Insert id in case of successful insert, otherwise triggers SQL error
->>>>>>> b16ec0fed773f4d265d5c010de3870ff91b8a933
+--		@return				Insert id in case of successful insert, otherwise 0
 CREATE FUNCTION newTicket (CategoryID INTEGER, StatusID INTEGER, 
 							employee INTEGER, customer INTEGER,
 							Topic VARCHAR(250), Problem VARCHAR(5000),

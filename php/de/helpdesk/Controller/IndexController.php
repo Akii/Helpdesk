@@ -14,13 +14,6 @@ class IndexController extends Controller
 {
 	public static $name = "Index";
 	
-	public function render()
-	{
-		$this->view_params["debug_log"] = nl2br(Utils\Log::toString());
-		
-		parent::render();
-	}
-	
 	public function DefaultAction()
 	{
 		$this->action[0] = "Home";
