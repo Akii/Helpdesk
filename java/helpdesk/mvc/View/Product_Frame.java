@@ -101,7 +101,7 @@ public class Product_Frame extends javax.swing.JFrame {
 
         btn_search.setText("Search");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc/View/pics/hdd.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Helpdesk/java/helpdesk/mvc/View/pics/hdd.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -111,7 +111,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="intf_mycontrol" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jTabbedPane1" pref="617" max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" pref="592" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -125,7 +125,7 @@
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mvc/View/pics/customer_button.png"/>
+          <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/customer_button.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Customer"/>
         <Property name="toolTipText" type="java.lang.String" value="Add or Edit Customer"/>
@@ -156,7 +156,7 @@
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mvc/View/pics/employee_button.png"/>
+          <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/employee_button.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Employee"/>
         <Property name="toolTipText" type="java.lang.String" value="Add or Edit Employee"/>
@@ -177,7 +177,7 @@
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mvc/View/pics/svn-update.png"/>
+          <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/svn-update.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Refresh"/>
         <Property name="toolTipText" type="java.lang.String" value="Refresh all Datatables"/>
@@ -207,7 +207,7 @@
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mvc/View/pics/ticket_button.png"/>
+          <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/ticket_button.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ticket"/>
         <Property name="toolTipText" type="java.lang.String" value="Add or Edit Ticket"/>
@@ -249,7 +249,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Pane_Overview" alignment="0" pref="589" max="32767" attributes="0"/>
+                  <Component id="Pane_Overview" alignment="0" pref="564" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -290,14 +290,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="intf_fullticket" alignment="1" pref="550" max="32767" attributes="0"/>
+                                  <Component id="intf_fullticket" alignment="1" pref="525" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="edt_filterfullticket" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="scrollpane_fullticket" pref="524" max="32767" attributes="0"/>
+                                      <Component id="scrollpane_fullticket" pref="499" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -353,7 +353,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scrollpane_full" alignment="0" pref="521" max="32767" attributes="0"/>
+                              <Component id="scrollpane_full" alignment="0" pref="496" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -437,7 +437,7 @@
                                   <Component id="edt_filtercustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_customer" pref="524" max="32767" attributes="0"/>
+                              <Component id="scrollpane_customer" pref="499" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -515,7 +515,7 @@
                                   <Component id="edt_filteremployee" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_employee" pref="524" max="32767" attributes="0"/>
+                              <Component id="scrollpane_employee" pref="499" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -589,7 +589,7 @@
                                   <Component id="edt_filterproduct" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_product" pref="524" max="32767" attributes="0"/>
+                              <Component id="scrollpane_product" pref="499" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -662,7 +662,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="intf_history" pref="539" max="32767" attributes="0"/>
+                                      <Component id="intf_history" pref="514" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -671,7 +671,7 @@
                                           <Component id="edt_filtertickethis" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="scrollpane_history" pref="524" max="32767" attributes="0"/>
+                                      <Component id="scrollpane_history" pref="499" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -737,7 +737,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scrollpane_his" alignment="0" pref="510" max="32767" attributes="0"/>
+                              <Component id="scrollpane_his" alignment="0" pref="485" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -790,7 +790,7 @@
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mvc/View/pics/window_fullscreen.png"/>
+          <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/window_fullscreen.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pane max"/>
         <Property name="enabled" type="boolean" value="false"/>
@@ -810,7 +810,7 @@
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mvc/View/pics/HD.png"/>
+          <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/HD.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Product"/>
         <Property name="toolTipText" type="java.lang.String" value="Add or Edit Ticket"/>
@@ -840,7 +840,7 @@
           <Font name="Monotype Corsiva" size="36" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mvc/View/pics/helpd_logo.png"/>
+          <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/helpd_logo.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;HTML&gt;&lt;BODY&gt;Hard &amp; &lt;BR&gt;Software&lt;/BODY&gt;&lt;/HTML&gt;"/>
         <Property name="verticalAlignment" type="int" value="1"/>
@@ -885,7 +885,7 @@
                   <Component id="btn_setprocess" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btn_setclosed" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                  <EmptySpace pref="137" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -894,7 +894,7 @@
         <Component class="javax.swing.JButton" name="btn_setfull">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mvc/View/pics/all.png"/>
+              <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/all.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="View all"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -908,7 +908,7 @@
         <Component class="javax.swing.JButton" name="btn_setopen">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mvc/View/pics/open.png"/>
+              <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/open.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="&quot;&quot;" type="code"/>
@@ -924,7 +924,7 @@
         <Component class="javax.swing.JButton" name="btn_setprocess">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mvc/View/pics/process.png"/>
+              <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/process.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="&quot;&quot;" type="code"/>
@@ -940,7 +940,7 @@
         <Component class="javax.swing.JButton" name="btn_setclosed">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mvc/View/pics/closed.png"/>
+              <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/closed.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="&quot;&quot;" type="code"/>
@@ -975,7 +975,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="138" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="126" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

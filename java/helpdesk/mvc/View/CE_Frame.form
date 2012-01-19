@@ -25,109 +25,109 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                      <Component id="L_icon" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="L_username" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_id" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_firstname" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_lastname" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="edt_cfirstname" alignment="0" pref="191" max="32767" attributes="1"/>
-                          <Component id="edt_ID" alignment="0" pref="223" max="32767" attributes="1"/>
-                          <Component id="edt_clastname" alignment="0" max="32767" attributes="1"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="1" pref="1" max="1" attributes="0"/>
-                              <Component id="edt_cusername" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="L_tele" min="-2" max="-2" attributes="0"/>
-                                  <Component id="L_email" min="-2" max="-2" attributes="0"/>
-                                  <Component id="L_password" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="btn_cancel" min="-2" pref="73" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btn_csave" min="-2" pref="69" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="edt_cpassword" alignment="0" pref="255" max="32767" attributes="1"/>
-                                  <Component id="edt_cemail" alignment="0" pref="255" max="32767" attributes="1"/>
-                                  <Component id="edt_ctelephone" alignment="0" pref="255" max="32767" attributes="1"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btn_csearch" min="-2" pref="78" max="-2" attributes="0"/>
-                              <EmptySpace pref="122" max="32767" attributes="0"/>
-                              <Component id="chb_new" min="-2" pref="123" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+              <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+              <Component id="L_icon" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="L_username" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="L_lastname" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="L_id" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="L_firstname" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="L_title" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="edt_ID" min="-2" pref="223" max="-2" attributes="0"/>
+                  <Component id="edt_cfirstname" min="-2" pref="223" max="-2" attributes="0"/>
+                  <Component id="edt_clastname" min="-2" pref="223" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="1" pref="1" max="1" attributes="0"/>
+                      <Component id="edt_cusername" min="-2" pref="222" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="L_tele" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_csearch" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="L_email" min="-2" max="-2" attributes="0"/>
+                  <Component id="L_password" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="edt_cemail" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="btn_cancel" min="-2" pref="73" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btn_csave" min="-2" pref="69" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="edt_cpassword" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="edt_ctelephone" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="chb_new" min="-2" pref="123" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+              <Component id="L_title" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="656" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="13" pref="13" max="13" attributes="0"/>
+              <Component id="L_title" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="11" pref="11" max="11" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="L_icon" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="edt_ID" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="L_id" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn_csearch" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="chb_new" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="edt_cfirstname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_firstname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_tele" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="edt_ctelephone" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="edt_clastname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_lastname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_email" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                          <Component id="edt_cemail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="edt_cusername" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_password" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="edt_cpassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="edt_cfirstname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="L_firstname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="L_tele" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="18" pref="18" max="18" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="edt_clastname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="L_lastname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="L_email" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="edt_cemail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="18" pref="18" max="18" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="edt_cusername" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="L_username" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="L_password" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="edt_cpassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="edt_ctelephone" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Component id="L_username" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_csave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_cancel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-              <Component id="L_title" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="L_icon" pref="150" max="32767" attributes="1"/>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,7 +136,7 @@
     <Component class="javax.swing.JLabel" name="L_icon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mvc/View/pics/Customer.png"/>
+          <Image iconType="3" name="/Helpdesk/java/helpdesk/mvc/View/pics/Customer.png"/>
         </Property>
       </Properties>
     </Component>
