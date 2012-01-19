@@ -24,35 +24,6 @@ class HelpController extends Controller
 	
 	public function TroubleshootAction()
 	{
-		$this->view->setPage("trouble");
-		
-		$this->view_params["customer_options"] = Model\CustomerModel::getAll(
-			function($db) {
-				while($row = $db->fetch_array("assoc"))
-					$out .= sprintf("<option value=\"%u\" >%s</option>\n", $row['CID'], "{$row['firstName']} {$row['lastName']}");
-				
-				return $out;
-			}
-		);
-		
-		$this->view_params["category_options"] = Model\ProblemModel::getAll(
-			function($db) {
-				while($row = $db->fetch_array("assoc"))
-					$out .= sprintf("<option value=\"%u\" >%s</option>\n", $row['CategoryID'], $row["description"]);
-				
-				return $out;
-			}
-		);
-		
-		$this->view_params["product_options"] = Model\ProductModel::getAll(
-			function($db) {
-				while($row = $db->fetch_array("assoc"))
-					$out .= sprintf("<option value=\"%u\" >%s</option>\n", $row['PID'], $row["name"]);
-				
-				return $out;
-			}
-		);
-		
-		//var_dump($this->request->data);
+		$this->response->header("Location: /user/panel/new");
 	}
 }

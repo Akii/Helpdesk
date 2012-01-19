@@ -80,6 +80,29 @@ class HttpResponse
 	 }
 	 
 	 /**
+	  * Sets or gets the header
+	  *
+	  * @param string $header Header to store
+	  * @return string current header
+	  */
+	 public function header($header=null)
+	 {
+	 	if($header === null)
+	 		return $this->header;
+	 	else
+	 	{
+	 		$index = substr($header, 0, strpos($header, ':'));
+			$rest = substr($header, strpos($header, ' '));
+	 		
+	 		if($index == "")
+	 			return false;
+	 		
+	 		$this->_headers[$index] = $rest;
+	 		return true;
+	 	}
+	 }
+	 
+	 /**
 	  * Sets/Gets the body
 	  *
 	  * @param string $body HTML body
@@ -107,7 +130,12 @@ class HttpResponse
 	   */
 	  private function _sendHeader()
 	  {
-	  	
+	  	$out = "";
+	  	foreach($this->_headers as $index => $value)
+	  	{
+	  		$out .= sprintf("%s: %s\n", $index, $value);
+	  	}
+	  	header($out);
 	  }
 	  
 	  /**

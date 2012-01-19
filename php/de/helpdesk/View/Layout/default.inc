@@ -32,8 +32,8 @@
 		</nav>
 		<div class="center_margin">
 			<?php echo $content_for_layout; ?>
-			<footer>
-				© 2012 Software & Hardware GmbH | <a href="/index/impressum">Impressum</a> | <a href="/index/jobs">Jobs</a>
+			<footer class="text_shadow_02">
+				© 2012 Software & Hardware GmbH | <a href="/index/impressum">Impressum</a> | <a href="/index/jobs">Jobs</a><br/>
 			</footer>
 		<!-- end .center_margin --></div>
 	</body>

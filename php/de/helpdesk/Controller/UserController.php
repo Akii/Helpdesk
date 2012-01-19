@@ -44,7 +44,7 @@ class UserController extends Controller
 				$result = $this->components["User"]->login($data["username"], $data["password"]);
 				
 				if($result === true)
-					header("Location: /user/panel");
+					$this->response->header("Location: /user/panel");
 				else
 					$this->view_params["login_error"] = '<div class="error box_shadow_01">Login failed!</div>';
 			}
@@ -60,7 +60,7 @@ class UserController extends Controller
 	{
 		$this->components["User"]->logout();
 		
-		header("Location: /");
+		$this->response->header("Location: /");
 	}
 	
 	public function DefaultAction() { $this->PanelAction(); }
@@ -69,7 +69,6 @@ class UserController extends Controller
 	{
 		if(!$this->components["User"]->loggedIn())
 		{
-			//header("Location: /user/login");
 			$this->response->header("Location: /user/login");
 			return;
 		}
@@ -165,7 +164,7 @@ class UserController extends Controller
 						
 						$_SESSION["ticket_new"] = '<div class="success gradient_05 text_shadow_01 box_shadow_02">You\'ve created a new ticket.</div>';
 						$link = sprintf("Location: /user/panel/details/%u", $ticket->TID);
-						header($link);
+						$this->response->header($link);
 					}
 				}
 				catch(Error\SQLException $e)
@@ -212,7 +211,7 @@ class UserController extends Controller
 		// no ticket with that number or not the customers ticket
 		if($ticket === null || $ticket->customer_CID != $_SESSION["user_id"])
 		{
-			header("Location: /user/panel");
+			$this->response->header("Location: /user/panel");
 			exit;
 		}
 		
