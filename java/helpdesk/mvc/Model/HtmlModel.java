@@ -139,7 +139,7 @@ public class HtmlModel {
                     if (Array[i] == null || "null".equals(Array [i])) {
                         Array[i] = "";
                     }
-                    
+                    if (Array[2]!=null) {
                     if (Array[2].equals("1") && Array[1].equals("CategoryID")) Array[2] = "Hardware Problem";
                     if (Array[2].equals("2") && Array[1].equals("CategoryID")) Array[2] = "Software Problem";
                     if (Array[2].equals("3") && Array[1].equals("CategoryID")) Array[2] = "Activation Problems";
@@ -147,7 +147,7 @@ public class HtmlModel {
                     if (Array[2].equals("1") && Array[1].equals("StatusID")) Array[2] = "Open";
                     if (Array[2].equals("2") && Array[1].equals("StatusID")) Array[2] = "In process";
                     if (Array[2].equals("3") && Array[1].equals("StatusID")) Array[2] = "Closed";
-                    
+                    }
                 }
                 //html formatted text for history Editor pane
                 StringBuilder builder = new StringBuilder("<h2>Ticket ID: " + ID +"</h2> "
