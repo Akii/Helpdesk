@@ -169,8 +169,8 @@ class UserController extends Controller
 			else
 			{
 				$this->view_params["new_error"] = '<div class="warning gradient_06  box_shadow_02">Please fill in all the fields.</div>';
-				$this->view_params["topic"] 	= $data["topic"];
-				$this->view_params["problem"] 	= $data["problem"];
+				$this->view_params["topic"] 	= htmlspecialchars($data["topic"]);
+				$this->view_params["problem"] 	= htmlspecialchars($data["problem"]);
 			}
 		}
 		
@@ -208,9 +208,9 @@ class UserController extends Controller
 		
 		$employee = Model\EmployeeModel::getByID($ticket->employee_EID);
 		
-		$this->view_params["category"] = Model\ProblemModel::getByID($ticket->CategoryID);
-		$this->view_params["topic"] = htmlentities($ticket->Topic, ENT_COMPAT, "UTF-8");
-		$this->view_params["problem"] = htmlentities($ticket->Problem, ENT_COMPAT, "UTF-8");
+		$this->view_params["category"] 	= htmlspecialchars(Model\ProblemModel::getByID($ticket->CategoryID));
+		$this->view_params["topic"] 	= htmlspecialchars($ticket->Topic);
+		$this->view_params["problem"] 	= htmlspecialchars($ticket->Problem);
 		
 		$this->view_params["ticket_id"] = $ticket->TID;
 		$this->view_params["assigned_to"] = ($employee != null) ? $employee->__toString() : "none";
@@ -221,7 +221,7 @@ class UserController extends Controller
 		$this->view_params["solution"] = ($ticket->Solution != "") ? $ticket->Solution : "No solution available yet.";
 		
 		$changes = Model\TicketHistoryModel::getHistory($ticket->TID);
-		if(is_array($changes))
+		if(is_array($changes) && count($changes) > 0)
 		{
 			foreach($changes as $row)
 			{
@@ -235,6 +235,10 @@ class UserController extends Controller
 					', 	date("j M, Y | h:i", strtotime($row["changed_on"])), $this->changes[$row["column_name"]]);
 				}
 			}
+		}
+		else
+		{
+			$this->view_params["changelog"] = '<li>No changes have been made to this ticket.</li>';
 		}
 	}
 	
