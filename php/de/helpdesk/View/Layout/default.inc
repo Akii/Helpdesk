@@ -35,6 +35,6 @@
 			<footer>
 				© 2012 Software & Hardware GmbH | <a href="/index/impressum">Impressum</a> | <a href="/index/jobs">Jobs</a>
 			</footer>
-		<!-- end content --></div>
+		<!-- end .center_margin --></div>
 	</body>
 </html>

@@ -8,13 +8,17 @@
 	<div id="ticket" class="content_form">
 		<h1>Ticket Details</h1>
 		
-		<fieldset class="gradient_04 corners_01">
+		<fieldset id="ticket_head" class="gradient_04 corners_01">
 			<legend>General</legend>
-			<?php echo $ticket_id; ?>
-			<?php echo $assigned_to; ?>
-			<?php echo $status; ?>
-			<?php echo $created_on; ?>
-			<?php echo $last_update; ?>
+			<div class="align_left">
+				<span>ID: <b><?php echo $ticket_id; ?></b></span>
+				<span>Assigned to: <b><?php echo $assigned_to; ?></b></span>
+				<span>Status: <b><?php echo $status; ?></b></span>
+			</div>
+			<div class="align_right">
+				<span>Created on: <b><?php echo $created_on; ?></b></span>
+				<span>Last change: <b><?php echo $last_update; ?></b></span>
+			</div>
 		</fieldset>
 		<fieldset class="gradient_04 corners_01">
 			<legend>Ticket Information</legend>
@@ -35,9 +39,7 @@
 		</fieldset>
 		<fieldset class="gradient_04 corners_01">
 			<legend>Solution</legend>
-			<ul>
-				<?php echo $solution; ?>
-			</ul>
+			<?php echo $solution; ?>
 		</fieldset>
 		<fieldset class="gradient_04 corners_01">
 			<legend>Changelog</legend>

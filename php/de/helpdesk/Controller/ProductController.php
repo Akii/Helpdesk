@@ -24,13 +24,13 @@ class ProductController extends Controller
 				{
 					$out .= sprintf('
 					<div class="content_frame corners_01 box_shadow_02">
-						<img src="/public/images/products/hdd1.jpg" height="128" width="128"/>
+						<img src="/public/images/products/%u.png" height="128" width="128"/>
 						<span>
 							<h1>%s</h1>
 							%s
 						</span>
 					</div>',
-					$row["name"], $row["description"]);
+					$row["PID"], $row["name"], $row["description"]);
 				}
 				return $out;
 			}

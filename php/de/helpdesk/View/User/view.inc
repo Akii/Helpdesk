@@ -4,7 +4,7 @@
 	</ul>
 </div>
 <div id="content">
-	<table class="box_shadow_01 corners_01">
+	<table id="ticket_table" class="box_shadow_01 corners_01">
 		<tr>
 			<th>ID</th>
 			<th>Status</th>
