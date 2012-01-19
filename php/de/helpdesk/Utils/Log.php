@@ -3,6 +3,7 @@
  * Class Log 
  *
  * For saving (debug) msgs in a static array or file
+ * (not really implemented)
  */
 
 namespace de\helpdesk\Utils;
