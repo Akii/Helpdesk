@@ -1,4 +1,4 @@
-package mvc.View;
+package Helpdesk.java.helpdesk.mvc.View;
 /******************
  * Imports
  ******************/

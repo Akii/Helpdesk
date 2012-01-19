@@ -1,8 +1,7 @@
-package mvc.Controller;
+package Helpdesk.java.helpdesk.mvc.Controller;
 /******************
  * Imports
  ******************/
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,22 +21,22 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import lib.refreshTable;
-import mvc.Model.Customer;
-import mvc.Model.CustomerTable;
-import mvc.Model.Employee;
-import mvc.Model.EmployeeTable;
-import mvc.Model.FullticketTable;
-import mvc.Model.HistoryTable;
-import mvc.Model.HtmlModel;
-import mvc.Model.Product;
-import mvc.Model.ProductTable;
-import mvc.View.CE_Frame;
-import mvc.View.Product_Frame;
-import mvc.View.Ticket_Frame;
-import mvc.View.Error_Frame;
-import lib.ImageRenderer;
-import mvc.View.Main_Frame;
+import Helpdesk.java.helpdesk.lib.refreshTable;
+import Helpdesk.java.helpdesk.mvc.Model.Customer;
+import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
+import Helpdesk.java.helpdesk.mvc.Model.Employee;
+import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
+import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
+import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
+import Helpdesk.java.helpdesk.mvc.Model.HtmlModel;
+import Helpdesk.java.helpdesk.mvc.Model.Product;
+import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
+import Helpdesk.java.helpdesk.mvc.View.CE_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Product_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Ticket_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
+import Helpdesk.java.helpdesk.lib.ImageRenderer;
+import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 
 public class MainController {
     private Main_Frame _view;
@@ -131,7 +130,7 @@ public class MainController {
       class btn_addeditTListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-              Thread t=new Thread (new TController(null,f_model,h_model,_view,new Ticket_Frame(f_model)));
+              Thread t=new Thread (new TController(null,f_model,h_model,_view,new Ticket_Frame()));
               t.start();
           }
       }
@@ -385,7 +384,7 @@ public class MainController {
             tableDoubleClick("Fullticket");
         }
             if (evt.getButton() == MouseEvent.BUTTON3) {
-                if (_view.table_fullticket.isRowSelected(_view.table_fullticket.getSelectedRow())) {;
+                if (_view.table_fullticket.isRowSelected(_view.table_fullticket.getSelectedRow())) {
                     Integer integer = (Integer)_view.table_fullticket.getValueAt(
                     _view.table_fullticket.getSelectedRow(), 0);
                     // get the row index that contains that coordinate
@@ -606,7 +605,7 @@ public class MainController {
             } else if ("Fullticket".equals(select)) {
                 Integer integer = (Integer)_view.table_fullticket.getValueAt(
 		_view.table_fullticket.getSelectedRow(), 0);
-                Ticket_Frame _tview = new Ticket_Frame(f_model);
+                Ticket_Frame _tview = new Ticket_Frame();
                 Thread Controller=new Thread (new TController(integer, f_model, h_model , _view, _tview));
                 Controller.start();
             } else if ("Product".equals(select)) {

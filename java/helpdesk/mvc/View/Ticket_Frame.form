@@ -239,11 +239,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmb_category">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(3).toArray(new Object[mvc.Model.Ticket.Ticket_ComboBox(3).size()]))" type="code"/>
-        </Property>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -254,11 +249,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmb_status">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(4).toArray(new Object[mvc.Model.Ticket.Ticket_ComboBox(4).size()]))" type="code"/>
-        </Property>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -279,11 +269,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmb_eID">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(2).toArray(new Object[mvc.Model.Ticket.Ticket_ComboBox(2).size()]))" type="code"/>
-        </Property>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -294,11 +279,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmb_cID">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(1).toArray(new Object[mvc.Model.Ticket.Ticket_ComboBox(1).size()]))" type="code"/>
-        </Property>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

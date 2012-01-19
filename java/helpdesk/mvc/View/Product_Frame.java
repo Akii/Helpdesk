@@ -1,9 +1,8 @@
-package mvc.View;
+package Helpdesk.java.helpdesk.mvc.View;
 /******************
  * Imports
  ******************/
 
-import mvc.Model.ProductTable;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;

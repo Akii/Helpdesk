@@ -1,4 +1,4 @@
-package mvc.Model;
+package Helpdesk.java.helpdesk.mvc.Model;
 /******************
  * Imports
  ******************/

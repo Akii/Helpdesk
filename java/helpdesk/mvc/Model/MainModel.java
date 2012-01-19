@@ -1,14 +1,14 @@
-package mvc.Model;
+package Helpdesk.java.helpdesk.mvc.Model;
 
-import lib.LoginData;
-import mvc.View.Error_Frame;
+import Helpdesk.java.helpdesk.lib.LoginData;
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.sql.ResultSet; 
 import java.sql.SQLException;
 
-import lib.IPagination;
-import lib.Pagination;
-import lib.db.Database;
-import lib.db.MysqlDatabase;
+import Helpdesk.java.helpdesk.lib.IPagination;
+import Helpdesk.java.helpdesk.lib.Pagination;
+import Helpdesk.java.helpdesk.lib.db.Database;
+import Helpdesk.java.helpdesk.lib.db.MysqlDatabase;
 
 public abstract class MainModel {
 

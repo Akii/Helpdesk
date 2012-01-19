@@ -1,17 +1,17 @@
-package mvc.Main;
+package Helpdesk.java.helpdesk.mvc.Main;
 /******************
  * Imports
  ******************/
-import mvc.Model.MainModel; 
-import mvc.View.Login_Frame;
-import mvc.View.Loading_Frame;
-import mvc.Controller.MainController;
-import mvc.Model.CustomerTable;
-import mvc.Model.EmployeeTable;
-import mvc.Model.FullticketTable;
-import mvc.Model.HistoryTable;
-import mvc.Model.ProductTable;
-import mvc.View.Main_Frame;
+import Helpdesk.java.helpdesk.mvc.Model.MainModel; 
+import Helpdesk.java.helpdesk.mvc.View.Login_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Loading_Frame;
+import Helpdesk.java.helpdesk.mvc.Controller.MainController;
+import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
+import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
+import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
+import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
+import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
+import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 
 public class Helpdesk_Main extends MainModel {
     public static void main(String[] args)  {

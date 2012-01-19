@@ -1,4 +1,4 @@
-package lib.db;
+package Helpdesk.java.helpdesk.lib.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

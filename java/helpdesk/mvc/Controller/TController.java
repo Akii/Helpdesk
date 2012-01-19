@@ -1,4 +1,4 @@
-package mvc.Controller;
+package Helpdesk.java.helpdesk.mvc.Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,15 +8,15 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-import lib.ComboBox;
-import lib.refreshTable;
-import mvc.Model.Counter;
-import mvc.Model.FullticketTable;
-import mvc.Model.HistoryTable;
-import mvc.Model.Ticket;
-import mvc.View.Ticket_Frame;
-import mvc.View.Error_Frame;
-import mvc.View.Main_Frame;
+import Helpdesk.java.helpdesk.lib.ComboBox;
+import Helpdesk.java.helpdesk.lib.refreshTable;
+import Helpdesk.java.helpdesk.mvc.Model.Counter;
+import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
+import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
+import Helpdesk.java.helpdesk.mvc.Model.Ticket;
+import Helpdesk.java.helpdesk.mvc.View.Ticket_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 
 public class TController implements Runnable{
     private Integer ID;
@@ -24,6 +24,7 @@ public class TController implements Runnable{
     private HistoryTable h_model;
     private Main_Frame main;
     private Ticket_Frame _view;
+    private String sol,note;
     
     public TController(Integer ID, FullticketTable f_model,HistoryTable h_model, Main_Frame main, Ticket_Frame frame) {
       this.ID = ID;  
@@ -102,18 +103,17 @@ public class TController implements Runnable{
             if ("".equals(_view.edt_topic.getText()) || "".equals(_view.edt_problem.getText())){
                 Error_Frame.Error("Please fill out: Topic and Problem"); 
             } else {
-                    String sol = null,note = null;
                     Integer noEm = null;
                     ID = null;
                     
                     if (!"".equals(_view.edt_solution.getText()) && !"NULL".equals(_view.edt_solution.getText()) &&
                         !" ".equals(_view.edt_solution.getText()) && !"null".equals(_view.edt_solution.getText()) &&
-                        _view.edt_solution.getText() != null) {
+                        _view.edt_solution.getText() != null && !sol.equals(_view.edt_solution.getText())) {
                         sol = _view.edt_solution.getText();
                     }
                     if (!"".equals(_view.edt_note.getText()) && !"NULL".equals(_view.edt_note.getText()) &&
                         !" ".equals(_view.edt_note.getText()) && !"null".equals(_view.edt_note.getText()) &&
-                        _view.edt_note.getText() != null) {
+                        _view.edt_note.getText() != null && !note.equals(_view.edt_note.getText())) {
                         note = _view.edt_note.getText();
                     }
                     if (_view.cmb_eID.getSelectedItem() != "") {
@@ -151,7 +151,6 @@ public class TController implements Runnable{
                 Timer timer = new Timer();
                 timer.schedule  (new Task(), 500);
                 _view.dispose();
-                
             }
         } catch (NumberFormatException ev) {
               Error_Frame.Error("Please use only number for ID");
@@ -220,7 +219,9 @@ public class TController implements Runnable{
             _view.edt_solution.setText(Array[7]);
             _view.edt_created.setText(Array[8]);
             _view.edt_update.setText(Array[9]);
-      
+            this.sol = Array[7];
+            this.note = Array[6];
+            
             for (int i=0; i< _view.cmb_cID.getItemCount();i++) {
                 if (Array[0].equals(_view.cmb_cID.getItemAt(i).toString())) {
                     _view.cmb_cID.setSelectedIndex(i);

@@ -1,7 +1,7 @@
-package lib;
+package Helpdesk.java.helpdesk.lib;
 
 import java.sql.SQLException; 
-import lib.db.Database;
+import Helpdesk.java.helpdesk.lib.db.Database;
 
 public class Pagination implements IPagination {
 	

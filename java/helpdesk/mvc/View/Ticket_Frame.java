@@ -1,8 +1,7 @@
-package mvc.View;
+package Helpdesk.java.helpdesk.mvc.View;
 /******************
  * Imports
  ******************/
-import mvc.Model.FullticketTable;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
@@ -15,7 +14,7 @@ public class Ticket_Frame extends javax.swing.JFrame {
      * init GUI and components
      *  
      ***************************/
-    public Ticket_Frame(FullticketTable f_model) {
+    public Ticket_Frame() {
               /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -148,18 +147,10 @@ public class Ticket_Frame extends javax.swing.JFrame {
 
         btn_cancel.setText("Cancel");
         getContentPane().add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 100, -1));
-
-        cmb_category.setModel(new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(3).toArray(new Object[mvc.Model.Ticket.Ticket_ComboBox(3).size()])));
         getContentPane().add(cmb_category, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 180, -1));
-
-        cmb_status.setModel(new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(4).toArray(new Object[mvc.Model.Ticket.Ticket_ComboBox(4).size()])));
         getContentPane().add(cmb_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 180, -1));
         getContentPane().add(edt_note, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 220, -1));
-
-        cmb_eID.setModel(new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(2).toArray(new Object[mvc.Model.Ticket.Ticket_ComboBox(2).size()])));
         getContentPane().add(cmb_eID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 180, -1));
-
-        cmb_cID.setModel(new javax.swing.DefaultComboBoxModel(mvc.Model.Ticket.Ticket_ComboBox(1).toArray(new Object[mvc.Model.Ticket.Ticket_ComboBox(1).size()])));
         getContentPane().add(cmb_cID, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 220, -1));
 
         btn_search.setText("Search");

@@ -1,8 +1,8 @@
-package mvc.Model;
+package Helpdesk.java.helpdesk.mvc.Model;
 /******************
  * Imports
  ******************/
-import mvc.View.Error_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

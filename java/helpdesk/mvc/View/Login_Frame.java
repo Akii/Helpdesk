@@ -1,16 +1,16 @@
-package mvc.View;
+package Helpdesk.java.helpdesk.mvc.View;
 
 /******************
  * Imports
  ******************/
 import com.mysql.jdbc.exceptions.MySQLSyntaxErrorException;
-import lib.DesEncrypter;
-import lib.LoginData;
+import Helpdesk.java.helpdesk.lib.DesEncrypter;
+import Helpdesk.java.helpdesk.lib.LoginData;
 import java.awt.Toolkit;
 import java.sql.SQLException;
-import lib.db.Database;
-import lib.db.MysqlDatabase;
-import mvc.Main.Helpdesk_Main;
+import Helpdesk.java.helpdesk.lib.db.Database;
+import Helpdesk.java.helpdesk.lib.db.MysqlDatabase;
+import Helpdesk.java.helpdesk.mvc.Main.Helpdesk_Main;
 
 public class Login_Frame extends javax.swing.JFrame implements Runnable{
     

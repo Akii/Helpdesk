@@ -1,11 +1,11 @@
-package mvc.Model;
+package Helpdesk.java.helpdesk.mvc.Model;
 /******************
  * Imports
  ******************/
-import mvc.View.Error_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import lib.db.Database;
+import Helpdesk.java.helpdesk.lib.db.Database;
 import java.util.ArrayList;
 
 public class Customer extends MainModel{

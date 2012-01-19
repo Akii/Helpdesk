@@ -1,5 +1,5 @@
 // singleton class
-package lib.db;
+package Helpdesk.java.helpdesk.lib.db;
 
 import java.sql.Connection; 
 import java.sql.PreparedStatement;

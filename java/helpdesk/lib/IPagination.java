@@ -1,4 +1,4 @@
-package lib;
+package Helpdesk.java.helpdesk.lib;
 
 import java.sql.SQLException;
 

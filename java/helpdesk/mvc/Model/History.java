@@ -1,12 +1,12 @@
-package mvc.Model;
+package Helpdesk.java.helpdesk.mvc.Model;
 /******************
  * Imports
  ******************/
-import mvc.View.Error_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import lib.db.Database;
+import Helpdesk.java.helpdesk.lib.db.Database;
 
     public class History extends MainModel{
     public Integer TicketID;

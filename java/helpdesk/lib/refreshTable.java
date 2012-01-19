@@ -1,12 +1,12 @@
-package lib;
+package Helpdesk.java.helpdesk.lib;
 /******************
  * Imports
  ******************/
-import mvc.Model.CustomerTable;
-import mvc.Model.EmployeeTable;
-import mvc.Model.FullticketTable;
-import mvc.Model.HistoryTable;
-import mvc.Model.ProductTable;
+import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
+import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
+import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
+import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
+import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
 
 public class refreshTable extends Thread {
     CustomerTable c_model;

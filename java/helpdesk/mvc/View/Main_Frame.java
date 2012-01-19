@@ -1,8 +1,8 @@
-package mvc.View;
+package Helpdesk.java.helpdesk.mvc.View;
 /******************
  * Imports
  ******************/
-import lib.ImageRenderer;
+import Helpdesk.java.helpdesk.lib.ImageRenderer;
 import java.awt.Frame;
 import java.awt.MenuContainer;
 import java.awt.Toolkit;
@@ -14,13 +14,13 @@ import java.io.Serializable;
 
 import javax.swing.event.InternalFrameListener;
 import javax.swing.event.ListSelectionListener;
-import lib.refreshTable;
-import mvc.Model.Counter;
-import mvc.Model.CustomerTable;
-import mvc.Model.EmployeeTable;
-import mvc.Model.FullticketTable;
-import mvc.Model.HistoryTable;
-import mvc.Model.ProductTable;
+import Helpdesk.java.helpdesk.lib.refreshTable;
+import Helpdesk.java.helpdesk.mvc.Model.Counter;
+import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
+import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
+import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
+import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
+import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
 
 
 public class Main_Frame extends javax.swing.JFrame implements ImageObserver, MenuContainer, Serializable {

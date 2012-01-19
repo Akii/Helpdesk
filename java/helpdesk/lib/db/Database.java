@@ -4,7 +4,7 @@
  * Singleton design pattern.
  * Abstract factory design pattern.
  */
-package lib.db;
+package Helpdesk.java.helpdesk.lib.db;
 /******************
  * Imports
  ******************/

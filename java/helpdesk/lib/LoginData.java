@@ -1,8 +1,8 @@
-package lib;
+package Helpdesk.java.helpdesk.lib;
 /******************
  * Imports
  ******************/
-import mvc.View.Error_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
