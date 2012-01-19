@@ -86,6 +86,9 @@ public class Ticket_Frame extends javax.swing.JFrame {
         chb_new = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         edt_topic = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        cmb_product = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -113,7 +116,7 @@ public class Ticket_Frame extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 80, -1));
 
         jLabel10.setText(" Note");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 40, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 40, -1));
 
         jLabel11.setText("Topic");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
@@ -149,7 +152,7 @@ public class Ticket_Frame extends javax.swing.JFrame {
         getContentPane().add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 100, -1));
         getContentPane().add(cmb_category, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 180, -1));
         getContentPane().add(cmb_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 180, -1));
-        getContentPane().add(edt_note, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 220, -1));
+        getContentPane().add(edt_note, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 220, -1));
         getContentPane().add(cmb_eID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 180, -1));
         getContentPane().add(cmb_cID, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 220, -1));
 
@@ -162,6 +165,15 @@ public class Ticket_Frame extends javax.swing.JFrame {
         jLabel6.setText("Problem");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
         getContentPane().add(edt_topic, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 182, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Helpdesk/java/helpdesk/mvc/View/pics/my-tickets.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, 210));
+
+        cmb_product.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cmb_product, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 220, -1));
+
+        jLabel9.setText("Product");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -192,6 +204,7 @@ public class Ticket_Frame extends javax.swing.JFrame {
     }
     
     
+    
     /*
     *  Button event - create or update tickets
     */
@@ -207,6 +220,7 @@ public class Ticket_Frame extends javax.swing.JFrame {
     public javax.swing.JComboBox cmb_cID;
     public javax.swing.JComboBox cmb_category;
     public javax.swing.JComboBox cmb_eID;
+    public javax.swing.JComboBox cmb_product;
     public javax.swing.JComboBox cmb_status;
     public javax.swing.JTextField edt_ID;
     public javax.swing.JTextField edt_created;
@@ -226,7 +240,9 @@ public class Ticket_Frame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane scrollpane_solution;
     // End of variables declaration//GEN-END:variables
 

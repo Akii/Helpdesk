@@ -104,9 +104,6 @@ public class MainController {
       * 
       **************************************/
     
-    /*
-    *  Start new Customer GUI Thread and pass CustomerModel
-    */    
     class btn_addeditCListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
@@ -115,9 +112,6 @@ public class MainController {
         }
     }
     
-    /*
-    *  Start new Employee GUI Thread and pass EmployeeModel 
-    */
      class btn_addeditEListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
@@ -203,7 +197,6 @@ public class MainController {
       * 
       **************************************/
       
-        
        class edt_filterfullticketListener implements KeyListener{
          @Override
          public void keyReleased(KeyEvent e) {
@@ -454,6 +447,7 @@ public class MainController {
         }
       }
       
+       
        class table_employeeListener implements MouseListener{
         @Override
         public void mouseReleased(MouseEvent evt) {
@@ -493,6 +487,7 @@ public class MainController {
         }
       }
       
+       
        class table_productListener implements MouseListener{
         @Override
         public void mouseReleased(MouseEvent evt) {
@@ -587,8 +582,7 @@ public class MainController {
       * User defined functions 
       * 
       **************************************/
-
-      
+  
       public void tableDoubleClick (String select) {
             if ("Customer".equals(select)) {
                 Integer integer = (Integer)_view.table_customer.getValueAt(
