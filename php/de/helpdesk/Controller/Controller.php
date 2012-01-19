@@ -127,14 +127,8 @@ abstract class Controller implements IController
 			$this->view_params["title"] = static::$name . " > " . $this->action[0];
 			
 		$output = $this->view->render();
-		echo $output;
-	}
-	
-	/**
-	 * Default action does pretty much nothing.
-	 */
-	public function DefaultAction()
-	{
+		$this->response->body($output);
+		$this->response->sendResponse();
 	}
 	
 	/**

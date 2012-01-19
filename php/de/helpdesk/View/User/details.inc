@@ -35,9 +35,7 @@
 		</fieldset>
 		<fieldset class="gradient_04 corners_01">
 			<legend>Solution</legend>
-			<ul>
-				<?php echo $solution; ?>
-			</ul>
+			<?php echo $solution; ?>
 		</fieldset>
 		<fieldset class="gradient_04 corners_01">
 			<legend>Changelog</legend>

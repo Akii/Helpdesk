@@ -117,7 +117,7 @@ class UserController extends Controller
 						<td>%s</td>
 						<td><a href="/user/panel/details/%u" ><img src="/public/images/document-preview.png" alt="Details" Title="Details"/></a></td>
 					</tr>
-				', $row["TID"], $row["status"], $topic, $employee, date("j M, Y", strtotime($row["last_update"])), $row["TID"]);
+				', $row["TID"], $row["status"], htmlspecialchars($topic), $employee, date("j M, Y", strtotime($row["last_update"])), $row["TID"]);
 			}
 			
 			// if the user has no tickets
@@ -156,6 +156,12 @@ class UserController extends Controller
 					
 					if($ticket->TID > 0)
 					{
+						if(isset($data["products"]) && count($data["products"]) > 0)
+						{
+							foreach($data["products"] as $product_id)
+								$ticket->addProduct(Model\ProductModel::getByID($product_id));
+						}
+						
 						$_SESSION["ticket_new"] = '<div class="success gradient_05 text_shadow_01 box_shadow_02">You\'ve created a new ticket.</div>';
 						$link = sprintf("Location: /user/panel/details/%u", $ticket->TID);
 						header($link);
@@ -178,6 +184,16 @@ class UserController extends Controller
 			function($db) {
 				while($row = $db->fetch_array("assoc"))
 					$out .= sprintf("<option value=\"%u\" >%s</option>\n", $row['CategoryID'], $row["description"]);
+				
+				return $out;
+			}
+		);
+		
+		$this->view_params["products"] = Model\ProductModel::getAll(
+			function($db) {
+				while($row = $db->fetch_array("assoc")) {
+					$out .= sprintf('<option value="%u">%s</option>', $row["PID"], $row["name"]);
+				}
 				
 				return $out;
 			}
@@ -219,6 +235,17 @@ class UserController extends Controller
 		$this->view_params["last_update"] = $ticket->last_update;
 		
 		$this->view_params["solution"] = ($ticket->Solution != "") ? $ticket->Solution : "No solution available yet.";
+		
+		$this->view_params["products"] = Model\ProductModel::getForTicket($ticket->TID, function($db) {
+			while($row = $db->fetch_array("assoc"))
+			{
+				$out .= sprintf('<li>%s</li>', $row["name"]);
+			}
+			return $out;
+		});
+		
+		if($this->view_params["products"] === null)
+			$this->view_params["products"] = "<li>No products associated with this ticket.</li>";
 		
 		$changes = Model\TicketHistoryModel::getHistory($ticket->TID);
 		if(is_array($changes) && count($changes) > 0)

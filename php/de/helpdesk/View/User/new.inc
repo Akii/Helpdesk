@@ -13,13 +13,16 @@
 						<option value="0">Select a category</option>
 						<?php echo $category_options; ?>
 					</select>
-				
+				<label for="products">Products:</label>
+					<select name="products[]" size="5" multiple>
+						<?php echo $products; ?>
+					</select>
 				<label for="topic">Topic:</label>
 					<input type="text" name="topic" value="<?php echo $topic; ?>"/>
-				
+
 				<label for="problem">Problem:</label>
 					<textarea name="problem"><?php echo $problem; ?></textarea>
-				
+
 				<input type="submit" name="ticket_submit" value="Create new ticket"/>
 			</fieldset>
 		</form>

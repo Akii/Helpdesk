@@ -91,7 +91,7 @@ class TicketModel extends Model
 	
 	public function addProduct(ProductModel $model)
 	{
-		if(!isset($model::$table_pk) || !isset($model::$table_name))
+		if(!isset($model::$table_pk) || !isset($model::$table_name) || !($model instanceof ProductModel))
 			return;
 		
 		$pk = $model::$table_pk;
@@ -103,7 +103,7 @@ class TicketModel extends Model
 	
 	public function delProduct(ProductModel $model)
 	{
-		if(!isset($model::$table_pk) || !isset($model::$table_name))
+		if(!isset($model::$table_pk) || !isset($model::$table_name) || !($model instanceof ProductModel))
 			return;
 		
 		$pk = $model::$table_pk;
