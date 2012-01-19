@@ -3,7 +3,6 @@ package Helpdesk.java.helpdesk.mvc.Main;
  * Imports
  ******************/
 import Helpdesk.java.helpdesk.mvc.Model.MainModel; 
-import Helpdesk.java.helpdesk.mvc.View.Login_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Loading_Frame;
 import Helpdesk.java.helpdesk.mvc.Controller.MainController;
 import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
@@ -16,11 +15,7 @@ import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 public class Helpdesk_Main extends MainModel {
     public static void main(String[] args)  {
        // Loading SplashScreen
-       Loading_Frame splash = new Loading_Frame();
-       //Thread Login = new Thread (new Login_Frame());
-       new Login_Frame().run();
-       //dispose SplashScreen
-       splash.dispose();   
+       Loading_Frame splash = new Loading_Frame(3000);
     }
     
 
@@ -36,6 +31,7 @@ public class Helpdesk_Main extends MainModel {
         FullticketTable f_model = new FullticketTable();
         HistoryTable h_model = new HistoryTable();
         ProductTable p_model = new ProductTable();
+        
              
         Main_Frame _view = new Main_Frame(c_model,e_model,f_model,h_model,p_model);
      

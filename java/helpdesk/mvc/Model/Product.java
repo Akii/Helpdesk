@@ -121,6 +121,33 @@ public class Product extends MainModel{
             return Array;
         }
         
+        
+         /************************************************
+         *  get all Productnames from required database table and 
+         *  and set it into comboboxes
+         **************************************************/
+        public static ArrayList Product_ComboBox() {
+            ArrayList number = new ArrayList();
+            Database db = dbconnect();
+            String query;
+	try {
+                query = ("SELECT name FROM product ORDER BY PID");
+                number.add("");
+                db.prepare(query);
+		ResultSet rs = db.executeQuery();   
+                while(rs.next()) {
+                        number.add(rs.getString(1));
+		}
+	        db.close();      
+
+        } catch (SQLException e) {
+            Error_Frame.Error(e.toString());
+        } 
+        return number;
+    }
+        
+        
+        
         /*******************************
          * set resultset to a Product object
          *******************************/
@@ -136,6 +163,8 @@ public class Product extends MainModel{
         return newProduct;
     }
     
+    
+      
         /********************************
          *  save current product into a 
          *  object for the JTable

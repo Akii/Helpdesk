@@ -13,10 +13,13 @@ import Helpdesk.java.helpdesk.lib.refreshTable;
 import Helpdesk.java.helpdesk.mvc.Model.Counter;
 import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
 import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
+import Helpdesk.java.helpdesk.mvc.Model.Product;
+import Helpdesk.java.helpdesk.mvc.Model.ProductInv;
 import Helpdesk.java.helpdesk.mvc.Model.Ticket;
 import Helpdesk.java.helpdesk.mvc.View.Ticket_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
+import java.sql.SQLException;
 
 public class TController implements Runnable{
     private Integer ID;
@@ -24,7 +27,7 @@ public class TController implements Runnable{
     private HistoryTable h_model;
     private Main_Frame main;
     private Ticket_Frame _view;
-    private String sol,note;
+    private String sol,note,pname;
     
     public TController(Integer ID, FullticketTable f_model,HistoryTable h_model, Main_Frame main, Ticket_Frame frame) {
       this.ID = ID;  
@@ -60,7 +63,8 @@ public class TController implements Runnable{
                                new Object[Ticket.Ticket_ComboBox(2).size()])));
         _view.cmb_cID.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(1).toArray(
                                new Object[Ticket.Ticket_ComboBox(1).size()])));
-
+        _view.cmb_product.setModel(new javax.swing.DefaultComboBoxModel(Product.Product_ComboBox().toArray(
+                               new Object[Product.Product_ComboBox().size()])));
     }
     
       /*************************************
@@ -93,6 +97,10 @@ public class TController implements Runnable{
     }
     
     
+      /*************************************
+      *   what a nice code..!! 
+      *   TODO - change that f... s...
+      **************************************/
     class btn_saveListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
@@ -105,7 +113,6 @@ public class TController implements Runnable{
             } else {
                     Integer noEm = null;
                     ID = null;
-                    
                     if (!"".equals(_view.edt_solution.getText()) && !"NULL".equals(_view.edt_solution.getText()) &&
                         !" ".equals(_view.edt_solution.getText()) && !"null".equals(_view.edt_solution.getText()) &&
                         _view.edt_solution.getText() != null && !sol.equals(_view.edt_solution.getText())) {
@@ -119,7 +126,6 @@ public class TController implements Runnable{
                     if (_view.cmb_eID.getSelectedItem() != "") {
                         noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
                     }
-                    
                 //check checkbox "new Ticket"
                 if (_view.chb_new.getSelectedObjects() == null) {
                     ID = Integer.parseInt (_view.edt_ID.getText());  
@@ -132,6 +138,15 @@ public class TController implements Runnable{
                     note, sol, _view.edt_created.getText(),
                     currentTimestamp.toString());
                     updateTicket.updateTicket(ID);
+                        if (!"".equals((String)_view.cmb_product.getSelectedItem())) {
+                            ProductInv Productinv = new ProductInv(ID,
+                            ComboBox.getPID(null,(String)_view.cmb_product.getSelectedItem()));
+                            if ("".equals(pname) || pname == null) {
+                                Productinv.newInvProduct(); 
+                            } else {
+                                Productinv.updateInvProduct();
+                            }
+                        }
                 } else {
                     //get timestamp and string from textfield and create ticket
                     Ticket newTicket = new Ticket (ID,
@@ -141,7 +156,12 @@ public class TController implements Runnable{
                     _view.edt_topic.getText(), _view.edt_problem.getText(),
                     note,sol,currentTimestamp.toString(),
                     currentTimestamp.toString());
-                    newTicket.newTicket();
+                    Integer tid = newTicket.newTicket();
+                    if (!"".equals((String)_view.cmb_product.getSelectedItem())) {
+                        ProductInv Productinv = new ProductInv(tid,
+                        ComboBox.getPID(null,(String)_view.cmb_product.getSelectedItem()));
+                        Productinv.newInvProduct();
+                    }
                 }
                 //refresh jtable
                 refreshTable A1 = new refreshTable(null, null, f_model, h_model, null);
@@ -149,7 +169,7 @@ public class TController implements Runnable{
                 //count ticket status for fullticket control buttons
                 //timer to prevent connection link lost
                 Timer timer = new Timer();
-                timer.schedule  (new Task(), 500);
+                timer.schedule  (new Count(), 600);
                 _view.dispose();
             }
         } catch (NumberFormatException ev) {
@@ -166,7 +186,7 @@ public class TController implements Runnable{
       *     Timer
       * 
       **************************************/
-    class Task extends TimerTask {
+    class Count extends TimerTask {
         @Override
         public void run() {
                 Counter A2 = new Counter(main);
@@ -236,11 +256,26 @@ public class TController implements Runnable{
                     }
                 }
             }
+            
+            try {
+               this.pname = ComboBox.getProductName(ComboBox.getPID(ID,null));  
+            } catch (SQLException evt) {
+            } catch (NullPointerException evt) {}
+            if (this.pname != null && !"".equals(this.pname)) {
+               for (int i=0; i< _view.cmb_product.getItemCount();i++) {
+                   if (this.pname.equals(_view.cmb_product.getItemAt(i).toString())) {
+                       _view.cmb_product.setSelectedIndex(i);
+                   }
+               }
+            }
+                
            _view.cmb_category.setSelectedIndex(Integer.parseInt(Array[2])-1);
            _view.cmb_status.setSelectedIndex(Integer.parseInt(Array[3])-1);
         } catch (NullPointerException E){
             Error_Frame.Error("ID not found");
         } catch (NumberFormatException E) {
+            Error_Frame.Error(E.toString());
+        } catch (Exception E) {
             Error_Frame.Error(E.toString());
         }
     }

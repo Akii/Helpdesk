@@ -64,9 +64,10 @@ public class Ticket extends MainModel {
         * Placeholder "?" - Using db.bind_param
         * to prevent SQL injection
         ************************/
-        public void newTicket() {
+        public Integer newTicket() {
 		Database db = dbconnect();
                 String noEmployee = null;
+                Integer ticket_id = null;
 		try {
 		String query = "INSERT INTO ticket "
                         + "(customer_CID, employee_EID, CategoryID, StatusID ,"
@@ -88,11 +89,13 @@ public class Ticket extends MainModel {
                 db.bind_param(9, this.created_on);
                 db.bind_param(10, this.last_update);
 		db.executeUpdate();
+                ticket_id = db.insert_id();
 		db.close();
                 
 		} catch(SQLException e){	
 			Error_Frame.Error(e.toString()); 
 		}  
+                return ticket_id;
         }
 	
 	/*******************
