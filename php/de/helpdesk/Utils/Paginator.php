@@ -3,6 +3,7 @@
  * Class Paginator
  *
  * Helper for pagination
+ * (currently not implemented!)
  */
 
 namespace de\helpdesk\Utils;
