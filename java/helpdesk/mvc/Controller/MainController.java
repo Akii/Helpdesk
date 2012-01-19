@@ -36,7 +36,7 @@ import mvc.View.CE_Frame;
 import mvc.View.Product_Frame;
 import mvc.View.Ticket_Frame;
 import mvc.View.Error_Frame;
-import mvc.View.ImageRenderer;
+import lib.ImageRenderer;
 import mvc.View.Main_Frame;
 
 public class MainController {
@@ -111,8 +111,7 @@ public class MainController {
     class btn_addeditCListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
-           CE_Frame _pview = new CE_Frame("Customer", c_model, e_model);
-           Thread Controller = new Thread (new CEController(null,"Customer",_pview, c_model, e_model));
+           Thread Controller = new Thread (new CEController(null,"Customer",new CE_Frame("Customer"), c_model, e_model));
            Controller.start();
         }
     }
@@ -123,8 +122,7 @@ public class MainController {
      class btn_addeditEListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
-           CE_Frame _pview = new CE_Frame("Employee", c_model, e_model);
-           Thread Controller = new Thread (new CEController(null,"Employee",_pview, c_model, e_model));
+           Thread Controller = new Thread (new CEController(null,"Employee",new CE_Frame("Employee"), c_model, e_model));
            Controller.start();
         }
     }
@@ -133,8 +131,7 @@ public class MainController {
       class btn_addeditTListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-              Ticket_Frame _tview = new Ticket_Frame(f_model);
-              Thread t=new Thread (new TController(null,f_model,h_model,_view,_tview));
+              Thread t=new Thread (new TController(null,f_model,h_model,_view,new Ticket_Frame(f_model)));
               t.start();
           }
       }
@@ -142,8 +139,7 @@ public class MainController {
       class btn_addeditPListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-              Product_Frame _pview = new Product_Frame(p_model);
-              Thread t=new Thread (new PController(null,p_model,_pview));
+              Thread t=new Thread (new PController(null,p_model,new Product_Frame()));
               t.start();
           }
       }
@@ -158,8 +154,7 @@ public class MainController {
             
             //Deactivate refresh button for 2 sec to prevent DB connection overflow
             _view.btn_refresh.setEnabled(false);
-            Timer timer = new Timer();
-            timer.schedule(new btn_activate(), Refreshbtn_Timer);
+            new Timer().schedule(new btn_activate(), Refreshbtn_Timer);
         }
       }
       
@@ -175,8 +170,7 @@ public class MainController {
       class btn_setFullListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            refreshTable A1;
-            A1 = new refreshTable(null, null, f_model, null, null);
+            refreshTable A1 = new refreshTable(null, null, f_model, null, null);
             A1.start();
           }
       }
@@ -394,10 +388,8 @@ public class MainController {
                 if (_view.table_fullticket.isRowSelected(_view.table_fullticket.getSelectedRow())) {;
                     Integer integer = (Integer)_view.table_fullticket.getValueAt(
                     _view.table_fullticket.getSelectedRow(), 0);
-                    // get the coordinates of the mouse click
-                    Point p = evt.getPoint();
                     // get the row index that contains that coordinate
-                    int rowNumber = _view.table_fullticket.rowAtPoint(p);
+                    int rowNumber = _view.table_fullticket.rowAtPoint(evt.getPoint());
                     ListSelectionModel model1 = _view.table_fullticket.getSelectionModel();
                     // set the selected interval of rows. Using the "rowNumber"
                     // variable for the beginning and end. Selects only that one row.
@@ -435,9 +427,8 @@ public class MainController {
                     Integer integer = (Integer)_view.table_customer.getValueAt(
                     _view.table_customer.getSelectedRow(), 0);
                     // get the coordinates of the mouse click
-                    Point p = evt.getPoint();
                     // get the row index that contains that coordinate
-                    int rowNumber = _view.table_customer.rowAtPoint(p);
+                    int rowNumber = _view.table_customer.rowAtPoint(evt.getPoint());
                     ListSelectionModel model1 = _view.table_customer.getSelectionModel();
                     // set the selected interval of rows. Using the "rowNumber"
                     // variable for the beginning and end. Selects only that one row.
@@ -475,9 +466,8 @@ public class MainController {
                     Integer integer = (Integer)_view.table_employee.getValueAt(
                     _view.table_employee.getSelectedRow(), 0);
                     // get the coordinates of the mouse click
-                    Point p = evt.getPoint();
                     // get the row index that contains that coordinate
-                    int rowNumber = _view.table_employee.rowAtPoint(p);
+                    int rowNumber = _view.table_employee.rowAtPoint(evt.getPoint());
                     ListSelectionModel model1 = _view.table_employee.getSelectionModel();
                     // set the selected interval of rows. Using the "rowNumber"
                     // variable for the beginning and end. Selects only that one row.
@@ -515,9 +505,8 @@ public class MainController {
                     Integer integer = (Integer)_view.table_product.getValueAt(
                     _view.table_product.getSelectedRow(), 0);
                     // get the coordinates of the mouse click
-                    Point p = evt.getPoint();
                     // get the row index that contains that coordinate
-                    int rowNumber = _view.table_product.rowAtPoint(p);
+                    int rowNumber = _view.table_product.rowAtPoint(evt.getPoint());
                     ListSelectionModel model1 = _view.table_product.getSelectionModel();
                     // set the selected interval of rows. Using the "rowNumber"
                     // variable for the beginning and end. Selects only that one row.
@@ -577,12 +566,10 @@ public class MainController {
            
          //history table
          if( event.getSource() == _view.table_history.getSelectionModel() && event.getFirstIndex() >= 0) {
-		// Determine the selected item    
 		Integer integer = (Integer)_view.table_history.getValueAt(_view.table_history.getSelectedRow(), 0);
                 String changed = (String)_view.table_history.getValueAt(_view.table_history.getSelectedRow(), 1);
                 String name = (String)_view.table_history.getValueAt(_view.table_history.getSelectedRow(), 2);
                 _view.txp_history.setText(HtmlModel.Htmlhistory(integer,changed,name).toString());
-                 //set vertical scrollbar to top 
                  javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() { 
@@ -607,13 +594,13 @@ public class MainController {
             if ("Customer".equals(select)) {
                 Integer integer = (Integer)_view.table_customer.getValueAt(
 		_view.table_customer.getSelectedRow(), 0);
-                CE_Frame _pview = new CE_Frame("Customer", c_model, e_model);
+                CE_Frame _pview = new CE_Frame("Customer");
                 Thread Controller = new Thread (new CEController(integer,"Customer",_pview, c_model, e_model));
                 Controller.start();
             } else if ("Employee".equals(select)) {
                 Integer integer = (Integer)_view.table_employee.getValueAt(
                 _view.table_employee.getSelectedRow(), 0);
-                CE_Frame _pview = new CE_Frame("Employee", c_model, e_model);
+                CE_Frame _pview = new CE_Frame("Employee");
                 Thread Controller = new Thread (new CEController(integer,"Employee", _pview, c_model, e_model));
                 Controller.start();
             } else if ("Fullticket".equals(select)) {
@@ -625,7 +612,7 @@ public class MainController {
             } else if ("Product".equals(select)) {
                 Integer integer = (Integer)_view.table_product.getValueAt(
 		_view.table_product.getSelectedRow(), 0);
-                Product_Frame _pview = new Product_Frame(p_model);
+                Product_Frame _pview = new Product_Frame();
                 Thread Controller=new Thread (new PController(integer, p_model, _pview));
                 Controller.start();
             }
@@ -679,13 +666,13 @@ public class MainController {
     public void filter (String text,TableRowSorter sorter) {
            if (text.length() == 0) {
                  sorter.setRowFilter(null);
-               } else {
-                 try {
-                   sorter.setRowFilter(
-                   RowFilter.regexFilter(text));
-                 } catch (PatternSyntaxException e) {
-                   Error_Frame.Error(e.toString());
-                 }
+           } else {
+                try {
+                    sorter.setRowFilter(
+                    RowFilter.regexFilter(text));
+                } catch (PatternSyntaxException e) {
+                    Error_Frame.Error(e.toString());
+                }
            }
     }
     

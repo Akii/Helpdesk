@@ -13,8 +13,8 @@ public class Error_Frame extends javax.swing.JFrame {
         //set frame position
         this.setSize(440, 223);
         setLocation(
-        (Toolkit.getDefaultToolkit().getScreenSize().width-getSize().width) / 2,
-        (Toolkit.getDefaultToolkit().getScreenSize().height-getSize().height) / 2
+            (Toolkit.getDefaultToolkit().getScreenSize().width-getSize().width) / 2,
+            (Toolkit.getDefaultToolkit().getScreenSize().height-getSize().height) / 2
         );
         initComponents();
         txp_exception.setText(message);

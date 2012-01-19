@@ -36,8 +36,8 @@ public class Login_Frame extends javax.swing.JFrame implements Runnable{
         initComponents();
         //set frame position 
         setLocation(
-        (Toolkit.getDefaultToolkit().getScreenSize().width-getSize().width) / 2,
-        (Toolkit.getDefaultToolkit().getScreenSize().height-getSize().height) / 2
+            (Toolkit.getDefaultToolkit().getScreenSize().width-getSize().width) / 2,
+            (Toolkit.getDefaultToolkit().getScreenSize().height-getSize().height) / 2
         );
         
         //read string from file and fill textfield

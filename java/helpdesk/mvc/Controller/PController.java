@@ -56,8 +56,7 @@ public class PController implements Runnable{
         public void actionPerformed(ActionEvent e) {  
             //search ID        
             try {
-                String Str = _view.edt_ID.getText();
-                psearch(Integer.parseInt(Str));
+                psearch(Integer.parseInt(_view.edt_ID.getText()));
             } catch (NullPointerException E){
                 Error_Frame.Error("ID not found");
             } catch (NumberFormatException E) {
@@ -84,8 +83,7 @@ public class PController implements Runnable{
                         newProduct.newProduct();
                     }
                     //after update or create, refresh table 
-                    refreshTable A1;
-                    A1 = new refreshTable(null, null, null, null, p_model);
+                    refreshTable A1 = new refreshTable(null, null, null, null, p_model);
                     A1.start();
                     _view.dispose();
                 }

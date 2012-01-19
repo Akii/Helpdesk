@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
 public class Product_Frame extends javax.swing.JFrame {
-    ProductTable p_model;
 
     
      /**************************
@@ -18,9 +17,7 @@ public class Product_Frame extends javax.swing.JFrame {
      *  
      ***************************/
 
-    public Product_Frame(ProductTable p_model) {
-      this.p_model = p_model;
-      
+    public Product_Frame() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

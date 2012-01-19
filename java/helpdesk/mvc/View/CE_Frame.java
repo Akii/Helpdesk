@@ -2,16 +2,12 @@ package mvc.View;
 /******************
  * Imports
  ******************/
-import mvc.Model.CustomerTable;
-import mvc.Model.EmployeeTable;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
 public class CE_Frame extends javax.swing.JFrame {
     private String choose;
-    private CustomerTable c_model;
-    private EmployeeTable e_model;
 
     
      /**************************
@@ -20,10 +16,8 @@ public class CE_Frame extends javax.swing.JFrame {
      *  
      ***************************/
     
-    public CE_Frame(String choose, CustomerTable c_model, EmployeeTable e_model) {
+    public CE_Frame(String choose) {
       this.choose = choose;
-      this.c_model = c_model;
-      this.e_model = e_model;
       
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

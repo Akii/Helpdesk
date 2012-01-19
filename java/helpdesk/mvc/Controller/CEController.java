@@ -61,8 +61,7 @@ public class CEController implements Runnable{
         @Override
         public void actionPerformed(ActionEvent e) {  
             try {
-                String Str = _view.edt_ID.getText();
-                csearch(Integer.parseInt(Str));         
+                csearch(Integer.parseInt(_view.edt_ID.getText()));         
             } catch (NumberFormatException evt) {
                 Error_Frame.Error("Please use only number for ID");
         }
@@ -73,6 +72,7 @@ public class CEController implements Runnable{
         @Override
         public void actionPerformed(ActionEvent e) {  
         boolean equal = false;
+        ID = null;
         //send error message if one of these textfields are empty
         try {
             if ("".equals(_view.edt_cfirstname.getText()) || "".equals(_view.edt_clastname.getText())
@@ -80,9 +80,11 @@ public class CEController implements Runnable{
                 Error_Frame.Error("Please fill out: Firstname, Lastname, Username, Email and Password"); 
             } else {
                 //don't hash password string if it is already hashed
-                if (EqualPW.equals(_view.edt_cpassword.getText())) {
-                equal = true;
-            } 
+                if (EqualPW != null) {
+                    if (EqualPW.equals(_view.edt_cpassword.getText())) {
+                        equal = true;
+                    }
+                }
                 //check Checkbox then create or update customer/employee
                 if (_view.chb_new.getSelectedObjects() == null) {
                     ID = Integer.parseInt (_view.edt_ID.getText());  
@@ -95,21 +97,17 @@ public class CEController implements Runnable{
                         _view.edt_ctelephone.getText(),
                         _view.edt_cemail.getText());
                         updateCustomer.updateCustomer (ID, equal);
-                    } else {
-                        String str = _view.edt_cemail.getText();
-                        int trb = 0; 
-                        trb = Integer.parseInt (str);  
+                    } else { 
                         Employee updateEmployee = new Employee (ID,         
                         _view.edt_cfirstname.getText(),
                         _view.edt_clastname.getText(),
                         _view.edt_cusername.getText(),
-                        trb,
+                        Integer.parseInt (_view.edt_cemail.getText()),
                         _view.edt_cpassword.getText());
-                        updateEmployee.updateEmployee (ID,equal);
+                        updateEmployee.updateEmployee (ID, equal);
                     }
                 } else {
                     if ("Customer".equals(choose)) {
-                        ID = null;
                         Customer newCustomer = new Customer (ID,         
                         _view.edt_cfirstname.getText(),
                         _view.edt_clastname.getText(),
@@ -118,30 +116,25 @@ public class CEController implements Runnable{
                         _view.edt_ctelephone.getText(),
                         _view.edt_cemail.getText());
                         newCustomer.newCustomer();
-                    } else {
-                        ID = null;
-                        String str = _view.edt_cemail.getText();
-                        int trb = 0; 
-                        trb = Integer.parseInt (str); 
+                    } else { 
                         Employee newEmployee = new Employee (ID,         
                         _view.edt_cfirstname.getText(),
                         _view.edt_clastname.getText(),
                         _view.edt_cusername.getText(),
-                        trb,
+                        Integer.parseInt (_view.edt_cemail.getText()),
                         _view.edt_cpassword.getText());
                         newEmployee.newEmployee();
                     }
                 }
                 //after update or create, refresh table 
-                refreshTable A1;
-                A1 = new refreshTable(c_model, e_model, null, null, null);
+                refreshTable A1 = new refreshTable(c_model, e_model, null, null, null);
                 A1.start();
                 _view.dispose();
             }
          } catch (NumberFormatException evt) {
                 Error_Frame.Error("Please use only number for ID / Troubleshooter");
          } catch (NullPointerException evt) {
-                Error_Frame.Error("Wrong ID"); 
+                Error_Frame.Error("Wrong ID\n" + evt.toString()); 
          }
         }
     }
@@ -183,8 +176,6 @@ public class CEController implements Runnable{
     */   
     public void csearch (Integer ID) {
         try {
-            System.out.println(ID);
-            System.out.println(choose);
             _view.edt_ID.setText(ID.toString());
             if ("Customer".equals(choose)) {
                 String [] Array = Customer.searchCustomer(ID);

@@ -79,11 +79,9 @@ public class TController implements Runnable{
         @Override
         public void actionPerformed(ActionEvent e) {  
           try {
-            Integer ini = null;
             String Str = _view.edt_ID.getText();
             if (!"".equals(Str)) { 
-                ini = Integer.parseInt (Str);
-                searching(ini);  
+                searching(Integer.parseInt (Str));  
             }
           } catch (NullPointerException E){
             Error_Frame.Error("ID not found");
@@ -104,7 +102,6 @@ public class TController implements Runnable{
             if ("".equals(_view.edt_topic.getText()) || "".equals(_view.edt_problem.getText())){
                 Error_Frame.Error("Please fill out: Topic and Problem"); 
             } else {
-                
                     String sol = null,note = null;
                     Integer noEm = null;
                     ID = null;
@@ -125,8 +122,7 @@ public class TController implements Runnable{
                     
                 //check checkbox "new Ticket"
                 if (_view.chb_new.getSelectedObjects() == null) {
-                    String Str = _view.edt_ID.getText();
-                    ID = Integer.parseInt (Str);  
+                    ID = Integer.parseInt (_view.edt_ID.getText());  
                     //get timestamp and string from textfield and update ticket
                     Ticket updateTicket = new Ticket (ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),noEm,
@@ -147,10 +143,8 @@ public class TController implements Runnable{
                     currentTimestamp.toString());
                     newTicket.newTicket();
                 }
-                
                 //refresh jtable
-                refreshTable A1;
-                A1 = new refreshTable(null, null, f_model, h_model, null);
+                refreshTable A1 = new refreshTable(null, null, f_model, h_model, null);
                 A1.start();
                 //count ticket status for fullticket control buttons
                 //timer to prevent connection link lost
@@ -176,8 +170,7 @@ public class TController implements Runnable{
     class Task extends TimerTask {
         @Override
         public void run() {
-                Counter A2;
-                A2 = new Counter(main);
+                Counter A2 = new Counter(main);
                 A2.start();
         }
     }
@@ -228,7 +221,7 @@ public class TController implements Runnable{
             _view.edt_created.setText(Array[8]);
             _view.edt_update.setText(Array[9]);
       
-            for (int i=0; i<= _view.cmb_cID.getItemCount()-1;i++) {
+            for (int i=0; i< _view.cmb_cID.getItemCount();i++) {
                 if (Array[0].equals(_view.cmb_cID.getItemAt(i).toString())) {
                     _view.cmb_cID.setSelectedIndex(i);
                  }
@@ -236,16 +229,14 @@ public class TController implements Runnable{
             
             if (Array[1]!=null) {
                String username = ComboBox.getEUsername(Integer.parseInt(Array[1]));
-                for (int i=0; i<= _view.cmb_eID.getItemCount()-1;i++) {
+                for (int i=0; i< _view.cmb_eID.getItemCount();i++) {
                     if (username.equals(_view.cmb_eID.getItemAt(i).toString())) {
                         _view.cmb_eID.setSelectedIndex(i);
                     }
                 }
             }
-
            _view.cmb_category.setSelectedIndex(Integer.parseInt(Array[2])-1);
            _view.cmb_status.setSelectedIndex(Integer.parseInt(Array[3])-1);
-
         } catch (NullPointerException E){
             Error_Frame.Error("ID not found");
         } catch (NumberFormatException E) {
@@ -259,9 +250,9 @@ public class TController implements Runnable{
      *  and set counts in fullticket control buttons
      ********************************************************************/
     public void getStatusCount () {
-        Integer openCount=0,processCount=0,closedCount=0;
+        Integer openCount=0, processCount=0, closedCount=0;
         Object [] A2 = Counter.getCount();
-               for (int i=0;i<=A2.length-1;i++) {
+               for (int i=0;i<A2.length;i++) {
                 if ("Open".equals(A2[i])) {
                     openCount++;
                 } else if ("In process".equals(A2[i])) {
@@ -283,21 +274,16 @@ public class TController implements Runnable{
      *  the IDs 
      ********************************************************************/
     public Integer getcmbID (String Text) {
-        Integer ID = null;
         if ("Hardware Problem".equals(Text) || ("Open".equals(Text))) {
-            ID = 1;
-            return ID;
+            return 1;
         }
         if ("Software Problem".equals(Text) || ("Closed".equals(Text))) {
-            ID = 2;
-            return ID;
+            return 2;
         }
         if ("Activation Problems".equals(Text) || ("In process".equals(Text))) {
-            ID = 3;
-            return ID;
+            return 3;
         } else {
-            ID = 4;
-            return ID;
+            return 4;
         }
     }
     

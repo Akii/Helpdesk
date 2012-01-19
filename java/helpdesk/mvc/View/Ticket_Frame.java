@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
 public class Ticket_Frame extends javax.swing.JFrame {
-    FullticketTable f_model;
     
     
      /**************************
@@ -17,8 +16,6 @@ public class Ticket_Frame extends javax.swing.JFrame {
      *  
      ***************************/
     public Ticket_Frame(FullticketTable f_model) {
-      this.f_model = f_model;
-      
               /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -44,12 +41,11 @@ public class Ticket_Frame extends javax.swing.JFrame {
       
         initComponents();
     }
-
     
     public void init(){ 
         setLocation(
-        (Toolkit.getDefaultToolkit().getScreenSize().width-getSize().width) / 2,
-        (Toolkit.getDefaultToolkit().getScreenSize().height-getSize().height) / 2
+            (Toolkit.getDefaultToolkit().getScreenSize().width-getSize().width) / 2,
+            (Toolkit.getDefaultToolkit().getScreenSize().height-getSize().height) / 2
         );
         this.setVisible(true);
     }    

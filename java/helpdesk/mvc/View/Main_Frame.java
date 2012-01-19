@@ -2,6 +2,7 @@ package mvc.View;
 /******************
  * Imports
  ******************/
+import lib.ImageRenderer;
 import java.awt.Frame;
 import java.awt.MenuContainer;
 import java.awt.Toolkit;
@@ -44,7 +45,6 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
        this.f_model = f_model;
        this.h_model = h_model;
        this.p_model = p_model;
-        
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -98,27 +98,27 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
     public void initTable () {
         int[] fArray = {45,120,80,45,150,150,45,150,150,150,200,150,150,150,150,150,150};
         for (int i=0; i<= table_fullticket.getColumnCount()-1; i++) {
-        table_fullticket.getColumnModel().getColumn(i).setPreferredWidth(fArray[i]);
+            table_fullticket.getColumnModel().getColumn(i).setPreferredWidth(fArray[i]);
         }
         
         int [] cArray = {45,150,150,150,220,150,270};
         for (int i=0; i<= table_customer.getColumnCount()-1; i++) {
-        table_customer.getColumnModel().getColumn(i).setPreferredWidth(cArray[i]);
+            table_customer.getColumnModel().getColumn(i).setPreferredWidth(cArray[i]);
         }
         
         int[] eArray = {45,150,150,150,130,250};
         for (int i=0; i<= table_employee.getColumnCount()-1; i++) {
-        table_employee.getColumnModel().getColumn(i).setPreferredWidth(eArray[i]);
+            table_employee.getColumnModel().getColumn(i).setPreferredWidth(eArray[i]);
         }
         
         int[] pArray = {45, 200, 800};
         for (int i=0; i<= table_product.getColumnCount()-1; i++) {
-        table_product.getColumnModel().getColumn(i).setPreferredWidth(pArray[i]);
+            table_product.getColumnModel().getColumn(i).setPreferredWidth(pArray[i]);
         }
         
         int[] hArray = {70,150,150,400};
         for (int i=0; i<= table_history.getColumnCount()-1; i++) {
-        table_history.getColumnModel().getColumn(i).setPreferredWidth(hArray[i]);
+            table_history.getColumnModel().getColumn(i).setPreferredWidth(hArray[i]);
         }
     }
     //</editor-fold>
@@ -224,7 +224,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         btn_addeditC.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btn_addeditC.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        btn_addeditE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btn_addeditE.setFont(new java.awt.Font("Tahoma", 0, 12));
         btn_addeditE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc/View/pics/employee_button.png"))); // NOI18N
         btn_addeditE.setText("Employee");
         btn_addeditE.setToolTipText("Add or Edit Employee");
@@ -233,7 +233,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         btn_addeditE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btn_addeditE.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        btn_refresh.setFont(new java.awt.Font("Tahoma", 0, 12));
+        btn_refresh.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btn_refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mvc/View/pics/svn-update.png"))); // NOI18N
         btn_refresh.setText("Refresh");
         btn_refresh.setToolTipText("Refresh all Datatables");
@@ -287,7 +287,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_fullticketLayout.setVerticalGroup(
             intf_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_full, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+            .addComponent(scrollpane_full, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Filter");
@@ -312,13 +312,13 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
             .addGroup(pane_fullticketLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intf_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                    .addComponent(intf_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                     .addGroup(pane_fullticketLayout.createSequentialGroup()
                         .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(edt_filterfullticket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))))
+                        .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))))
         );
 
         try {
@@ -358,7 +358,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                     .addComponent(jLabel3)
                     .addComponent(edt_filtercustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
 
         Pane_Overview.addTab("Customer", pane_customer);
@@ -392,7 +392,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                     .addComponent(jLabel4)
                     .addComponent(edt_filteremployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
 
         Pane_Overview.addTab("Employee", pane_employee);
@@ -426,7 +426,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                     .addComponent(jLabel5)
                     .addComponent(edt_filterproduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
 
         Pane_Overview.addTab("Product", pane_product);
@@ -463,7 +463,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_historyLayout.setVerticalGroup(
             intf_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_his, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+            .addComponent(scrollpane_his, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pane_historyLayout = new javax.swing.GroupLayout(pane_history);
@@ -487,14 +487,14 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                 .addContainerGap()
                 .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pane_historyLayout.createSequentialGroup()
-                        .addComponent(intf_history, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+                        .addComponent(intf_history, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(pane_historyLayout.createSequentialGroup()
                         .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(edt_filtertickethis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_history, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))))
+                        .addComponent(scrollpane_history, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))))
         );
 
         try {
@@ -513,7 +513,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Overview", jPanel2);
@@ -598,7 +598,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                 .addComponent(btn_setprocess)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_setclosed)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         intf_mycontrol.setTitle("My Tickets");
@@ -619,7 +619,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_mycontrolLayout.setVerticalGroup(
             intf_mycontrolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
 
         fileMenu.setMnemonic('f');
@@ -682,7 +682,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                         .addComponent(intf_fcontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(intf_mycontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

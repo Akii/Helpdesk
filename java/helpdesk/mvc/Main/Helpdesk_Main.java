@@ -18,8 +18,7 @@ public class Helpdesk_Main extends MainModel {
        // Loading SplashScreen
        Loading_Frame splash = new Loading_Frame();
        //Thread Login = new Thread (new Login_Frame());
-       Login_Frame Login = new Login_Frame();
-       Login.run();
+       new Login_Frame().run();
        //dispose SplashScreen
        splash.dispose();   
     }

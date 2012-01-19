@@ -21,6 +21,13 @@ public class HtmlModel {
                 String color = "red";
                 if (Array[1].equals("Open")) color = "green";
                 else if (Array[1].equals("In process")) color = "#FF9900";
+                
+                for (int i = 0; i < Array.length ; i++) {
+                    if (Array[i] == null || "null".equals(Array [i])) {
+                        Array[i] = "";
+                    }
+                }
+
                 //html formatted text for Fullticket Editor pane
                 StringBuilder builder = new StringBuilder("<h2>Ticket ID: " + integer +"</h2> "
                 +"<table border='0'>"
@@ -69,6 +76,11 @@ public class HtmlModel {
         public static StringBuilder Htmlhistory (Integer ID, String changed, String name) {
         // Display the selected item
                 String [] Array = History.searchHistory(ID,changed,name);
+                for (int i = 0; i < Array.length ; i++) {
+                    if (Array[i] == null || "null".equals(Array [i])) {
+                        Array[i] = "";
+                    }
+                }
                 //html formatted text for history Editor pane
                 StringBuilder builder = new StringBuilder("<h2>Ticket ID: " + ID +"</h2> "
                 +"<table border='0'>"

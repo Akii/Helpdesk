@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import lib.db.Database;
-import mvc.Model.MainModel;
 import mvc.View.Main_Frame;
 
 public class Counter extends Thread {
