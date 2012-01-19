@@ -112,7 +112,7 @@ public Customer(Integer CID,String firstname, String lastname, String username,S
         public static void deleteCustomer(Integer ID) {
 		Database db = dbconnect();
 		try {
-                     String query = "DELETE FROM customer "
+                     String query = "UPDATE customer SET bDeleted = 1 "
                       + "WHERE CID = ?";
 
 		db.prepare(query);

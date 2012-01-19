@@ -18,7 +18,7 @@ import javax.swing.table.AbstractTableModel;
             arr_data = History.showHistory();
             data = new Object[arr_data.size()][];
             for (int i = 0; i < arr_data.size(); i++) {
-                data[i] = arr_data.get(i).toJTableArray();
+                data[i] = arr_data.get(i).Array();
             }
             this.fireTableDataChanged();
         }

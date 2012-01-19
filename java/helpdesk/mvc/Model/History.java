@@ -93,7 +93,7 @@ import lib.db.Database;
          *  save current history into a 
          *  object for the JTable
          *********************************/
-    public Object[] toJTableArray() {
+    public Object[] Array() {
        Object[] Array = {this.TicketID, this.changed_on, this.column_name, this.column_value };
         return Array;
     }

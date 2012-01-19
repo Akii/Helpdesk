@@ -231,7 +231,7 @@ public class Ticket extends MainModel {
          *  save current ticket into a 
          *  object for the JTable
          *********************************/
-    public Object[] TableArray() {
+    public Object[] Array() {
        Object[] Array = {this.TID, this.customer_CID, this.employee_EID, this.CategoryID, 
                                 this.StatusID, this.Topic, this.Problem, this.Note, this.Solution, this.created_on,
                                 this.last_update};

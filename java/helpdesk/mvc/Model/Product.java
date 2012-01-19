@@ -140,7 +140,7 @@ public class Product extends MainModel{
          *  save current product into a 
          *  object for the JTable
          *********************************/
-    public Object[] TableArray() {
+    public Object[] Array() {
        Object[] Array = {this.ID, this.name, this.description};
         return Array;
     }

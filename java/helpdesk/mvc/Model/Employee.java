@@ -111,7 +111,8 @@ public class Employee extends MainModel{
 	public static void deleteEmployee(Integer ID) {
 		Database db = dbconnect();
 		try {
-                    String query = "UPDATE employee SET bDeleted = 1 WHERE EID = ?";
+                    String query = "UPDATE employee SET bDeleted = 1 "
+                                 + "WHERE EID = ?";
             
 			db.prepare(query);
                         db.bind_param(1, ID.toString());
