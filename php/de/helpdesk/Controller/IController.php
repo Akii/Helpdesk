@@ -9,8 +9,27 @@ namespace de\helpdesk\Controller;
 
 interface IController
 {
+	/**
+	 * Life cycle for controllers
+	 * Called before rendering
+	 */
 	public function startup();
-	public function invoke($action=array());
+	
+	/**
+	 * Invokes the action the controller should perform
+	 *
+	 * @param array $action Action and parameters to perform
+	 */
+	public function invoke($action);
+	
+	/**
+	 * Renders the view
+	 */
 	public function render();
+	
+	/**
+	 * Life cycle for controllers
+	 * Called after rendering
+	 */
 	public function shutdown();
 }
