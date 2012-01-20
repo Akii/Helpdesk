@@ -4,6 +4,7 @@ package Helpdesk.java.helpdesk.mvc.View;
  ******************/
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemListener;
 
 public class Ticket_Frame extends javax.swing.JFrame {
@@ -82,7 +83,6 @@ public class Ticket_Frame extends javax.swing.JFrame {
         edt_note = new javax.swing.JTextField();
         cmb_eID = new javax.swing.JComboBox();
         cmb_cID = new javax.swing.JComboBox();
-        btn_search = new javax.swing.JButton();
         chb_new = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         edt_topic = new javax.swing.JTextField();
@@ -156,11 +156,8 @@ public class Ticket_Frame extends javax.swing.JFrame {
         getContentPane().add(cmb_eID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 180, -1));
         getContentPane().add(cmb_cID, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 220, -1));
 
-        btn_search.setText("Search");
-        getContentPane().add(btn_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 70, -1));
-
         chb_new.setText("new Ticket?");
-        getContentPane().add(chb_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 100, -1));
+        getContentPane().add(chb_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 110, -1));
 
         jLabel6.setText("Problem");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
@@ -169,7 +166,6 @@ public class Ticket_Frame extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Helpdesk/java/helpdesk/mvc/View/pics/my-tickets.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, 210));
 
-        cmb_product.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cmb_product, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 220, -1));
 
         jLabel9.setText("Product");
@@ -187,9 +183,6 @@ public class Ticket_Frame extends javax.swing.JFrame {
     /**************
      *  Buttons
      ***************/
-    public void setbtn_searchListener(ActionListener l){
-        btn_search.addActionListener(l);
-    }
     
     public void setbtn_cancelListener(ActionListener l){
         btn_cancel.addActionListener(l);
@@ -203,7 +196,9 @@ public class Ticket_Frame extends javax.swing.JFrame {
         chb_new.addItemListener(l);
     }
     
-    
+    public void setFocusListener(FocusListener l){
+        edt_ID.addFocusListener(l);
+    }
     
     /*
     *  Button event - create or update tickets
@@ -215,7 +210,6 @@ public class Ticket_Frame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_cancel;
     public javax.swing.JButton btn_save;
-    public javax.swing.JButton btn_search;
     public javax.swing.JCheckBox chb_new;
     public javax.swing.JComboBox cmb_cID;
     public javax.swing.JComboBox cmb_category;

@@ -21,6 +21,8 @@ import Helpdesk.java.helpdesk.mvc.Model.Ticket;
 import Helpdesk.java.helpdesk.mvc.View.Ticket_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 
 public class TController implements Runnable{
@@ -34,12 +36,12 @@ public class TController implements Runnable{
     private CategoryModel ca_model;
     
     public TController(Integer ID, FullticketTable f_model,HistoryTable h_model, Main_Frame main, Ticket_Frame frame) {
-      this.ID = ID;  
-      this.f_model = f_model;
-      this.h_model = h_model;
-      this.main = main;
-      this._view = frame;
-      addListener();
+        this.ID = ID;  
+        this.f_model = f_model;
+        this.h_model = h_model;
+        this.main = main;
+        this._view = frame;
+        addListener();
     }
     
     @Override
@@ -52,9 +54,13 @@ public class TController implements Runnable{
     
     private void addListener() {
         this._view.setbtn_cancelListener(new btn_cancelListener());
-        this._view.setbtn_searchListener(new btn_csearchListener());
         this._view.setbtn_saveListener(new btn_saveListener());
         this._view.setchb_newListener(new chb_newListener());
+        this._view.setFocusListener(new IDFocusListener());
+        this.s_model = new StatusModel();
+        s_model.StatusModel();
+        this.ca_model = new CategoryModel();
+        ca_model.CategoryModel();
         init();
     }
     
@@ -69,10 +75,6 @@ public class TController implements Runnable{
                                new Object[Ticket.Ticket_ComboBox(1).size()])));
         _view.cmb_product.setModel(new javax.swing.DefaultComboBoxModel(Product.Product_ComboBox().toArray(
                                new Object[Product.Product_ComboBox().size()])));
-         this.s_model = new StatusModel();
-         s_model.StatusModel();
-         this.ca_model = new CategoryModel();
-         ca_model.CategoryModel();
     }
     
       /*************************************
@@ -88,10 +90,10 @@ public class TController implements Runnable{
         }
     }
     
-    class btn_csearchListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {  
-          try {
+      private class IDFocusListener extends FocusAdapter {
+    @Override
+    public void focusLost(FocusEvent arg0) {
+           try {
             String Str = _view.edt_ID.getText();
             if (!"".equals(Str)) { 
                 searching(Integer.parseInt (Str));  
@@ -101,9 +103,8 @@ public class TController implements Runnable{
           } catch (NumberFormatException E) {
             Error_Frame.Error("Please use only number for ID");
           }
-        }
     }
-    
+  }
     
       /*************************************
       *   what a nice code..!! 
@@ -119,18 +120,19 @@ public class TController implements Runnable{
             if ("".equals(_view.edt_topic.getText()) || "".equals(_view.edt_problem.getText())){
                 Error_Frame.Error("Please fill out: Topic and Problem"); 
             } else {
-                    
                     Integer noEm = null;
                     ID = null;
-                    if (!"".equals(_view.edt_solution.getText()) && !"NULL".equals(_view.edt_solution.getText()) &&
-                        !" ".equals(_view.edt_solution.getText()) && !"null".equals(_view.edt_solution.getText()) &&
-                        _view.edt_solution.getText() != null && !sol.equals(_view.edt_solution.getText())) {
-                        sol = _view.edt_solution.getText();
-                    }
-                    if (!"".equals(_view.edt_note.getText()) && !"NULL".equals(_view.edt_note.getText()) &&
-                        !" ".equals(_view.edt_note.getText()) && !"null".equals(_view.edt_note.getText()) &&
-                        _view.edt_note.getText() != null && !note.equals(_view.edt_note.getText())) {
-                        note = _view.edt_note.getText();
+                    if (note != null || sol != null) {
+                        if (!"".equals(_view.edt_solution.getText()) && !"NULL".equals(_view.edt_solution.getText()) &&
+                            !" ".equals(_view.edt_solution.getText()) && !"null".equals(_view.edt_solution.getText()) &&
+                            _view.edt_solution.getText() != null && !sol.equals(_view.edt_solution.getText())) {
+                            sol = _view.edt_solution.getText();
+                        }
+                        if (!"".equals(_view.edt_note.getText()) && !"NULL".equals(_view.edt_note.getText()) &&
+                            !" ".equals(_view.edt_note.getText()) && !"null".equals(_view.edt_note.getText()) &&
+                            _view.edt_note.getText() != null && !note.equals(_view.edt_note.getText())) {
+                            note = _view.edt_note.getText();
+                        }
                     }
                     if (_view.cmb_eID.getSelectedItem() != "") {
                         noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
@@ -158,7 +160,7 @@ public class TController implements Runnable{
                         }
                 } else {
                     //get timestamp and string from textfield and create ticket
-                    Ticket newTicket = new Ticket (ID,
+                    Ticket newTicket = new Ticket (null,
                     (Integer)_view.cmb_cID.getSelectedItem(),noEm,
                     ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
                     s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
