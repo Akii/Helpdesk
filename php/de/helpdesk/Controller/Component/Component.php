@@ -23,6 +23,6 @@ abstract class Component
 		if($controller instanceof Cont\Controller)
 			$this->controller = $controller;
 		else
-			throw new Error\Exception("Passed argument is no instance of Controller.");
+			throw new Error\Exception("Passed argument is not an instance of Controller.");
 	}
 }

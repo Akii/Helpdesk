@@ -17,6 +17,11 @@ class UserComponent extends Component
 		$this->refreshLink();
 	}
 	
+	/**
+	 * Returns if the user is logged in
+	 *
+	 * @return boolean True if the user is logged in
+	 */
 	public function loggedIn()
 	{
 		if(isset($_SESSION))
@@ -25,6 +30,13 @@ class UserComponent extends Component
 			return false;
 	}
 	
+	/**
+	 * Login function for customers
+	 *
+	 * @param String $user Username
+	 * @param String $pass Plain text password
+	 * @return boolean True if login is valid
+	 */
 	public function login($user, $pass)
 	{
 		$ok = Model\CustomerModel::login($user, $pass);
@@ -44,12 +56,18 @@ class UserComponent extends Component
 		return false;
 	}
 	
+	/**
+	 * Logs out a customer
+	 */
 	public function logout()
 	{
 		unset($_SESSION["user_id"]);
 		$_SESSION["bLoggedIn"] = false;
 	}
 	
+	/**
+	 * Regenerates the link on the top of the page
+	 */
 	private function refreshLink()
 	{
 		if(isset($this->controller->components["Session"]) && $this->controller->components["Session"]->hasStarted())
