@@ -75,8 +75,8 @@ public class CEController implements Runnable{
         ID = null;
         //send error message if one of these textfields are empty
         try {
-            if ("".equals(_view.edt_cfirstname.getText()) || "".equals(_view.edt_clastname.getText())
-            || "".equals(_view.edt_cusername.getText()) || "".equals(_view.edt_cpassword.getText())) {
+            if (_view.edt_cfirstname.getText().isEmpty() || _view.edt_clastname.getText().isEmpty()
+            || _view.edt_cusername.getText().isEmpty() || _view.edt_cpassword.getText().isEmpty()) {
                 Error_Frame.Error("Please fill out: Firstname, Lastname, Username, Email and Password"); 
             } else {
                 //don't hash password string if it is already hashed
@@ -127,8 +127,7 @@ public class CEController implements Runnable{
                     }
                 }
                 //after update or create, refresh table 
-                refreshTable A1 = new refreshTable(c_model, e_model, null, null, null);
-                A1.start();
+                new refreshTable(c_model, e_model, null, null, null).start();
                 _view.dispose();
             }
          } catch (NumberFormatException evt) {

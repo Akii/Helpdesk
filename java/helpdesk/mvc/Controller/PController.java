@@ -70,7 +70,7 @@ public class PController implements Runnable{
         public void actionPerformed(ActionEvent e) {  
         //send error message if one of these textfields are empty
             try {
-                if ("".equals(_view.edt_name.getText()) || "".equals(_view.edt_description.getText())) {
+                if (_view.edt_name.getText().isEmpty() || _view.edt_description.getText().isEmpty()) {
                     Error_Frame.Error("Please fill out: name and description ");
                 } else {
                     //check checkbox then create or update product
@@ -83,8 +83,7 @@ public class PController implements Runnable{
                         newProduct.newProduct();
                     }
                     //after update or create, refresh table 
-                    refreshTable A1 = new refreshTable(null, null, null, null, p_model);
-                    A1.start();
+                    new refreshTable(null, null, null, null, p_model).start();
                     _view.dispose();
                 }
             } catch (NumberFormatException ev) {

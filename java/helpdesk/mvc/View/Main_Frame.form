@@ -111,7 +111,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="intf_mycontrol" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jTabbedPane1" pref="600" max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" pref="608" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -249,7 +249,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Pane_Overview" alignment="0" pref="572" max="32767" attributes="0"/>
+                  <Component id="Pane_Overview" alignment="0" pref="580" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -290,14 +290,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="intf_fullticket" alignment="1" pref="533" max="32767" attributes="0"/>
+                                  <Component id="intf_fullticket" alignment="1" pref="541" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="edt_filterfullticket" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="scrollpane_fullticket" pref="507" max="32767" attributes="0"/>
+                                      <Component id="scrollpane_fullticket" pref="515" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -353,7 +353,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scrollpane_full" alignment="0" pref="504" max="32767" attributes="0"/>
+                              <Component id="scrollpane_full" alignment="0" pref="512" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -437,7 +437,7 @@
                                   <Component id="edt_filtercustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_customer" pref="507" max="32767" attributes="0"/>
+                              <Component id="scrollpane_customer" pref="515" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -515,7 +515,7 @@
                                   <Component id="edt_filteremployee" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_employee" pref="507" max="32767" attributes="0"/>
+                              <Component id="scrollpane_employee" pref="515" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -589,7 +589,7 @@
                                   <Component id="edt_filterproduct" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_product" pref="507" max="32767" attributes="0"/>
+                              <Component id="scrollpane_product" pref="515" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -662,7 +662,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="intf_history" pref="522" max="32767" attributes="0"/>
+                                      <Component id="intf_history" pref="530" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -671,7 +671,7 @@
                                           <Component id="edt_filtertickethis" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="scrollpane_history" pref="507" max="32767" attributes="0"/>
+                                      <Component id="scrollpane_history" pref="515" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -737,7 +737,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scrollpane_his" alignment="0" pref="493" max="32767" attributes="0"/>
+                              <Component id="scrollpane_his" alignment="0" pref="501" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -885,7 +885,7 @@
                   <Component id="btn_setprocess" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btn_setclosed" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="141" max="32767" attributes="0"/>
+                  <EmptySpace pref="145" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -975,7 +975,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="130" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="134" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

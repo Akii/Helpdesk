@@ -211,7 +211,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         setMinimumSize(new java.awt.Dimension(800, 600));
         setName("frame_main"); // NOI18N
 
-        btn_addeditC.setFont(new java.awt.Font("Tahoma", 0, 12));
+        btn_addeditC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btn_addeditC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Helpdesk/java/helpdesk/mvc/View/pics/customer_button.png"))); // NOI18N
         btn_addeditC.setText("Customer");
         btn_addeditC.setToolTipText("Add or Edit Customer");
@@ -287,7 +287,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_fullticketLayout.setVerticalGroup(
             intf_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_full, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+            .addComponent(scrollpane_full, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Filter");
@@ -312,13 +312,13 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
             .addGroup(pane_fullticketLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intf_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                    .addComponent(intf_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                     .addGroup(pane_fullticketLayout.createSequentialGroup()
                         .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(edt_filterfullticket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))))
+                        .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE))))
         );
 
         try {
@@ -358,7 +358,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                     .addComponent(jLabel3)
                     .addComponent(edt_filtercustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
+                .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE))
         );
 
         Pane_Overview.addTab("Customer", pane_customer);
@@ -392,7 +392,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                     .addComponent(jLabel4)
                     .addComponent(edt_filteremployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
+                .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE))
         );
 
         Pane_Overview.addTab("Employee", pane_employee);
@@ -426,7 +426,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                     .addComponent(jLabel5)
                     .addComponent(edt_filterproduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
+                .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE))
         );
 
         Pane_Overview.addTab("Product", pane_product);
@@ -463,7 +463,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_historyLayout.setVerticalGroup(
             intf_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_his, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+            .addComponent(scrollpane_his, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pane_historyLayout = new javax.swing.GroupLayout(pane_history);
@@ -487,14 +487,14 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                 .addContainerGap()
                 .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pane_historyLayout.createSequentialGroup()
-                        .addComponent(intf_history, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                        .addComponent(intf_history, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(pane_historyLayout.createSequentialGroup()
                         .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(edt_filtertickethis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_history, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))))
+                        .addComponent(scrollpane_history, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE))))
         );
 
         try {
@@ -513,7 +513,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+            .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Overview", jPanel2);
@@ -526,7 +526,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         btn_max.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btn_max.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        btn_addeditP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btn_addeditP.setFont(new java.awt.Font("Tahoma", 0, 12));
         btn_addeditP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Helpdesk/java/helpdesk/mvc/View/pics/HD.png"))); // NOI18N
         btn_addeditP.setText("Product");
         btn_addeditP.setToolTipText("Add or Edit Product");
@@ -598,7 +598,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                 .addComponent(btn_setprocess)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_setclosed)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         intf_mycontrol.setTitle("My Tickets");
@@ -619,7 +619,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_mycontrolLayout.setVerticalGroup(
             intf_mycontrolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 134, Short.MAX_VALUE)
         );
 
         fileMenu.setMnemonic('f');
@@ -682,7 +682,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                         .addComponent(intf_fcontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(intf_mycontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

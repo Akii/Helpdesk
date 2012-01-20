@@ -26,12 +26,12 @@ import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 
 public class TController implements Runnable{
-    private Integer ID;
+    private Integer ID,noEm;
     private FullticketTable f_model;
     private HistoryTable h_model;
     private Main_Frame main;
     private Ticket_Frame _view;
-    private String sol,note,pname;
+    private String sol="",note="",pname = "";
     private StatusModel s_model;
     private CategoryModel ca_model;
     
@@ -95,7 +95,7 @@ public class TController implements Runnable{
     public void focusLost(FocusEvent arg0) {
            try {
             String Str = _view.edt_ID.getText();
-            if (!"".equals(Str)) { 
+            if (!Str.isEmpty()) { 
                 searching(Integer.parseInt (Str));  
             }
           } catch (NullPointerException E){
@@ -107,8 +107,8 @@ public class TController implements Runnable{
   }
     
       /*************************************
-      *   what a nice code..!! 
-      *   TODO - change that f... s...
+      *   Ticket edit save button
+      *   TODO - reduce the count of if clause
       **************************************/
     class btn_saveListener implements ActionListener{
         @Override
@@ -117,42 +117,37 @@ public class TController implements Runnable{
             //set timestamp for "create tickets" and "update tickets"
             Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
             //send Error frame if one of these textfield are empty
-            if ("".equals(_view.edt_topic.getText()) || "".equals(_view.edt_problem.getText())){
+            if (_view.edt_topic.getText().isEmpty() || (_view.edt_problem.getText().isEmpty())){
                 Error_Frame.Error("Please fill out: Topic and Problem"); 
             } else {
-                    Integer noEm = null;
-                    ID = null;
-                    if (note != null || sol != null) {
-                        if (!"".equals(_view.edt_solution.getText()) && !"NULL".equals(_view.edt_solution.getText()) &&
-                            !" ".equals(_view.edt_solution.getText()) && !"null".equals(_view.edt_solution.getText()) &&
-                            _view.edt_solution.getText() != null && !sol.equals(_view.edt_solution.getText())) {
-                            sol = _view.edt_solution.getText();
-                        }
-                        if (!"".equals(_view.edt_note.getText()) && !"NULL".equals(_view.edt_note.getText()) &&
-                            !" ".equals(_view.edt_note.getText()) && !"null".equals(_view.edt_note.getText()) &&
-                            _view.edt_note.getText() != null && !note.equals(_view.edt_note.getText())) {
-                            note = _view.edt_note.getText();
-                        }
+
+                    if (!_view.edt_solution.getText().isEmpty() && !sol.equals(_view.edt_solution.getText())) {
+                        sol = _view.edt_solution.getText();
+                    }
+                    if (!_view.edt_note.getText().isEmpty() && !note.equals(_view.edt_note.getText())) {
+                        note = _view.edt_note.getText();
                     }
                     if (_view.cmb_eID.getSelectedItem() != "") {
                         noEm = ComboBox.getEID((String)_view.cmb_eID.getSelectedItem());
                     }
+                    
                 //check checkbox "new Ticket"
                 if (_view.chb_new.getSelectedObjects() == null) {
                     ID = Integer.parseInt (_view.edt_ID.getText());  
+                    
                     //get timestamp and string from textfield and update ticket
                     Ticket updateTicket = new Ticket (ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),noEm,
                     ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
                     s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
                     _view.edt_topic.getText(), _view.edt_problem.getText(),
-                    note, sol, _view.edt_created.getText(),
-                    currentTimestamp.toString());
+                    note, sol, _view.edt_created.getText(), currentTimestamp.toString());
                     updateTicket.updateTicket(ID);
+                    
                         if (!"".equals((String)_view.cmb_product.getSelectedItem())) {
                             ProductInv Productinv = new ProductInv(ID,
                             ComboBox.getPID(null,(String)_view.cmb_product.getSelectedItem()));
-                            if ("".equals(pname) || pname == null) {
+                            if (pname.isEmpty()) {
                                 Productinv.newInvProduct(); 
                             } else {
                                 Productinv.updateInvProduct();
@@ -160,33 +155,29 @@ public class TController implements Runnable{
                         }
                 } else {
                     //get timestamp and string from textfield and create ticket
-                    Ticket newTicket = new Ticket (null,
-                    (Integer)_view.cmb_cID.getSelectedItem(),noEm,
+                    Ticket newTicket = new Ticket (null,(Integer)_view.cmb_cID.getSelectedItem(),noEm,
                     ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
                     s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
-                    _view.edt_topic.getText(), _view.edt_problem.getText(),
-                    note,sol,currentTimestamp.toString(),
+                    _view.edt_topic.getText(),_view.edt_problem.getText(),note,sol,currentTimestamp.toString(),
                     currentTimestamp.toString());
-                    Integer tid = newTicket.newTicket();
+                    
                     if (!"".equals((String)_view.cmb_product.getSelectedItem())) {
-                        ProductInv Productinv = new ProductInv(tid,
+                        ProductInv Productinv = new ProductInv(newTicket.newTicket(),
                         ComboBox.getPID(null,(String)_view.cmb_product.getSelectedItem()));
                         Productinv.newInvProduct();
                     }
                 }
                 //refresh jtable
-                refreshTable A1 = new refreshTable(null, null, f_model, h_model, null);
-                A1.start();
+                new refreshTable(null, null, f_model, h_model, null).start();
                 //count ticket status for fullticket control buttons
                 //timer to prevent connection link lost
-                Timer timer = new Timer();
-                timer.schedule  (new Count(), 600);
+                new Timer().schedule(new Count(), 600);
                 _view.dispose();
             }
         } catch (NumberFormatException ev) {
               Error_Frame.Error("Please use only number for ID");
         } catch (Exception ev) {
-              Error_Frame.Error(e.toString()); 
+              Error_Frame.Error(ev.toString()); 
         }
         }
     }
@@ -200,8 +191,7 @@ public class TController implements Runnable{
     class Count extends TimerTask {
         @Override
         public void run() {
-                Counter A2 = new Counter(main);
-                A2.start();
+                new Counter(main).start();
         }
     }
     
@@ -290,26 +280,4 @@ public class TController implements Runnable{
             Error_Frame.Error(E.toString());
         }
     }
-    
-    
-      /*****************************************************************
-     *  Count ticket status like open,in process and closed in fulltickettable
-     *  and set counts in fullticket control buttons
-     ********************************************************************/
-    public void getStatusCount () {
-        Integer openCount=0, processCount=0, closedCount=0;
-        Object [] A2 = Counter.getCount();
-               for (int i=0;i<A2.length;i++) {
-                if ("Open".equals(A2[i])) {
-                    openCount++;
-                } else if ("In process".equals(A2[i])) {
-                    processCount++;
-                } else if ("Closed".equals(A2[i])) {
-                    closedCount++;
-                }
-               }
-        main.btn_setopen.setText("Open [" + openCount+"]");
-        main.btn_setprocess.setText("In Process [" + processCount +"]");
-        main.btn_setclosed.setText("Closed [" + closedCount +"]");
-    }   
 }
