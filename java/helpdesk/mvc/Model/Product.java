@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import Helpdesk.java.helpdesk.lib.db.Database;
 
 public class Product extends MainModel{
-    public Integer ID;
-    public String name;
-    public String description;
+    private Integer ID;
+    private String name;
+    private String description;
     
     public Product(Integer ID, String p_name, String p_descrription) {
         this.ID         	= ID;
@@ -162,8 +162,6 @@ public class Product extends MainModel{
         }
         return newProduct;
     }
-    
-    
       
         /********************************
          *  save current product into a 

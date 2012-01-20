@@ -10,11 +10,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 import Helpdesk.java.helpdesk.lib.ComboBox;
 import Helpdesk.java.helpdesk.lib.refreshTable;
+import Helpdesk.java.helpdesk.mvc.Model.CategoryModel;
 import Helpdesk.java.helpdesk.mvc.Model.Counter;
 import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
 import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
 import Helpdesk.java.helpdesk.mvc.Model.Product;
 import Helpdesk.java.helpdesk.mvc.Model.ProductInv;
+import Helpdesk.java.helpdesk.mvc.Model.StatusModel;
 import Helpdesk.java.helpdesk.mvc.Model.Ticket;
 import Helpdesk.java.helpdesk.mvc.View.Ticket_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
@@ -28,6 +30,8 @@ public class TController implements Runnable{
     private Main_Frame main;
     private Ticket_Frame _view;
     private String sol,note,pname;
+    private StatusModel s_model;
+    private CategoryModel ca_model;
     
     public TController(Integer ID, FullticketTable f_model,HistoryTable h_model, Main_Frame main, Ticket_Frame frame) {
       this.ID = ID;  
@@ -65,6 +69,10 @@ public class TController implements Runnable{
                                new Object[Ticket.Ticket_ComboBox(1).size()])));
         _view.cmb_product.setModel(new javax.swing.DefaultComboBoxModel(Product.Product_ComboBox().toArray(
                                new Object[Product.Product_ComboBox().size()])));
+         this.s_model = new StatusModel();
+         s_model.StatusModel();
+         this.ca_model = new CategoryModel();
+         ca_model.CategoryModel();
     }
     
       /*************************************
@@ -111,6 +119,7 @@ public class TController implements Runnable{
             if ("".equals(_view.edt_topic.getText()) || "".equals(_view.edt_problem.getText())){
                 Error_Frame.Error("Please fill out: Topic and Problem"); 
             } else {
+                    
                     Integer noEm = null;
                     ID = null;
                     if (!"".equals(_view.edt_solution.getText()) && !"NULL".equals(_view.edt_solution.getText()) &&
@@ -132,8 +141,8 @@ public class TController implements Runnable{
                     //get timestamp and string from textfield and update ticket
                     Ticket updateTicket = new Ticket (ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),noEm,
-                    getcmbID((String)_view.cmb_category.getSelectedItem()),
-                    getcmbID((String)_view.cmb_status.getSelectedItem()),
+                    ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
+                    s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
                     _view.edt_topic.getText(), _view.edt_problem.getText(),
                     note, sol, _view.edt_created.getText(),
                     currentTimestamp.toString());
@@ -151,8 +160,8 @@ public class TController implements Runnable{
                     //get timestamp and string from textfield and create ticket
                     Ticket newTicket = new Ticket (ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),noEm,
-                    getcmbID((String)_view.cmb_category.getSelectedItem()),
-                    getcmbID((String)_view.cmb_status.getSelectedItem()),
+                    ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
+                    s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
                     _view.edt_topic.getText(), _view.edt_problem.getText(),
                     note,sol,currentTimestamp.toString(),
                     currentTimestamp.toString());
@@ -300,27 +309,5 @@ public class TController implements Runnable{
         main.btn_setopen.setText("Open [" + openCount+"]");
         main.btn_setprocess.setText("In Process [" + processCount +"]");
         main.btn_setclosed.setText("Closed [" + closedCount +"]");
-    }
-    
-    
-    
-     /*****************************************************************
-     *  Ugly function, but is neccessary 
-     *  Other idea is to use database and search 
-     *  the IDs 
-     ********************************************************************/
-    public Integer getcmbID (String Text) {
-        if ("Hardware Problem".equals(Text) || ("Open".equals(Text))) {
-            return 1;
-        }
-        if ("Software Problem".equals(Text) || ("Closed".equals(Text))) {
-            return 2;
-        }
-        if ("Activation Problems".equals(Text) || ("In process".equals(Text))) {
-            return 3;
-        } else {
-            return 4;
-        }
-    }
-    
+    }   
 }
