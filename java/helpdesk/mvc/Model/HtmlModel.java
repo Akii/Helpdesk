@@ -174,6 +174,38 @@ public class HtmlModel {
     return builder;
 }
     
+        
+     /**************************
+     *  set string to product 
+     *  editor pane with html codes 
+     **************************/
+        public static StringBuilder Htmlproduct (Integer ID) {
+        // Display the selected item
+                String [] Array = Product.searchProduct(ID);
+                for (int i = 0; i < Array.length ; i++) {
+                    if (Array[i] == null || "null".equals(Array [i])) {
+                        Array[i] = "";
+                    }
+                }
+                //html formatted text for product Editor pane
+                StringBuilder builder = new StringBuilder("<h2>Product ID: " + ID +"</h2> "
+                +"<table border='0'>"
+                +"<tr>"
+                +"<td width='100'>"
+                        + "<font color='#708090'><b>"
+                        + "Name:"
+                        + "</b></font></td><td>"+ Array[0] +"</td>"
+                +"</tr><tr>"   
+                +"<td align='left'valign='top'>"
+                        + "<font color='#708090'><b>"
+                        + "Description:"
+                        + "</b></font></td><td>"+ Array[1] +"</td>" 
+                +"</tr>"
+                );
+    return builder;
+}
+        
+        
      /**********************************************
      *  Change dateformat for better reading 
      *  e.g. 2012-03-01 21:22:01.123 to Saturday 14. Jan 2012 10:12:21

@@ -181,7 +181,7 @@ public class TController implements Runnable{
                     updateTicket.updateTicket(ID);
                     //##################################################################################
                     
-                    //Set products  ##################################################################################
+                    //Set products  ######################################################################
                     if (_view.ls_products.getSelectedIndices().length != 0) {
                         Integer a = -1;
                         Object Array [] = _view.ls_products.getSelectedValuesList().toArray();
@@ -195,20 +195,20 @@ public class TController implements Runnable{
                         ProductInv Productinv = new ProductInv (ID, _intarr);
                         Productinv.newInvProduct();
                     }
-                    //################################################################################################
+                    //##################################################################################
                     
                 } else {
                     
-                    //Create Ticket block #########################################################################
+                    //Create Ticket block ###############################################################
                     Ticket newTicket = new Ticket (null,(Integer)_view.cmb_cID.getSelectedItem(),noEm,
                     ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
                     s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
                     _view.edt_topic.getText(),_view.edt_problem.getText(),note,sol,currentTimestamp.toString(),
                     currentTimestamp.toString());
                     Integer _int = newTicket.newTicket();
-                    //#############################################################################################
+                    //#####################################################################################
                     
-                    //Set products  ##################################################################################
+                    //Set products  #####################################################################
                     if (_view.ls_products.getSelectedIndices().length != 0) {
                         Integer a = -1;
                         Object Array [] = _view.ls_products.getSelectedValuesList().toArray();
@@ -222,7 +222,7 @@ public class TController implements Runnable{
                         ProductInv Productinv = new ProductInv (_int, _intarr);
                         Productinv.newInvProduct();
                     }
-                    //################################################################################################
+                    //################################################################################
                     
                 }
                 //refresh jtable

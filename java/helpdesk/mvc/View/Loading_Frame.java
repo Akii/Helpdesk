@@ -13,7 +13,7 @@ private Timer timer;
     public Loading_Frame(Integer millis) {
         //set content and position
         JPanel content = (JPanel)getContentPane();
-        this.setSize(230, 230);
+        this.setSize(220, 50);
         //this.setOpacity(0.88f);
         
         setLocation(
@@ -29,6 +29,7 @@ private Timer timer;
         copyright.setFont(new Font("Sans-Serif", Font.BOLD, 12));
         content.add(gif, BorderLayout.CENTER);
         content.add(copyright, BorderLayout.SOUTH);
+        content.setBorder(BorderFactory.createLineBorder(Color.black));
         this.setVisible(true);
         
         timer = new Timer();

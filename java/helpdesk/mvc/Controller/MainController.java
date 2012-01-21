@@ -35,6 +35,7 @@ import Helpdesk.java.helpdesk.mvc.View.Product_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Ticket_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import Helpdesk.java.helpdesk.lib.ImageRenderer;
+import Helpdesk.java.helpdesk.mvc.Model.Counter;
 import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 
 public class MainController {
@@ -88,6 +89,7 @@ public class MainController {
         
         this._view.settable_fullticketValueListener(new table_fullticketValueListener());
         this._view.settable_historyValueListener(new table_fullticketValueListener());
+        this._view.settable_productValueListener(new table_fullticketValueListener());
         
     }
     
@@ -139,6 +141,7 @@ public class MainController {
             _view.table_fullticket.getColumnModel().getColumn(2).setCellRenderer(new ImageRenderer());
             //Deactivate refresh button for 2 sec to prevent DB connection overflow
             _view.btn_refresh.setEnabled(false);
+            new Counter (_view).start();
             new Timer().schedule(new btn_activate(), Refreshbtn_Timer);
         }
       }
@@ -551,6 +554,18 @@ public class MainController {
                 String changed = (String)_view.table_history.getValueAt(_view.table_history.getSelectedRow(), 1);
                 String name = (String)_view.table_history.getValueAt(_view.table_history.getSelectedRow(), 2);
                 _view.txp_history.setText(HtmlModel.Htmlhistory(integer,changed,name).toString());
+                 javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() { 
+                        _view.scrollpane_his.getVerticalScrollBar().setValue(0);
+                    }
+                 });
+            }
+         //product table
+          if( event.getSource() == _view.table_product.getSelectionModel() && event.getFirstIndex() >= 0) {
+              System.out.println("test");
+		Integer integer = (Integer)_view.table_product.getValueAt(_view.table_product.getSelectedRow(), 0);
+                _view.txp_product.setText(HtmlModel.Htmlproduct(integer).toString());
                  javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() { 
