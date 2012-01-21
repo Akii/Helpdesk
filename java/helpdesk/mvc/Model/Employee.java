@@ -32,7 +32,7 @@ public class Employee extends MainModel{
      * save it into a arraylist and return it
      ***************************************/
     public static ArrayList<Employee> showAll() {
-            ArrayList<Employee> employees = new ArrayList<Employee>();
+            ArrayList<Employee> employees = new ArrayList<>();
             Database db = dbconnect();
 	try {
 		db.prepare("SELECT * FROM employee WHERE bDeleted = 0 ORDER BY EID");

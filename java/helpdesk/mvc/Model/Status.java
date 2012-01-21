@@ -21,7 +21,7 @@ import java.util.ArrayList;
      * save it into a arraylist and return it
      ***************************************/
     public static ArrayList<Status> showAll() {
-        ArrayList<Status> status = new ArrayList<Status>();
+        ArrayList<Status> status = new ArrayList<>();
         Database db = dbconnect();
             try {	
 		db.prepare("SELECT * FROM ticket_status ORDER BY StatusID");

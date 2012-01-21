@@ -570,27 +570,36 @@ public class MainController {
       * 
       **************************************/
       public void tableDoubleClick (String select) {
-            if ("Customer".equals(select)) {
-                Integer integer = (Integer)_view.table_customer.getValueAt(
-		_view.table_customer.getSelectedRow(), 0);
-                Thread Controller = new Thread (new CEController(integer,"Customer",new CE_Frame("Customer"), c_model, e_model));
-                Controller.start();
-            } else if ("Employee".equals(select)) {
-                Integer integer = (Integer)_view.table_employee.getValueAt(
-                _view.table_employee.getSelectedRow(), 0);
-                Thread Controller = new Thread (new CEController(integer,"Employee", new CE_Frame("Employee"), c_model, e_model));
-                Controller.start();
-            } else if ("Fullticket".equals(select)) {
-                Integer integer = (Integer)_view.table_fullticket.getValueAt(
-		_view.table_fullticket.getSelectedRow(), 0);
-                Thread Controller=new Thread (new TController(integer, f_model, h_model,p_model, _view, new Ticket_Frame()));
-                Controller.start();
-            } else if ("Product".equals(select)) {
-                Integer integer = (Integer)_view.table_product.getValueAt(
-		_view.table_product.getSelectedRow(), 0);
-                Thread Controller=new Thread (new PController(integer, p_model, new Product_Frame()));
-                Controller.start();
+        switch (select) {
+            case "Customer": {
+                    Integer integer = (Integer)_view.table_customer.getValueAt(
+                    _view.table_customer.getSelectedRow(), 0);
+                    Thread Controller = new Thread (new CEController(integer,"Customer",new CE_Frame("Customer"), c_model, e_model));
+                    Controller.start();
+                    break;
             }
+            case "Employee": {
+                    Integer integer = (Integer)_view.table_employee.getValueAt(
+                    _view.table_employee.getSelectedRow(), 0);
+                    Thread Controller = new Thread (new CEController(integer,"Employee", new CE_Frame("Employee"), c_model, e_model));
+                    Controller.start();
+                    break;
+            }
+            case "Fullticket": {
+                    Integer integer = (Integer)_view.table_fullticket.getValueAt(
+                    _view.table_fullticket.getSelectedRow(), 0);
+                    Thread Controller=new Thread (new TController(integer, f_model, h_model,p_model, _view, new Ticket_Frame()));
+                    Controller.start();
+                    break;
+            }
+            case "Product": {
+                    Integer integer = (Integer)_view.table_product.getValueAt(
+                    _view.table_product.getSelectedRow(), 0);
+                    Thread Controller=new Thread (new PController(integer, p_model, new Product_Frame()));
+                    Controller.start();
+                    break;
+            }
+        }
     }
       
           
@@ -605,16 +614,20 @@ public class MainController {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                if ("Employee".equals(man)) {
-                   Employee.deleteEmployee(select);
-                   e_model.showData();
-                } else if ("Customer".equals(man)) {
-                   Customer.deleteCustomer(select);
-                   c_model.showData();
-                } else if ("Product".equals(man)) {
-                   Product.deleteProduct(select);
-                   p_model.showData();
-                } 
+                switch (man) {
+                    case "Employee":
+                        Employee.deleteEmployee(select);
+                        e_model.showData();
+                        break;
+                    case "Customer":
+                        Customer.deleteCustomer(select);
+                        c_model.showData();
+                        break;
+                    case "Product":
+                        Product.deleteProduct(select);
+                        p_model.showData();
+                        break;
+                }
             }
 	});
         //Set updatefunction

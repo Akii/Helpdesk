@@ -22,8 +22,14 @@ public class HtmlModel {
                 
                 //Set color for ticket status
                 String color = "red";
-                if (Array[1].equals("Open")) color = "green";
-                else if (Array[1].equals("In process")) color = "blue";
+                switch (Array[1]) {
+                        case "Open":
+                            color = "green";
+                            break;
+                        case "In process":
+                            color = "blue";
+                            break;
+                }
                 
                 for (int i = 0; i < Array.length ; i++) {
                     if (Array[i] == null || "null".equals(Array [i])) {

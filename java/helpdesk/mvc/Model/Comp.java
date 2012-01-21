@@ -60,7 +60,7 @@ public class Comp extends MainModel{
          **************************/
         public static ArrayList<String> searchTicketProduct(Integer ID) {
             Database db = dbconnect();
-            ArrayList<String> Array = new ArrayList<String>();
+            ArrayList<String> Array = new ArrayList<>();
             try {
 		String query = ("SELECT name FROM ticket_products WHERE TID = ?");
                 db.prepare(query);

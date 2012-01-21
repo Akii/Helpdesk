@@ -25,7 +25,7 @@ public class Product extends MainModel{
      * save it into a arraylist and return it
      ***************************************/
     public static ArrayList<Product> showAll() {
-        ArrayList<Product> products = new ArrayList<Product>();
+        ArrayList<Product> products = new ArrayList<>();
         Database db = dbconnect();
             try {	
                 db.prepare("SELECT * FROM product ORDER BY PID");
@@ -123,7 +123,7 @@ public class Product extends MainModel{
           
         
     public static ArrayList<String> showName() {
-        ArrayList<String> products = new ArrayList<String>();
+        ArrayList<String> products = new ArrayList<>();
         Database db = dbconnect();
             try {	
                 db.prepare("SELECT name FROM product ORDER BY PID");

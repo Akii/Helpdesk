@@ -43,7 +43,7 @@ public class Ticket extends MainModel {
      * save it into a arraylist and return it
      ***************************************/
         public static ArrayList<Ticket> showAll() {
-            ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+            ArrayList<Ticket> tickets = new ArrayList<>();
             Database db = dbconnect();
 	try {
 		db.prepare("SELECT * FROM ticket ORDER BY TID");

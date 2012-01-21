@@ -21,7 +21,7 @@ import java.util.ArrayList;
      * save it into a arraylist and return it
      ***************************************/
     public static ArrayList<Category> showAll() {
-        ArrayList<Category> category = new ArrayList<Category>();
+        ArrayList<Category> category = new ArrayList<>();
         Database db = dbconnect();
             try {	
 		db.prepare("SELECT * FROM problem_category ORDER BY CategoryID");

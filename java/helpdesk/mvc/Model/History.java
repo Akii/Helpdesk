@@ -27,7 +27,7 @@ import Helpdesk.java.helpdesk.lib.db.Database;
      * save it into a arraylist and return it
      ***************************************/
 	 public static ArrayList<History> showHistory() {
-            ArrayList<History> histories = new ArrayList<History>();
+            ArrayList<History> histories = new ArrayList<>();
             Database db = dbconnect();
             try {
                 db.prepare("SELECT * FROM ticket_history ORDER BY changed_on desc");
@@ -95,26 +95,27 @@ import Helpdesk.java.helpdesk.lib.db.Database;
          *********************************/
     public Object[] Array() {
         if (this.column_value != null) {
-            if (this.column_name.equals("CategoryID")) {
-                switch (Integer.parseInt(this.column_value)) {
-                    case 1: this.column_value = "Hardware Problem";
-                            break;
-                    case 2: this.column_value = "Software Problem";
-                            break;
-                    case 3: this.column_value = "Activation Problem";
-                            break;
-                    case 4: this.column_value = "Other";
-                            break;
-                }
-            } else if (this.column_name.equals("StatusID")) {
-                switch (Integer.parseInt(this.column_value)) {
-                    case 1: this.column_value = "Open";
-                            break;
-                    case 2: this.column_value = "In process";
-                            break;
-                    case 3: this.column_value = "Closed";
-                            break;
-                }
+            switch (this.column_name) {
+                case "CategoryID":
+                    switch (Integer.parseInt(this.column_value)) {
+                        case 1: this.column_value = "Hardware Problem";
+                                break;
+                        case 2: this.column_value = "Software Problem";
+                                break;
+                        case 3: this.column_value = "Activation Problem";
+                                break;
+                        case 4: this.column_value = "Other";
+                                break;
+                    }
+                case "StatusID":
+                    switch (Integer.parseInt(this.column_value)) {
+                        case 1: this.column_value = "Open";
+                                break;
+                        case 2: this.column_value = "In process";
+                                break;
+                        case 3: this.column_value = "Closed";
+                                break;
+                    }
             }
         }
        Object[] Array = {this.TicketID, this.changed_on, this.column_name, this.column_value };

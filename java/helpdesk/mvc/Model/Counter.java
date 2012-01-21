@@ -19,7 +19,7 @@ public class Counter extends Thread {
      *******************************/
     public static Object[] getCount() {
         Object[] Array;
-        ArrayList<Object> ArrayList = new ArrayList<Object>();
+        ArrayList<Object> ArrayList = new ArrayList<>();
         Database db = MainModel.dbconnect();
     try {
         String query = "SELECT ticket_status FROM full_ticket";
