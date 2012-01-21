@@ -120,7 +120,7 @@ public class MainController {
       class btn_addeditTListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-              new Thread (new TController(null,f_model,h_model,_view,new Ticket_Frame())).start();
+              new Thread (new TController(null,f_model,h_model,p_model,_view, new Ticket_Frame())).start();
           }
       }
         
@@ -137,7 +137,6 @@ public class MainController {
             new refreshTable(c_model, e_model, f_model, h_model, p_model).start();
             //Set CellRenderer for icons in JTable
             _view.table_fullticket.getColumnModel().getColumn(2).setCellRenderer(new ImageRenderer());
-            
             //Deactivate refresh button for 2 sec to prevent DB connection overflow
             _view.btn_refresh.setEnabled(false);
             new Timer().schedule(new btn_activate(), Refreshbtn_Timer);
@@ -584,7 +583,7 @@ public class MainController {
             } else if ("Fullticket".equals(select)) {
                 Integer integer = (Integer)_view.table_fullticket.getValueAt(
 		_view.table_fullticket.getSelectedRow(), 0);
-                Thread Controller=new Thread (new TController(integer, f_model, h_model , _view, new Ticket_Frame()));
+                Thread Controller=new Thread (new TController(integer, f_model, h_model,p_model, _view, new Ticket_Frame()));
                 Controller.start();
             } else if ("Product".equals(select)) {
                 Integer integer = (Integer)_view.table_product.getValueAt(

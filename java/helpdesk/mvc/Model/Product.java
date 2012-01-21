@@ -28,12 +28,12 @@ public class Product extends MainModel{
         ArrayList<Product> products = new ArrayList<Product>();
         Database db = dbconnect();
             try {	
-		db.prepare("SELECT * FROM product ORDER BY PID");
+                db.prepare("SELECT * FROM product ORDER BY PID");
 		ResultSet rs = db.executeQuery();
 		while(rs.next()) {
 			products.add(ProductObject(rs));
 		}
-
+                db.close();
         } catch (SQLException e) {
             Error_Frame.Error(e.toString());
         } 
@@ -54,7 +54,7 @@ public class Product extends MainModel{
                         db.bind_param(1, this.name);
                         db.bind_param(2, this.description);
 			db.executeUpdate();
-			
+			db.close();
 			} catch(SQLException e){	
 				Error_Frame.Error(e.toString());
 			} 
@@ -74,7 +74,7 @@ public class Product extends MainModel{
                         db.bind_param(2, this.description);
                         db.bind_param(3, ID.toString());
 			db.executeUpdate();
-			
+			db.close();
 			} catch(SQLException e){
 				Error_Frame.Error(e.toString()); 
 			}  
@@ -91,7 +91,7 @@ public class Product extends MainModel{
 			db.prepare(query);
                         db.bind_param(1, ID.toString());
 			db.executeUpdate();
-			
+			db.close();
 			} catch(SQLException e){
 				Error_Frame.Error(e.toString()); 
 			}  
@@ -120,30 +120,22 @@ public class Product extends MainModel{
             } 
             return Array;
         }
+          
         
-        
-         /************************************************
-         *  get all Productnames from required database table and 
-         *  and set it into comboboxes
-         **************************************************/
-        public static ArrayList Product_ComboBox() {
-            ArrayList number = new ArrayList();
-            Database db = dbconnect();
-            String query;
-	try {
-                query = ("SELECT name FROM product ORDER BY PID");
-                number.add("");
-                db.prepare(query);
-		ResultSet rs = db.executeQuery();   
-                while(rs.next()) {
-                        number.add(rs.getString(1));
+    public static ArrayList<String> showName() {
+        ArrayList<String> products = new ArrayList<String>();
+        Database db = dbconnect();
+            try {	
+                db.prepare("SELECT name FROM product ORDER BY PID");
+		ResultSet rs = db.executeQuery();
+		while(rs.next()) {
+			products.add(rs.getString(rs.getMetaData().getColumnName(1)));
 		}
-	        db.close();      
-
+                db.close();
         } catch (SQLException e) {
             Error_Frame.Error(e.toString());
         } 
-        return number;
+         return products;
     }
         
         

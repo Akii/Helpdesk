@@ -38,7 +38,7 @@ public class Error_Frame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
-        setMinimumSize(new java.awt.Dimension(460, 235));
+        setMinimumSize(new java.awt.Dimension(450, 250));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -59,7 +59,7 @@ public class Error_Frame extends javax.swing.JFrame {
                 btn_closeActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 160, -1));
+        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 160, -1));
 
         txp_exception.setEditable(false);
         jScrollPane1.setViewportView(txp_exception);

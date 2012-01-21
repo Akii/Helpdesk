@@ -94,17 +94,29 @@ import Helpdesk.java.helpdesk.lib.db.Database;
          *  object for the JTable
          *********************************/
     public Object[] Array() {
-        
         if (this.column_value != null) {
-        if (this.column_value.equals("1") && this.column_name.equals("CategoryID")) this.column_value = "Hardware Problem";
-        if (this.column_value.equals("2") && this.column_name.equals("CategoryID")) this.column_value = "Software Problem";
-        if (this.column_value.equals("3") && this.column_name.equals("CategoryID")) this.column_value = "Activation Problems";
-        if (this.column_value.equals("4") && this.column_name.equals("CategoryID")) this.column_value = "Other";
-        if (this.column_value.equals("1") && this.column_name.equals("StatusID")) this.column_value = "Open";
-        if (this.column_value.equals("2") && this.column_name.equals("StatusID")) this.column_value = "In process";
-        if (this.column_value.equals("3") && this.column_name.equals("StatusID")) this.column_value = "Closed";
+            if (this.column_name.equals("CategoryID")) {
+                switch (Integer.parseInt(this.column_value)) {
+                    case 1: this.column_value = "Hardware Problem";
+                            break;
+                    case 2: this.column_value = "Software Problem";
+                            break;
+                    case 3: this.column_value = "Activation Problem";
+                            break;
+                    case 4: this.column_value = "Other";
+                            break;
+                }
+            } else if (this.column_name.equals("StatusID")) {
+                switch (Integer.parseInt(this.column_value)) {
+                    case 1: this.column_value = "Open";
+                            break;
+                    case 2: this.column_value = "In process";
+                            break;
+                    case 3: this.column_value = "Closed";
+                            break;
+                }
+            }
         }
-        
        Object[] Array = {this.TicketID, this.changed_on, this.column_name, this.column_value };
         return Array;
     }

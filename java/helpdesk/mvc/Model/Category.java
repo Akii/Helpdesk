@@ -29,7 +29,7 @@ import java.util.ArrayList;
 		while(rs.next()) {
 			category.add(CategoryObject(rs));
 		}
-
+                db.close();
         } catch (SQLException e) {
             Error_Frame.Error(e.toString());
         } 

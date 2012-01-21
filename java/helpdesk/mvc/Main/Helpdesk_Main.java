@@ -15,7 +15,7 @@ import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 public class Helpdesk_Main extends MainModel {
     public static void main(String[] args)  {
        // Loading SplashScreen
-       Loading_Frame splash = new Loading_Frame(3000);
+       Loading_Frame splash = new Loading_Frame(2400);
     }
     
 

@@ -2,10 +2,10 @@ package Helpdesk.java.helpdesk.mvc.Model;
 /******************
  * Imports
  ******************/
-import Helpdesk.java.helpdesk.lib.ComboBox;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -18,10 +18,7 @@ public class HtmlModel {
     public static StringBuilder Htmlfullticket (Integer integer) {
         // Display the selected item
                 String [] Array = FullTicket.searchFullTicket(integer);
-                String product = "";
-                try {
-                    product = ComboBox.getProductName(ComboBox.getPID(integer,null));
-                } catch (Exception e) {}
+                Object [] product = Comp.searchTicketProduct(integer).toArray();
                 
                 //Set color for ticket status
                 String color = "red";
@@ -113,10 +110,10 @@ public class HtmlModel {
                         + "Note:"
                         + "</b></font></td><td>"+ Array[12] +"</td>"
                 +"</tr><tr>"
-                +"<td>"
+                +"<td align='left'   valign='top'>"
                         + "<font color='#708090'><b>"
                         + "Involved Product:"
-                        + "</b></font></td><td>"+ product +"</td>"
+                        + "</b></font></td><td>"+ Arrays.toString(product) +"</td>"
                 +"</tr><tr>"
                 +"<td align='left'   valign='top'>"
                         + "<font color='#708090'><b>"

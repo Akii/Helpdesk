@@ -29,7 +29,7 @@ import java.util.ArrayList;
 		while(rs.next()) {
 			status.add(StatusObject(rs));
 		}
-
+                db.close();
         } catch (SQLException e) {
             Error_Frame.Error(e.toString());
         } 
@@ -40,7 +40,7 @@ import java.util.ArrayList;
             Status newStatus = null;
         try {
             newStatus = new Status(rs.getInt(rs.getMetaData().getColumnName(1)),
-                                     rs.getString(rs.getMetaData().getColumnName(2)));    
+                                   rs.getString(rs.getMetaData().getColumnName(2)));    
         } catch (SQLException e) {
             Error_Frame.Error(e.toString());
         }

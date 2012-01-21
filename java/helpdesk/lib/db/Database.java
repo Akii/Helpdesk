@@ -92,6 +92,20 @@ public abstract class Database implements IDatabase {
 	/**
 	 * Frees up resources bound by the last query.
 	 */
+    
+    @Override
+	public abstract void addBatch() throws SQLException;
+	
+	/**
+	 * add new batch
+	 */
+        
+    @Override
+	public abstract int[] executeBatch() throws SQLException;
+	
+	/**
+	 * Executes the count of batch statement
+	 */
     @Override
 	public abstract void free_result() throws SQLException;
 	

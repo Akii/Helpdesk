@@ -18,6 +18,11 @@ public interface IDatabase {
 	public int executeUpdate() throws SQLException;
 	public int executeUpdate(String query) throws SQLException;
 	
+        //used for batch
+        public void addBatch() throws SQLException;
+        public int[] executeBatch() throws SQLException;
+        
+        
 	// frees up resources bound by the statement
 	public void free_result() throws SQLException;
 	

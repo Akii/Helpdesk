@@ -102,6 +102,20 @@ public class MysqlDatabase extends Database {
 		Statement temp_stmt = this.con.createStatement();
 		return temp_stmt.executeUpdate(query);
 	}
+    
+    @Override
+	public void addBatch() throws SQLException {
+		checkStmt();
+		
+                this.stmt.addBatch();
+	}
+        
+    @Override
+        public int[] executeBatch() throws SQLException {
+		checkStmt();
+                
+                return this.stmt.executeBatch();
+	}
 	
     @Override
 	public void free_result() throws SQLException {
