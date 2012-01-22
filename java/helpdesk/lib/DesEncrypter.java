@@ -26,7 +26,9 @@ public class DesEncrypter implements IDesEncrypter {
             ecipher.init(Cipher.ENCRYPT_MODE, key);
             dcipher.init(Cipher.DECRYPT_MODE, key);
 
-        } catch (javax.crypto.NoSuchPaddingException | java.security.NoSuchAlgorithmException | java.security.InvalidKeyException e) {
+        } catch (javax.crypto.NoSuchPaddingException e) {
+        } catch (java.security.NoSuchAlgorithmException e) {
+        } catch (java.security.InvalidKeyException e) {
         }
     }
     
@@ -36,6 +38,7 @@ public class DesEncrypter implements IDesEncrypter {
  **********************/
    public static void SQLencrypted (String host, String port, String db, String user, char [] pw) {
                 try {
+                
                  String newPW = String.valueOf(pw);
                  // See also Encrypting with DES Using a Pass Phrase.
                  SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
@@ -47,7 +50,7 @@ public class DesEncrypter implements IDesEncrypter {
                  String encrypted = encrypter.encrypt(newPW);
                  LoginData.writeSQL (host,port,db,user,encrypted);
                 
-                } catch (NoSuchAlgorithmException | InvalidKeyException | InvalidKeySpecException | IllegalBlockSizeException e) {
+                } catch (Exception e) {
                     Error_Frame.Error(e.toString());
                 }
     }
@@ -66,11 +69,12 @@ public class DesEncrypter implements IDesEncrypter {
                 DesEncrypter encrypter = new DesEncrypter(key);
                 // Decrypt
                 decrypted = encrypter.decrypt(decrypt);
-                } catch (NoSuchAlgorithmException | InvalidKeyException | InvalidKeySpecException e) {
+                } catch (Exception e) {
                     Error_Frame.Error(e.toString());
                 }
                 return decrypted;
     }
+    
     
     @Override
     public String encrypt(String str) throws IllegalBlockSizeException {
@@ -83,10 +87,15 @@ public class DesEncrypter implements IDesEncrypter {
 
             // Encode bytes to base64 to get a string
             return new sun.misc.BASE64Encoder().encode(enc);
-        } catch (javax.crypto.BadPaddingException | IllegalBlockSizeException | UnsupportedEncodingException e) {
+        } catch (javax.crypto.BadPaddingException e) {
+        } catch (IllegalBlockSizeException e) {
+        } catch (UnsupportedEncodingException e) {
+        } catch (java.io.IOException e) {
         }
         return null;
     }
+
+
 
     @Override
     public String decrypt(String str) {

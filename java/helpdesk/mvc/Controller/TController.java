@@ -38,7 +38,7 @@ public class TController implements Runnable{
     private String sol="",note="";
     private StatusModel s_model;
     private CategoryModel ca_model;
-    private DefaultListModel<String> model;
+    private DefaultListModel model;
 
     public TController(Integer ID, FullticketTable f_model,HistoryTable h_model,ProductTable p_model,
                        Main_Frame main, Ticket_Frame frame) {
@@ -202,9 +202,8 @@ public class TController implements Runnable{
                         //Integer value a begins at -1 so if it reach the while clause 
                         // a will set to 0
                         Integer a = -1;
-                        //Only Java 7 and above support the function "getSelectedValueList"
-                        //otherwise this programm do not set any product or dispose this frame
-                        Object Array [] = _view.ls_products.getSelectedValuesList().toArray();
+
+                        Object Array [] = _view.ls_products.getSelectedValues();
                         Object _intarr[] = new Object [Array.length];
                         //Looking for the same product name and save it into a array
                         for (int i=0; i<= Array.length-1; i++) {
@@ -235,7 +234,7 @@ public class TController implements Runnable{
                     //because new involved products do not have a id
                     if (_view.ls_products.getSelectedIndices().length != 0) {
                         Integer a = -1;
-                        Object Array [] = _view.ls_products.getSelectedValuesList().toArray();
+                        Object Array [] = _view.ls_products.getSelectedValues();
                         Object _intarr[] = new Object [Array.length];
                         for (int i=0; i<= Array.length-1; i++) {
                              do {

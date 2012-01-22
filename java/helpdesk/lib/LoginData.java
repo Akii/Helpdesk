@@ -19,10 +19,12 @@ public class LoginData {
         try {
             if ("".equals(host) || "".equals(port) || "".equals(db) || "".equals(user) || "".equals(newPW)) {
                 Error_Frame.Error("Please fill in completely");
-            }  else {
-                try (BufferedWriter out = new BufferedWriter(new FileWriter("database.txt"))) {
-                    out.write("Host:\""+host+"\"Port:\""+port+"\"Database:\""+db+"\"User:\""+user+"\"Password:\""+newPW+"\"");
-                }
+            } else {
+                BufferedWriter out =
+                new BufferedWriter(new FileWriter("database.txt"));
+                
+                out.write("Host:\""+host+"\"Port:\""+port+"\"Database:\""+db+"\"User:\""+user+"\"Password:\""+newPW+"\"");
+                out.close();
             }
         } catch (Exception e) {
              Error_Frame.Error(e.getMessage());

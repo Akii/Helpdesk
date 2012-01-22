@@ -33,7 +33,7 @@ public Customer(Integer CID,String firstname, String lastname, String username,S
      * save it into a arraylist and return it
      ***************************************/
        public static ArrayList<Customer> showAll() {
-            ArrayList<Customer> customers = new ArrayList<>();
+            ArrayList<Customer> customers = new ArrayList<Customer>();
             Database db = dbconnect();
             try {
 		db.prepare("SELECT * FROM customer WHERE bDeleted = 0 ORDER BY CID");

@@ -58,7 +58,7 @@ public class FullTicket extends MainModel {
      * save it into a arraylist and return it
      ***************************************/
         public static ArrayList<FullTicket> showAll(String status) {
-            ArrayList<FullTicket> fulltickets = new ArrayList<>();
+            ArrayList<FullTicket> fulltickets = new ArrayList<FullTicket>();
             StringBuilder query = new StringBuilder();
             Database db = dbconnect();
 	try {
