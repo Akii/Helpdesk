@@ -2,15 +2,15 @@ package Helpdesk.java.helpdesk.mvc.Main;
 /******************
  * Imports
  ******************/
+import Helpdesk.java.helpdesk.lib.LoginData;
+import Helpdesk.java.helpdesk.lib.db.Database;
+import Helpdesk.java.helpdesk.lib.db.MysqlDatabase;
 import Helpdesk.java.helpdesk.mvc.Model.MainModel; 
 import Helpdesk.java.helpdesk.mvc.View.Loading_Frame;
 import Helpdesk.java.helpdesk.mvc.Controller.MainController;
-import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
-import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
-import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
-import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
-import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
 import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Helpdesk_Main extends MainModel {
     public static void main(String[] args)  {
@@ -23,20 +23,16 @@ public class Helpdesk_Main extends MainModel {
     * Model - View - Controller
     **************************/
     public static void setMVC () {
-        //   Create model, view, and controller.  They are
-        //    created once here and passed to the parts that
-        //    need them so there is only one copy of each.
-        CustomerTable c_model = new CustomerTable();
-        EmployeeTable e_model = new EmployeeTable();
-        FullticketTable f_model = new FullticketTable();
-        HistoryTable h_model = new HistoryTable();
-        ProductTable p_model = new ProductTable();
+        try {
+            Main_Frame _view = new Main_Frame();
+            MainController controller = new MainController(_view);
+            _view.showView();
+            String[] Array = LoginData.readSQL();
+            Database db = MysqlDatabase.getInstance();
+            db.first(Array[0]+":"+Array[1], Array[2], Array[3], Array[4]);
+        } catch (Exception ex) {
+            Logger.getLogger(Helpdesk_Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-             
-        Main_Frame _view = new Main_Frame(c_model,e_model,f_model,h_model,p_model);
-     
-        MainController controller = new MainController(_view,c_model,e_model,f_model,
-                                                    h_model,p_model);
-        _view.showView();
     }
 }

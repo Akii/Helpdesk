@@ -1,6 +1,7 @@
 // singleton class
 package Helpdesk.java.helpdesk.lib.db;
 
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,20 @@ public class MysqlDatabase extends Database {
 	private Connection con;
 	private PreparedStatement stmt;
 	private ResultSet res;
+        private String host,db_name,user,pw;
 
+    @Override
+        public void first (String host, String db_name, String user, String pw) {
+            try {
+                this.host = host;
+                this.db_name = db_name;
+                this.user = user;
+                this.pw = pw;
+                connect();
+            } catch (SQLException ex) {
+                Error_Frame.Error(ex.toString());
+            }
+        }
 	
 	public static Database getInstance() throws Exception {
 		// that was convenient, protected variables ftw
@@ -26,7 +40,7 @@ public class MysqlDatabase extends Database {
 		return Database.db;
 	}
 	
-	private MysqlDatabase() throws Exception {
+	public MysqlDatabase() throws Exception {
         // load the driver for mysql
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -42,14 +56,13 @@ public class MysqlDatabase extends Database {
 	
 	// TODO: timeout handling for invalid hosts (maybe on GUI level)
     @Override
-	public void connect(String host, String db_name, String user, String pw) throws SQLException {
-		String url = String.format("jdbc:mysql://%s/%s", host, db_name);
-                
+	public void connect() throws SQLException {
+		String url = String.format("jdbc:mysql://%s/%s", this.host, this.db_name);
                 	// Timeout of a failed connection is around 30 secs.
                         // Connection timeout should not be more than 10 secs.
                         // Trying to do with setLoginTimeout, but it doesnt seems to work.
                         DriverManager.setLoginTimeout(5);
-                        this.con = DriverManager.getConnection(url, user, pw);
+                        this.con = DriverManager.getConnection(url, this.user, this.pw);
 	}
 	
     @Override

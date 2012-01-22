@@ -22,11 +22,6 @@ import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
 
 
 public class Main_Frame extends javax.swing.JFrame implements ImageObserver, MenuContainer, Serializable {
-    private CustomerTable c_model;
-    private EmployeeTable e_model;
-    private FullticketTable f_model;
-    private HistoryTable h_model;
-    private ProductTable p_model;
     
      /**************************
      *  
@@ -35,14 +30,8 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
      ***************************/
     // <editor-fold desc="Constructor">
     /** Creates new form helpdesk_main */
-    public Main_Frame(CustomerTable c_model,EmployeeTable e_model,
-                                FullticketTable f_model, HistoryTable h_model,
-                                ProductTable p_model) {
-       this.c_model = c_model;
-       this.e_model = e_model;
-       this.f_model = f_model;
-       this.h_model = h_model;
-       this.p_model = p_model;
+    public Main_Frame() {
+
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -81,12 +70,13 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
      ***************************/
     // <editor-fold desc="init JTable and set models">
     private void init () {
-        table_fullticket.setModel(f_model);
-        table_customer.setModel(c_model);
-        table_employee.setModel(e_model);
-        table_product.setModel(p_model);
-        table_history.setModel(h_model);
-        new refreshTable(c_model, e_model, f_model, h_model, p_model).start();
+        table_fullticket.setModel(FullticketTable.getInstance());
+        table_customer.setModel(CustomerTable.getInstance());
+        table_employee.setModel(EmployeeTable.getInstance());
+        table_product.setModel(ProductTable.getInstance());
+        table_history.setModel(HistoryTable.getInstance());
+        new refreshTable(CustomerTable.getInstance(), EmployeeTable.getInstance(), FullticketTable.getInstance(), 
+                         HistoryTable.getInstance(), ProductTable.getInstance()).start();
         table_fullticket.getColumnModel().getColumn(2).setCellRenderer(new ImageRenderer());
         initTable();
     }

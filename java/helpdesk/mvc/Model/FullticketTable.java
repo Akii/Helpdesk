@@ -6,12 +6,20 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
      public class FullticketTable extends AbstractTableModel {
+        private static FullticketTable instance = new FullticketTable();
         private String[] columnNames = {"TID", "Problem Category", "Ticket Status","EID", "Employee Firstname", 
                                         "Employee lastname","CID", "Customer Firstname", "Customer lastname",  
                                         "Telephone", "Email",  "Topic", "Problem", "Note", "Solution",
                                         "created_on","last_update"};
         private Object[][] data      = {};
         private ArrayList<FullTicket> arr_data;
+        
+        
+        private FullticketTable() {}
+        //Singleton class - Thread secure
+        public static FullticketTable getInstance() {
+		return instance;
+	}
         
         /**************************
         *  set data into jtable

@@ -13,14 +13,12 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 public class PController implements Runnable{
-    private Integer ID,runtime=0;;
-    private ProductTable p_model;
+    private Integer ID;;
     private Product_Frame _view;
     
-    public PController (Integer ID, ProductTable p_model, Product_Frame _view) {
+    public PController (Integer ID) {
           this.ID = ID;  
-          this.p_model = p_model;
-          this._view = _view;
+          this._view = new Product_Frame();
           addListener();
     }
     
@@ -51,8 +49,7 @@ public class PController implements Runnable{
         public void focusLost(FocusEvent arg0) {
                 try {
                     String Str = _view.edt_ID.getText();
-                    if (!Str.isEmpty() && runtime >=0) {
-                        if (runtime==0) runtime++;
+                    if (!Str.isEmpty()) {
                         psearch(Integer.parseInt (Str));  
                 }
             } catch (NullPointerException E){
@@ -111,7 +108,7 @@ public class PController implements Runnable{
                         newProduct.newProduct();
                     }
                     //After update or create, refresh table 
-                    new refreshTable(null, null, null, null, p_model).start();
+                    new refreshTable(null, null, null, null, ProductTable.getInstance()).start();
                     _view.dispose();
                 }
             } catch (NumberFormatException ev) {

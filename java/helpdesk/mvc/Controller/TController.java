@@ -29,10 +29,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 
 public class TController implements Runnable{
-    private Integer ID,noEm,runtime=0;
-    private FullticketTable f_model;
-    private HistoryTable h_model;
-    private ProductTable p_model;
+    private Integer ID,noEm;
     private Main_Frame main;
     private Ticket_Frame _view;
     private String sol="",note="";
@@ -40,14 +37,10 @@ public class TController implements Runnable{
     private CategoryModel ca_model;
     private DefaultListModel model;
 
-    public TController(Integer ID, FullticketTable f_model,HistoryTable h_model,ProductTable p_model,
-                       Main_Frame main, Ticket_Frame frame) {
+    public TController(Integer ID,Main_Frame main) {
         this.ID = ID;  
-        this.f_model = f_model;
-        this.h_model = h_model;
-        this.p_model = p_model;
         this.main = main;
-        this._view = frame;
+        this._view = new Ticket_Frame();
         this.s_model = new StatusModel();
         s_model.StatusModel();
         this.ca_model = new CategoryModel();
@@ -122,8 +115,7 @@ public class TController implements Runnable{
         public void focusLost(FocusEvent arg0) {
                 try {
                     String Str = _view.edt_ID.getText();
-                    if (!Str.isEmpty() && runtime >=0) { 
-                        if (runtime==0) runtime++;
+                    if (!Str.isEmpty()) {
                         search(Integer.parseInt (Str));  
                 }
             } catch (NullPointerException E){
@@ -147,8 +139,6 @@ public class TController implements Runnable{
             _view.dispose();
         }
     }
-    
-
     
       /*************************************
       *   Ticket edit save button
@@ -209,8 +199,8 @@ public class TController implements Runnable{
                         for (int i=0; i<= Array.length-1; i++) {
                              do {
                                  a++;
-                             } while (!p_model.getValueAt(a, 1).equals(Array[i]));
-                             _intarr [i] = p_model.getValueAt(a, 0);
+                             } while (!ProductTable.getInstance().getValueAt(a, 1).equals(Array[i]));
+                             _intarr [i] = ProductTable.getInstance().getValueAt(a, 0);
                          }
                         //Create new involved product/s
                         ProductInv Productinv = new ProductInv (ID, _intarr);
@@ -239,8 +229,8 @@ public class TController implements Runnable{
                         for (int i=0; i<= Array.length-1; i++) {
                              do {
                                  a++;
-                             } while (!p_model.getValueAt(a, 1).equals(Array[i]));
-                             _intarr [i] = p_model.getValueAt(a, 0);
+                             } while (!ProductTable.getInstance().getValueAt(a, 1).equals(Array[i]));
+                             _intarr [i] = ProductTable.getInstance().getValueAt(a, 0);
                          }
                         ProductInv Productinv = new ProductInv (_int, _intarr);
                         Productinv.newInvProduct();
@@ -249,7 +239,7 @@ public class TController implements Runnable{
                     
                 }
                 //Refresh Fullticket and History table
-                new refreshTable(null, null, f_model, h_model, null).start();
+                new refreshTable(null, null, FullticketTable.getInstance(), HistoryTable.getInstance(), null).start();
                 //Count ticket status for fullticket control buttons -
                 //timer to prevent connection link lost
                 new Timer().schedule(new Count(), 600);
@@ -275,7 +265,6 @@ public class TController implements Runnable{
                 new Counter(main).start();
         }
     }
-    
     
       /*************************************
       * Checkbox - ItemListener

@@ -8,14 +8,13 @@ import java.awt.event.FocusListener;
 import java.awt.event.ItemListener;
 
 public class CE_Frame extends javax.swing.JFrame {
-    private String choose;
-
+    public String choose;
     
      /**************************
      *  
      *  set look and feel - init GUI and components
      *  
-     ***************************/
+     ***************************/ 
     
     public CE_Frame(String choose) {
       this.choose = choose;

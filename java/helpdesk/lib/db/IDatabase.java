@@ -5,7 +5,8 @@ import java.sql.SQLException;
 
 
 public interface IDatabase {
-	public void connect(String host, String db_name, String user, String pw) throws SQLException;
+        public void first (String host, String db_name, String user, String pw);
+	public void connect() throws SQLException;
 
 	public void prepare(String query) throws SQLException;
 	public void bind_param(int index, String value) throws SQLException;

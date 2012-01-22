@@ -53,7 +53,7 @@ public class HtmlModel {
                 +"<td>"
                         + "<font color='#708090'><b>"
                         + "Ticket Status:"
-                        + "</b></font></td><td><u><font color="+color+">"+ Array[1] +"</font></u></td>" 
+                        + "</b></font></td><td><u><font color="+color+"><b>"+ Array[1] +"</b></font></u></td>" 
                 +"</tr><tr>"
                 +"<td>"
                         + "<font color='#708090'><b>"

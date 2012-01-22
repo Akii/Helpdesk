@@ -30,9 +30,6 @@ import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
 import Helpdesk.java.helpdesk.mvc.Model.HtmlModel;
 import Helpdesk.java.helpdesk.mvc.Model.Product;
 import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
-import Helpdesk.java.helpdesk.mvc.View.CE_Frame;
-import Helpdesk.java.helpdesk.mvc.View.Product_Frame;
-import Helpdesk.java.helpdesk.mvc.View.Ticket_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import Helpdesk.java.helpdesk.lib.ImageRenderer;
 import Helpdesk.java.helpdesk.mvc.Model.Counter;
@@ -40,23 +37,11 @@ import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 
 public class MainController {
     private Main_Frame _view;
-    private CustomerTable c_model;
-    private EmployeeTable e_model;
-    private FullticketTable f_model;
-    private HistoryTable h_model;
-    private ProductTable p_model;
     //Deactivate refresh button for n sec to prevent DB connection overflow
-    private Integer Refreshbtn_Timer = 5000; 
+    private Integer Refreshbtn_Timer = 2500; 
    
-        public MainController (Main_Frame _view, CustomerTable c_model,EmployeeTable e_model,
-                                FullticketTable f_model, HistoryTable h_model,
-                                ProductTable p_model) {
+        public MainController (Main_Frame _view) {
             this._view = _view;
-            this.c_model = c_model;
-            this.e_model = e_model;
-            this.f_model = f_model;
-            this.h_model = h_model;
-            this.p_model = p_model;
             addListener();
             init();
         }
@@ -114,14 +99,14 @@ public class MainController {
     class btn_addeditCListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
-           new Thread (new CEController(null,"Customer",new CE_Frame("Customer"), c_model, e_model)).start();
+           new Thread (new CEController(null,"Customer")).start();
         }
     }
     
      class btn_addeditEListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
-           new Thread (new CEController(null,"Employee",new CE_Frame("Employee"), c_model, e_model)).start();
+           new Thread (new CEController(null,"Employee")).start();
         }
     }
      
@@ -129,14 +114,14 @@ public class MainController {
       class btn_addeditTListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-              new Thread (new TController(null,f_model,h_model,p_model,_view, new Ticket_Frame())).start();
+              new Thread (new TController(null,_view)).start();
           }
       }
         
       class btn_addeditPListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-              new Thread (new PController(null,p_model,new Product_Frame())).start();
+              new Thread (new PController(null)).start();
           }
       }
       
@@ -144,7 +129,8 @@ public class MainController {
       class btn_refreshListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) { 
-            new refreshTable(c_model, e_model, f_model, h_model, p_model).start();
+            new refreshTable(CustomerTable.getInstance(), EmployeeTable.getInstance(), FullticketTable.getInstance(), 
+                            HistoryTable.getInstance(), ProductTable.getInstance()).start();
             //Set CellRenderer for icons in JTable
             _view.table_fullticket.getColumnModel().getColumn(2).setCellRenderer(new ImageRenderer());
             //Deactivate refresh button for 2 sec to prevent DB connection overflow
@@ -170,28 +156,28 @@ public class MainController {
       class btn_setFullListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            new refreshTable(null, null, f_model, null, null).start();
+            new refreshTable(null, null, FullticketTable.getInstance(), null, null).start();
           }
       }
                  
       class btn_setOpenListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            f_model.showData("Open");
+            FullticketTable.getInstance().showData("Open");
           }
       }
       
       class btn_setProcessListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            f_model.showData("In process");
+            FullticketTable.getInstance().showData("In process");
           }
       }
       
       class btn_setClosedListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            f_model.showData("Closed");
+            FullticketTable.getInstance().showData("Closed");
           }
       }
       
@@ -207,7 +193,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(f_model);
+             new TableRowSorter<TableModel>(FullticketTable.getInstance());
              _view.table_fullticket.setRowSorter(sorter);
              filter(_view.edt_filterfullticket.getText(),sorter);
          }
@@ -225,7 +211,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(h_model);
+             new TableRowSorter<TableModel>(HistoryTable.getInstance());
              _view.table_history.setRowSorter(sorter);
              filter(_view.edt_filtertickethis.getText(),sorter);
          }
@@ -243,7 +229,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(p_model);
+             new TableRowSorter<TableModel>(ProductTable.getInstance());
              _view.table_product.setRowSorter(sorter);
              filter(_view.edt_filterproduct.getText(),sorter);
          }
@@ -261,7 +247,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(e_model);
+             new TableRowSorter<TableModel>(EmployeeTable.getInstance());
              _view.table_employee.setRowSorter(sorter);
              filter(_view.edt_filteremployee.getText(),sorter);
          }
@@ -279,7 +265,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(c_model);
+             new TableRowSorter<TableModel>(CustomerTable.getInstance());
              _view.table_customer.setRowSorter(sorter);
              filter(_view.edt_filtercustomer.getText(),sorter);
          }
@@ -608,19 +594,19 @@ public class MainController {
             if ("Customer".equals(select)) {
                 Integer integer = (Integer)_view.table_customer.getValueAt(
                 _view.table_customer.getSelectedRow(), 0);
-                new Thread (new CEController(integer,"Customer",new CE_Frame("Customer"), c_model, e_model)).start();
+                new Thread (new CEController(integer,"Customer")).start();
             } else if ("Employee".equals(select)) {
                 Integer integer = (Integer)_view.table_employee.getValueAt(
                 _view.table_employee.getSelectedRow(), 0);
-                new Thread (new CEController(integer,"Employee", new CE_Frame("Employee"), c_model, e_model)).start();
+                new Thread (new CEController(integer,"Employee")).start();
             } else if ("Fullticket".equals(select)) {
                 Integer integer = (Integer)_view.table_fullticket.getValueAt(
                 _view.table_fullticket.getSelectedRow(), 0);
-                new Thread (new TController(integer, f_model, h_model,p_model, _view, new Ticket_Frame())).start();
+                new Thread (new TController(integer, _view)).start();
             } else if ("Product".equals(select)) {
                 Integer integer = (Integer)_view.table_product.getValueAt(
                 _view.table_product.getSelectedRow(), 0);
-                new Thread (new PController(integer, p_model, new Product_Frame())).start();
+                new Thread (new PController(integer)).start();
             }
     }
       
@@ -637,13 +623,13 @@ public class MainController {
             public void actionPerformed(ActionEvent event) {
                 if ("Employee".equals(man)) {
                    Employee.deleteEmployee(select);
-                   e_model.showData();
+                   EmployeeTable.getInstance().showData();
                 } else if ("Customer".equals(man)) {
                    Customer.deleteCustomer(select);
-                   c_model.showData();
+                   CustomerTable.getInstance().showData();
                 } else if ("Product".equals(man)) {
                    Product.deleteProduct(select);
-                   p_model.showData();
+                   ProductTable.getInstance().showData();
                 }
             }
 	});
@@ -676,7 +662,7 @@ public class MainController {
                     sorter.setRowFilter(
                     RowFilter.regexFilter(text));
                 } catch (PatternSyntaxException e) {
-                    Error_Frame.Error(e.toString());
+                    Error_Frame.Error(e.getPattern());
                 }
            }
     }

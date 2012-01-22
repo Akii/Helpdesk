@@ -17,16 +17,12 @@ import java.awt.event.FocusEvent;
 public class CEController implements Runnable{
     private Integer ID,runtime=0;
     private String EqualPW,choose;
-    private CustomerTable c_model;
-    private EmployeeTable e_model;
     private CE_Frame _view;
     
-    public CEController (Integer ID,String choose, CE_Frame _view, CustomerTable c_model, EmployeeTable e_model) {
+    public CEController (Integer ID,String choose) {
           this.ID = ID;  
           this.choose = choose;
-          this.c_model = c_model;
-          this.e_model = e_model;
-          this._view = _view;
+          this._view =  new CE_Frame(choose);
           addListener();
     }
     
@@ -144,7 +140,7 @@ public class CEController implements Runnable{
                     }
                 }
                 //after update or create - refresh table and dispose frame
-                new refreshTable(c_model, e_model, null, null, null).start();
+                new refreshTable(CustomerTable.getInstance(), EmployeeTable.getInstance(), null, null, null).start();
                 _view.dispose();
             }
          } catch (NumberFormatException evt) {

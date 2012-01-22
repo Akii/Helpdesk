@@ -6,10 +6,18 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
     
      public class EmployeeTable extends AbstractTableModel {
+        private static EmployeeTable instance = new EmployeeTable();
         private String[] columnNames = {"EID", "Firstname", "Lastname", "Username", "Troubleshooter", "Password"};
         private Object[][] data      = {};
         private ArrayList<Employee> arr_data;
 
+        
+        private EmployeeTable() {}
+        //Singleton class - Thread secure
+        public static EmployeeTable getInstance() {
+		return instance;
+	}
+        
         /**************************
         *  set data into jtable
         ****************************/

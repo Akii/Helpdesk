@@ -17,9 +17,9 @@ public abstract class MainModel {
 	try {
 		// working example of select with placeholders
 		// using the more generic type of database here!
-                String[] Array = LoginData.readSQL();
 		db = MysqlDatabase.getInstance();
-		db.connect(Array[0]+":"+Array[1], Array[2], Array[3], Array[4]);
+                db.connect();
+
 		
 	        /*
 		db.prepare("SELECT * FROM customer WHERE CID=? OR CID=?");

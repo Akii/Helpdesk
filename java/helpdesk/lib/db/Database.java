@@ -22,6 +22,7 @@ public abstract class Database implements IDatabase {
 	// hashmap with index, value
 	protected Map<Integer, String> values = new HashMap<Integer,String>();
 
+        
 	/**
 	 * Returns an existing database object.
 	 * @return A database object of the previously initialized database.
@@ -41,8 +42,12 @@ public abstract class Database implements IDatabase {
 	 * @param user Database user name.
 	 * @param pw Password for the db user.
 	 */
+    
     @Override
-	public abstract void connect(String host, String db_name, String user, String pw) throws SQLException;
+        public abstract void first (String host, String db_name, String user, String pw);
+        
+    @Override
+	public abstract void connect() throws SQLException;
 	
 	/**
 	 * Creates a PreparedStatement object for sending parameterized SQL statements to the database.

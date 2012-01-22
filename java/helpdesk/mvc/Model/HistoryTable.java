@@ -6,11 +6,20 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
      public class HistoryTable extends AbstractTableModel {
+        private static HistoryTable instance = new HistoryTable();
         private String[] columnNames = {"Ticket ID", "Changed on", "Column name", 
                                         "Column value"};
         private Object[][] data      = {};
         private ArrayList<History> arr_data;
 
+        
+        private HistoryTable() {}
+        //Singleton class - Thread secure
+        public static HistoryTable getInstance() {
+		return instance;
+	}
+        
+        
         /**************************
         *  set data into jtable
         ****************************/

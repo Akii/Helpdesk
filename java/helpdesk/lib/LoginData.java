@@ -46,7 +46,7 @@ public class LoginData {
             Matcher db = Pattern.compile("Database:\"[.[^\"]]+\"").matcher(Host);
             Matcher user = Pattern.compile("User:\"[.[^\"]]+\"").matcher(Host);
             Matcher pw = Pattern.compile("Password:\"[.[^\"]]+\"").matcher(Host);
-        
+            
         
          while (host.find()){
              Array[0] = (host.group().replace("Host:" , "").replaceAll("\"",""));
@@ -64,9 +64,11 @@ public class LoginData {
             Array[4] = (pw.group().replace("Password:" , "").replaceAll("\"",""));
          }
             Array[4] = DesEncrypter.SQLdecrypted(Array[4]);
+         in.close();   
         } catch (Exception e) {
             Error_Frame.Error(e.getMessage());
         }
+        
         return Array;
     }
 }

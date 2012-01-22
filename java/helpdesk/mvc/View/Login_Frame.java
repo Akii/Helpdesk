@@ -171,7 +171,7 @@ public class Login_Frame extends javax.swing.JFrame implements Runnable{
         boolean failed = false;
         try {
             Database db = MysqlDatabase.getInstance();
-            db.connect(txf_host.getText()+":"+txf_port.getText(), txf_database.getText(), 
+            db.first(txf_host.getText()+":"+txf_port.getText(), txf_database.getText(), 
                             txf_user.getText(), String.valueOf(txf_pw.getPassword()));
         } catch (MySQLSyntaxErrorException e) {
             failed = true;

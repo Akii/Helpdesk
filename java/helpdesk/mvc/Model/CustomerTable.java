@@ -6,9 +6,16 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
      public class CustomerTable extends AbstractTableModel {
+        private static CustomerTable instance = new CustomerTable();
         private String[] columnNames = {"CID","Firstname", "Lastname", "Username","Email" , "Telephone", "Password"};
         private Object[][] data      = {};
         private ArrayList<Customer> arr_data;
+        
+        private CustomerTable() {}
+        //Singleton class - Thread secure
+        public static CustomerTable getInstance() {
+		return instance;
+	}
         
         /**************************
         *  set data into jtable

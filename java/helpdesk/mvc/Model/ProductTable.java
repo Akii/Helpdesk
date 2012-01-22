@@ -5,17 +5,18 @@ package Helpdesk.java.helpdesk.mvc.Model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-    /*
-    *  initialize
-    */
      public class ProductTable extends AbstractTableModel {
+        private static ProductTable instance = new ProductTable();
         private String[] columnNames = {"PID", "Name", "Description"};
         private Object[][] data      = {};
         private ArrayList<Product> arr_data;
 
-        /*
-        *  set data into jtable
-        */
+        private ProductTable() {}
+        //Singleton class - Thread secure
+        public static ProductTable getInstance() {
+		return instance;
+	}
+        
         public void showData() {
             arr_data = Product.showAll();
             data = new Object[arr_data.size()][];
