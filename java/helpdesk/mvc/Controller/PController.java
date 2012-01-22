@@ -9,9 +9,11 @@ import Helpdesk.java.helpdesk.mvc.Model.Product;
 import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
 import Helpdesk.java.helpdesk.mvc.View.Product_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class PController implements Runnable{
-    private Integer ID;
+    private Integer ID,runtime=0;;
     private ProductTable p_model;
     private Product_Frame _view;
     
@@ -32,10 +34,36 @@ public class PController implements Runnable{
     
     private void addListener() {
         this._view.setbtn_cancelListener(new btn_cancelListener());
-        this._view.setbtn_searchListener(new btn_searchListener());
         this._view.setbtn_saveListener(new btn_saveListener());
         this._view.setchb_newListener(new chb_newListener());
+        this._view.setFocusListener(new IDFocusListener());
     }
+    
+    
+    
+      /*************************************
+      * FocusListener
+      * if the focus of ID textfield lose, 
+      * it will automatically search the ID 
+      **************************************/
+    private class IDFocusListener extends FocusAdapter {
+    @Override
+        public void focusLost(FocusEvent arg0) {
+                try {
+                    String Str = _view.edt_ID.getText();
+                    if (!Str.isEmpty() && runtime >=0) {
+                        if (runtime==0) runtime++;
+                        psearch(Integer.parseInt (Str));  
+                }
+            } catch (NullPointerException E){
+                Error_Frame.Error("ID not found");
+            } catch (NumberFormatException E) {
+                Error_Frame.Error("Please use only number for ID");
+            }
+        }
+    }
+    
+    
     
     
       /*************************************
@@ -54,7 +82,7 @@ public class PController implements Runnable{
     class btn_searchListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
-            //search ID        
+            //Search ID        
             try {
                 psearch(Integer.parseInt(_view.edt_ID.getText()));
             } catch (NullPointerException E){
@@ -68,12 +96,12 @@ public class PController implements Runnable{
      class btn_saveListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
-        //send error message if one of these textfields are empty
+        //Send error message if one of these textfields are empty
             try {
                 if (_view.edt_name.getText().isEmpty() || _view.edt_description.getText().isEmpty()) {
                     Error_Frame.Error("Please fill out: name and description ");
                 } else {
-                    //check checkbox then create or update product
+                    //Check checkbox then create or update product
                     if (_view.chb_new.getSelectedObjects() == null) {
                         ID = Integer.parseInt (_view.edt_ID.getText()); 
                         Product updateProduct = new Product (ID,_view.edt_name.getText(),_view.edt_description.getText());
@@ -82,7 +110,7 @@ public class PController implements Runnable{
                         Product newProduct = new Product (null,_view.edt_name.getText(),_view.edt_description.getText());
                         newProduct.newProduct();
                     }
-                    //after update or create, refresh table 
+                    //After update or create, refresh table 
                     new refreshTable(null, null, null, null, p_model).start();
                     _view.dispose();
                 }
@@ -96,9 +124,9 @@ public class PController implements Runnable{
      
      
       /*************************************
-      * 
-      *     Checkbox - ItemListener
-      * 
+      * Checkbox - ItemListener
+      * only the db can create id number so we dont need 
+      * ID textfield (db ID -> auto increment)
       **************************************/
      
     class chb_newListener implements ItemListener{
@@ -116,16 +144,10 @@ public class PController implements Runnable{
         }
     }
     
-
-     /**************************
-     *  
-     *  User defined functions
-     *  
-     ***************************/
-    
-     /*
-    *  search ID and fill textfield with data
-    */
+     /*************************************
+      * Search the ID from the db 
+      * and fill the textfield with data
+      **************************************/
     public void psearch (Integer ID) {
             _view.edt_ID.setText(ID.toString());
             String [] Array = Product.searchProduct(ID);

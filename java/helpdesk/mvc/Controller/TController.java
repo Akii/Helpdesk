@@ -25,7 +25,6 @@ import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 
@@ -49,13 +48,17 @@ public class TController implements Runnable{
         this.p_model = p_model;
         this.main = main;
         this._view = frame;
+        this.s_model = new StatusModel();
+        s_model.StatusModel();
+        this.ca_model = new CategoryModel();
+        ca_model.CategoryModel();
         addListener();
     }
     
     @Override
     public void run() {
         if (this.ID != null) {
-            searching (this.ID);
+            search (this.ID);
         }
         this._view.init();
     }
@@ -65,13 +68,14 @@ public class TController implements Runnable{
         this._view.setbtn_saveListener(new btn_saveListener());
         this._view.setchb_newListener(new chb_newListener());
         this._view.setFocusListener(new IDFocusListener());
-        this.s_model = new StatusModel();
-        s_model.StatusModel();
-        this.ca_model = new CategoryModel();
-        ca_model.CategoryModel();
         init();
         ListSelection();
     }
+    
+      /*************************************
+      * set Combobox (dropdown) models 
+      * and select the value we have been searching for
+      **************************************/
     
     private void init() {
         _view.cmb_status.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(4).toArray(
@@ -109,7 +113,32 @@ public class TController implements Runnable{
     
     
       /*************************************
-      * ButtonListener
+      * FocusListener
+      * if the focus of ID textfield lose, 
+      * it will automatically search the ID 
+      **************************************/
+    private class IDFocusListener extends FocusAdapter {
+    @Override
+        public void focusLost(FocusEvent arg0) {
+                try {
+                    String Str = _view.edt_ID.getText();
+                    if (!Str.isEmpty() && runtime >=0) { 
+                        if (runtime==0) runtime++;
+                        search(Integer.parseInt (Str));  
+                }
+            } catch (NullPointerException E){
+                Error_Frame.Error("ID not found");
+            } catch (NumberFormatException E) {
+                Error_Frame.Error("Please use only number for ID");
+            }
+        }
+    }
+    
+    
+      /*************************************
+      * 
+      *     ButtonListener
+      * 
       **************************************/
 
     class btn_cancelListener implements ActionListener{
@@ -119,22 +148,7 @@ public class TController implements Runnable{
         }
     }
     
-    private class IDFocusListener extends FocusAdapter {
-    @Override
-    public void focusLost(FocusEvent arg0) {
-       if (runtime==0 || runtime==1) runtime++;
-           try {
-            String Str = _view.edt_ID.getText();
-            if (!Str.isEmpty() && runtime >=1) { 
-                searching(Integer.parseInt (Str));  
-            }
-          } catch (NullPointerException E){
-            Error_Frame.Error("ID not found");
-          } catch (NumberFormatException E) {
-            Error_Frame.Error("Please use only number for ID");
-          }
-    }
-  }
+
     
       /*************************************
       *   Ticket edit save button
@@ -143,20 +157,22 @@ public class TController implements Runnable{
     class btn_saveListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
-            
+            //There are no identical primary key 
+            //so it have to delete all involved product from the ticket
             if (ID != null) {
                 ProductInv inv_model = new ProductInv(ID,null);
                 inv_model.deleteInvProduct();
             }
             
            try {
-            //set timestamp for "create tickets" and "update tickets"
+            //Set timestamp for "create tickets" and "update tickets"
             Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
-            //send Error frame if one of these textfield are empty
+            //Send Error frame if one of these textfield are empty
             if (_view.edt_topic.getText().isEmpty() || (_view.edt_problem.getText().isEmpty())){
                 Error_Frame.Error("Please fill out: Topic and Problem"); 
             } else {
-
+                    //It is important to check if solution or note are empty or same as before
+                    //else the history in the db will update an empty string
                     if (!_view.edt_solution.getText().isEmpty() && !sol.equals(_view.edt_solution.getText())) {
                         sol = _view.edt_solution.getText();
                     }
@@ -167,11 +183,11 @@ public class TController implements Runnable{
                         noEm = Comp.getEID((String)_view.cmb_eID.getSelectedItem());
                     }
                     
-                //check checkbox "new Ticket"
+                //Check checkbox "new Ticket"
                 if (_view.chb_new.getSelectedObjects() == null) {
                     ID = Integer.parseInt (_view.edt_ID.getText());  
                     
-                    //Update Ticket block ##############################################################
+                    //Update Ticket block ###################################################
                     Ticket updateTicket = new Ticket (ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),noEm,
                     ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
@@ -179,36 +195,44 @@ public class TController implements Runnable{
                     _view.edt_topic.getText(), _view.edt_problem.getText(),
                     note, sol, _view.edt_created.getText(), currentTimestamp.toString());
                     updateTicket.updateTicket(ID);
-                    //##################################################################################
+                    //######################################################################
                     
-                    //Set products  ######################################################################
+                    //Set products  #########################################################
                     if (_view.ls_products.getSelectedIndices().length != 0) {
+                        //Integer value a begins at -1 so if it reach the while clause 
+                        // a will set to 0
                         Integer a = -1;
+                        //Only Java 7 and above support the function "getSelectedValueList"
+                        //otherwise this programm do not set any product or dispose this frame
                         Object Array [] = _view.ls_products.getSelectedValuesList().toArray();
                         Object _intarr[] = new Object [Array.length];
+                        //Looking for the same product name and save it into a array
                         for (int i=0; i<= Array.length-1; i++) {
                              do {
                                  a++;
                              } while (!p_model.getValueAt(a, 1).equals(Array[i]));
                              _intarr [i] = p_model.getValueAt(a, 0);
                          }
+                        //Create new involved product/s
                         ProductInv Productinv = new ProductInv (ID, _intarr);
                         Productinv.newInvProduct();
                     }
-                    //##################################################################################
+                    //######################################################################
                     
                 } else {
                     
-                    //Create Ticket block ###############################################################
+                    //Create Ticket block ##################################################
                     Ticket newTicket = new Ticket (null,(Integer)_view.cmb_cID.getSelectedItem(),noEm,
                     ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
                     s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
                     _view.edt_topic.getText(),_view.edt_problem.getText(),note,sol,currentTimestamp.toString(),
                     currentTimestamp.toString());
                     Integer _int = newTicket.newTicket();
-                    //#####################################################################################
+                    //#######################################################################
                     
-                    //Set products  #####################################################################
+                    //Set products  #########################################################
+                    //Nearly same function as above, only it takes insert_id from the database 
+                    //because new involved products do not have a id
                     if (_view.ls_products.getSelectedIndices().length != 0) {
                         Integer a = -1;
                         Object Array [] = _view.ls_products.getSelectedValuesList().toArray();
@@ -222,12 +246,12 @@ public class TController implements Runnable{
                         ProductInv Productinv = new ProductInv (_int, _intarr);
                         Productinv.newInvProduct();
                     }
-                    //################################################################################
+                    //########################################################################
                     
                 }
-                //refresh jtable
+                //Refresh Fullticket and History table
                 new refreshTable(null, null, f_model, h_model, null).start();
-                //count ticket status for fullticket control buttons
+                //Count ticket status for fullticket control buttons -
                 //timer to prevent connection link lost
                 new Timer().schedule(new Count(), 600);
                 _view.dispose();
@@ -255,9 +279,9 @@ public class TController implements Runnable{
     
     
       /*************************************
-      * 
-      *     Checkbox - ItemListener
-      * 
+      * Checkbox - ItemListener
+      * only the db can create id number so we do not need 
+      * ID textfield (db ID -> auto increment)
       **************************************/
      
     class chb_newListener implements ItemListener{
@@ -277,18 +301,12 @@ public class TController implements Runnable{
         }
         }
     }
-    
-    
-     /**************************
-     *  
-     *  User defined functions
-     *  
-     ***************************/
-    
-    /*
-    *  search ticket and fill textfield/combobox
-    */
-    public void searching (Integer ID) {
+
+     /*************************************
+      * Search the ID from the db 
+      * and fill the textfield with data
+      **************************************/
+    public void search (Integer ID) {
         try {
             String [] Array = Ticket.searchTicket(ID);
             _view.edt_ID.setText(ID.toString());
@@ -301,12 +319,15 @@ public class TController implements Runnable{
             this.sol = Array[7];
             this.note = Array[6];
             
+            //Loop - looking for same Customer ID and select it
             for (int i=0; i< _view.cmb_cID.getItemCount();i++) {
                 if (Array[0].equals(_view.cmb_cID.getItemAt(i).toString())) {
                     _view.cmb_cID.setSelectedIndex(i);
                  }
             }
             
+            //Get the employee name from the db
+            //Loop - looking for same Employee name and select it
             if (Array[1]!=null) {
                String username = Comp.getEUsername(Integer.parseInt(Array[1]));
                 for (int i=0; i< _view.cmb_eID.getItemCount();i++) {
@@ -316,20 +337,26 @@ public class TController implements Runnable{
                 }
             }
             
+            //Get all products from the db 
+            //and compare list with product 
             Object [] product = Comp.searchTicketProduct(ID).toArray();
-            System.out.println (Arrays.toString(product));
             int [] indices = new int [product.length];
             int a=-1;
             for (int i=0; i<product.length; i++) {
                do {
                    a++;
                 } while (!_view.ls_products.getModel().getElementAt(a).equals(product[i]));
+                   //save index into a array
                    indices [i] = a;  
             }
+            //JDK 7 function - select all indices from this array
             _view.ls_products.setSelectedIndices(indices);
             
            _view.cmb_category.setSelectedIndex(Integer.parseInt(Array[2])-1);
            _view.cmb_status.setSelectedIndex(Integer.parseInt(Array[3])-1);
+           //Need ID != null if we press Ticketbutton and search ticket
+           //otherwise the function "delete InvProduct" will not start and we get an error msg (duplicate primary key)
+           this.ID = ID;
         } catch (NullPointerException E){
             Error_Frame.Error("ID not found");
         } catch (NumberFormatException E) {

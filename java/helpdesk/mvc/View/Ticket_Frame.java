@@ -197,12 +197,6 @@ public class Ticket_Frame extends javax.swing.JFrame {
         edt_ID.addFocusListener(l);
     }
     
-    /*
-    *  Button event - create or update tickets
-    */
-     /*
-    *  Checkbox event - set visibility
-    */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_cancel;

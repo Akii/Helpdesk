@@ -36,7 +36,6 @@ public class DesEncrypter implements IDesEncrypter {
  **********************/
    public static void SQLencrypted (String host, String port, String db, String user, char [] pw) {
                 try {
-                
                  String newPW = String.valueOf(pw);
                  // See also Encrypting with DES Using a Pass Phrase.
                  SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");

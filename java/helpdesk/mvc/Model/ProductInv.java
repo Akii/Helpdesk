@@ -26,7 +26,6 @@ public class ProductInv extends MainModel {
                                      + "(?,?)";
 		db.prepare(query);
                 for (int i=0; i<= arr.length-1;i++) {
-                    System.out.println (this.PID[i].toString());
                     db.bind_param(1, this.TID.toString());
                     db.bind_param(2, this.PID[i].toString());
                     db.addBatch();

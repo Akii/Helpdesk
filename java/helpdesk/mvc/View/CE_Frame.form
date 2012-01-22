@@ -50,23 +50,26 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="L_tele" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_csearch" min="-2" pref="78" max="-2" attributes="0"/>
-                          <Component id="L_email" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_password" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="edt_cemail" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btn_cancel" min="-2" pref="73" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btn_csave" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="L_tele" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="L_email" min="-2" max="-2" attributes="0"/>
+                                  <Component id="L_password" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="edt_cpassword" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="edt_cemail" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="btn_cancel" min="-2" pref="73" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btn_csave" min="-2" pref="69" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="edt_cpassword" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="edt_ctelephone" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="edt_ctelephone" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           <Component id="chb_new" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -92,7 +95,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="edt_ID" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="L_id" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_csearch" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="chb_new" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -247,14 +249,6 @@
     <Component class="javax.swing.JButton" name="btn_cancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JButton" name="btn_csearch">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

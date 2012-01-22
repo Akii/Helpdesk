@@ -96,6 +96,7 @@ public class MainController {
     private void init () {
             _view.btn_refresh.setEnabled(false);
             new Timer().schedule(new btn_activate(), Refreshbtn_Timer);
+            new Counter (_view).start();
     }
     
      /*************************************
@@ -104,6 +105,12 @@ public class MainController {
       * 
       **************************************/
     
+    
+        
+     /*************************************
+      * Thread - create new Customer,Employee,Product  
+      * or Ticket Controller   
+      **************************************/
     class btn_addeditCListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
@@ -133,6 +140,7 @@ public class MainController {
           }
       }
       
+
       class btn_refreshListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) { 
@@ -154,6 +162,10 @@ public class MainController {
                 _view.btn_max.setEnabled(false);
           }
       }
+      
+       /*************************************
+      * Fullticket Control Buttons
+      **************************************/
       
       class btn_setFullListener implements ActionListener{
           @Override
@@ -186,9 +198,9 @@ public class MainController {
       
       
        /*************************************
-      * 
-      *     Textfield Keylistener
-      * 
+      *  Textfield Keylistener
+      *  immediatly search table if user 
+      *  pressed a key
       **************************************/
       
        class edt_filterfullticketListener implements KeyListener{
@@ -285,9 +297,9 @@ public class MainController {
        
        
      /*************************************
-      * 
-      *     InternalFrameListener
-      * 
+      * InternalFrameListener
+      * same function as a simply border with iconifiable
+      * looks better
       **************************************/
       
        class intf_fullticketListener implements InternalFrameListener{
@@ -362,6 +374,12 @@ public class MainController {
       * 
       *     JTable Mouselistener
       * 
+      **************************************/    
+       
+      /*************************************
+      * Get the selected row and init JPopUp 
+      * If doubleclicked ticket,customer.. edit
+      * frame will open and automatically fill out with data
       **************************************/    
        
        class table_fullticketListener implements MouseListener{
@@ -525,10 +543,12 @@ public class MainController {
       * 
       **************************************/
        
+      /*************************************
+      * Handler for list selection changes
+      * Get selected row and display the data 
+      * in Editor pane - set verticalscrollbar to the top
+      **************************************/
        
-      /*
-     *  Handler for list selection changes
-     */
     class table_fullticketValueListener implements ListSelectionListener {
         @Override
         public void valueChanged(ListSelectionEvent event) {
@@ -563,7 +583,6 @@ public class MainController {
             }
          //product table
           if( event.getSource() == _view.table_product.getSelectionModel() && event.getFirstIndex() >= 0) {
-              System.out.println("test");
 		Integer integer = (Integer)_view.table_product.getValueAt(_view.table_product.getSelectedRow(), 0);
                 _view.txp_product.setText(HtmlModel.Htmlproduct(integer).toString());
                  javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -578,49 +597,45 @@ public class MainController {
     }  
        
        
-       
-     /*************************************
-      * 
-      * User defined functions 
-      * 
+      
+    
+      /*************************************
+      * Doubleclick function 
+      * Thread - create new Controller
+      * and fill frame with data
       **************************************/
       public void tableDoubleClick (String select) {
         switch (select) {
             case "Customer": {
                     Integer integer = (Integer)_view.table_customer.getValueAt(
                     _view.table_customer.getSelectedRow(), 0);
-                    Thread Controller = new Thread (new CEController(integer,"Customer",new CE_Frame("Customer"), c_model, e_model));
-                    Controller.start();
+                    new Thread (new CEController(integer,"Customer",new CE_Frame("Customer"), c_model, e_model)).start();
                     break;
             }
             case "Employee": {
                     Integer integer = (Integer)_view.table_employee.getValueAt(
                     _view.table_employee.getSelectedRow(), 0);
-                    Thread Controller = new Thread (new CEController(integer,"Employee", new CE_Frame("Employee"), c_model, e_model));
-                    Controller.start();
+                    new Thread (new CEController(integer,"Employee", new CE_Frame("Employee"), c_model, e_model)).start();
                     break;
             }
             case "Fullticket": {
                     Integer integer = (Integer)_view.table_fullticket.getValueAt(
                     _view.table_fullticket.getSelectedRow(), 0);
-                    Thread Controller=new Thread (new TController(integer, f_model, h_model,p_model, _view, new Ticket_Frame()));
-                    Controller.start();
+                    new Thread (new TController(integer, f_model, h_model,p_model, _view, new Ticket_Frame())).start();
                     break;
             }
             case "Product": {
                     Integer integer = (Integer)_view.table_product.getValueAt(
                     _view.table_product.getSelectedRow(), 0);
-                    Thread Controller=new Thread (new PController(integer, p_model, new Product_Frame()));
-                    Controller.start();
+                    new Thread (new PController(integer, p_model, new Product_Frame())).start();
                     break;
             }
         }
     }
       
-          
-     /*
-     *  JPopUpMenu for JTable
-     */
+       /*************************************
+      * JPopUpMenu for JTable
+      **************************************/
      private void showPopup(MouseEvent e, final Integer select, final String man) {
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem update = new JMenuItem("Update");
@@ -663,9 +678,9 @@ public class MainController {
             }
     }    
       
-     /*
+     /********************************
      *  Textfilter function for jtable
-     */
+     ************************************/
     public void filter (String text,TableRowSorter sorter) {
            if (text.length() == 0) {
                  sorter.setRowFilter(null);
@@ -679,10 +694,10 @@ public class MainController {
            }
     }
     
-    /*
-     *  activate refresh button
+    /*******************************
+     *  Timer - activate refresh button
      *  after n-secs
-     */
+     *************************************/
     class btn_activate extends TimerTask {
         @Override
         public void run(){

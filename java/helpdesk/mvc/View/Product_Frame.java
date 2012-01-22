@@ -5,6 +5,7 @@ package Helpdesk.java.helpdesk.mvc.View;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemListener;
 
 public class Product_Frame extends javax.swing.JFrame {
@@ -67,7 +68,6 @@ public class Product_Frame extends javax.swing.JFrame {
         chb_new = new javax.swing.JCheckBox();
         edt_ID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btn_search = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -92,8 +92,6 @@ public class Product_Frame extends javax.swing.JFrame {
         chb_new.setText("new Product?");
 
         jLabel4.setText("ID");
-
-        btn_search.setText("Search");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Helpdesk/java/helpdesk/mvc/View/pics/hdd.png"))); // NOI18N
 
@@ -120,14 +118,11 @@ public class Product_Frame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(chb_new))
-                            .addComponent(edt_ID, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                            .addComponent(edt_name))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(edt_ID, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                                .addComponent(edt_name))
+                            .addComponent(chb_new))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18))
@@ -142,9 +137,7 @@ public class Product_Frame extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(chb_new)
-                                    .addComponent(btn_search))
+                                .addComponent(chb_new)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(edt_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,10 +175,6 @@ public class Product_Frame extends javax.swing.JFrame {
         btn_cancel.addActionListener(l);
     }
     
-    public void setbtn_searchListener(ActionListener l){
-        btn_search.addActionListener(l);
-    }
-    
     public void setbtn_saveListener(ActionListener l){
         btn_save.addActionListener(l);
     }
@@ -194,10 +183,13 @@ public class Product_Frame extends javax.swing.JFrame {
         chb_new.addItemListener(l);
     }
     
+    public void setFocusListener(FocusListener l){
+        edt_ID.addFocusListener(l);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_cancel;
     public javax.swing.JButton btn_save;
-    public javax.swing.JButton btn_search;
     public javax.swing.JCheckBox chb_new;
     public javax.swing.JTextField edt_ID;
     public javax.swing.JTextArea edt_description;

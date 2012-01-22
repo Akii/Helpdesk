@@ -30,7 +30,7 @@ public class MysqlDatabase extends Database {
 		// load the driver for mysql
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		} catch(Exception e) {
+		} catch(ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			// no need to distinct exception type
 			// if that doesn't work the driver cannot be found
 			// and there is no point in going any further

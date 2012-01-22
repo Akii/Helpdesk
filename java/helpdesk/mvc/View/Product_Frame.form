@@ -47,15 +47,12 @@
                       <Component id="btn_save" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="btn_search" min="-2" pref="77" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="chb_new" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="edt_ID" alignment="0" pref="290" max="32767" attributes="1"/>
+                              <Component id="edt_name" alignment="0" max="32767" attributes="1"/>
                           </Group>
-                          <Component id="edt_ID" alignment="0" pref="290" max="32767" attributes="1"/>
-                          <Component id="edt_name" alignment="0" max="32767" attributes="1"/>
+                          <Component id="chb_new" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" pref="123" max="-2" attributes="0"/>
@@ -75,10 +72,7 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="chb_new" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btn_search" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="chb_new" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="edt_ID" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -186,14 +180,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="ID"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btn_search">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Search"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>

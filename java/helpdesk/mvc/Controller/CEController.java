@@ -11,9 +11,11 @@ import Helpdesk.java.helpdesk.mvc.Model.Employee;
 import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
 import Helpdesk.java.helpdesk.mvc.View.CE_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class CEController implements Runnable{
-    private Integer ID;
+    private Integer ID,runtime=0;
     private String EqualPW,choose;
     private CustomerTable c_model;
     private EmployeeTable e_model;
@@ -38,10 +40,34 @@ public class CEController implements Runnable{
     
     private void addListener() {
         this._view.setbtn_cancelListener(new btn_cancelListener());
-        this._view.setbtn_csearchListener(new btn_csearchListener());
         this._view.setbtn_saveListener(new btn_saveListener());
         this._view.setchb_newListener(new chb_newListener());
+        this._view.setFocusListener(new IDFocusListener());
     }
+    
+    
+      /*************************************
+      * FocusListener
+      * if the focus of ID textfield lose, 
+      * it will automatically search the ID 
+      **************************************/
+    private class IDFocusListener extends FocusAdapter {
+    @Override
+        public void focusLost(FocusEvent arg0) {
+                try {
+                    String Str = _view.edt_ID.getText();
+                    if (!Str.isEmpty() && runtime >=0) { 
+                        if (runtime==0) runtime++;
+                        csearch(Integer.parseInt (Str));  
+                }
+            } catch (NullPointerException E){
+                Error_Frame.Error("ID not found");
+            } catch (NumberFormatException E) {
+                Error_Frame.Error("Please use only number for ID");
+            }
+        }
+    }
+    
     
     
       /*************************************
@@ -57,16 +83,6 @@ public class CEController implements Runnable{
         }
     }
     
-    class btn_csearchListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {  
-            try {
-                csearch(Integer.parseInt(_view.edt_ID.getText()));         
-            } catch (NumberFormatException evt) {
-                Error_Frame.Error("Please use only number for ID");
-        }
-        }
-    }
         
      class btn_saveListener implements ActionListener{
         @Override
@@ -79,15 +95,16 @@ public class CEController implements Runnable{
             || _view.edt_cusername.getText().isEmpty() || _view.edt_cpassword.getText().isEmpty()) {
                 Error_Frame.Error("Please fill out: Firstname, Lastname, Username, Email and Password"); 
             } else {
-                //don't hash password string if it is already hashed
+                //check if the password were already hashed
                 if (EqualPW != null) {
                     if (EqualPW.equals(_view.edt_cpassword.getText())) {
                         equal = true;
                     }
                 }
-                //check Checkbox then create or update customer/employee
+                //check Checkbox if we want to create or update
                 if (_view.chb_new.getSelectedObjects() == null) {
                     ID = Integer.parseInt (_view.edt_ID.getText());  
+                    //check which one we have chosen
                     if ("Customer".equals(choose)) {
                         Customer updateCustomer = new Customer (ID,         
                         _view.edt_cfirstname.getText(),
@@ -126,7 +143,7 @@ public class CEController implements Runnable{
                         newEmployee.newEmployee();
                     }
                 }
-                //after update or create, refresh table 
+                //after update or create - refresh table and dispose frame
                 new refreshTable(c_model, e_model, null, null, null).start();
                 _view.dispose();
             }
@@ -140,9 +157,9 @@ public class CEController implements Runnable{
      
      
       /*************************************
-      * 
-      *     Checkbox - ItemListener
-      * 
+      * Checkbox - ItemListener
+      * only the db can create id number so we dont need 
+      * ID textfield (db ID -> auto increment)
       **************************************/
      
     class chb_newListener implements ItemListener{
@@ -163,16 +180,11 @@ public class CEController implements Runnable{
         }
     }
     
-
-     /**************************
-     *  
-     *  User defined functions
-     *  
-     ***************************/
     
-    /*
-    *  search ID and fill textfield with data
-    */   
+     /*************************************
+      * Search the ID from the db 
+      * and fill the textfield with data
+      **************************************/
     public void csearch (Integer ID) {
         try {
             _view.edt_ID.setText(ID.toString());
@@ -194,6 +206,14 @@ public class CEController implements Runnable{
                 _view.edt_cemail.setText(Array[4]);
                 this.EqualPW = Array[3];
             } 
+            //set testposition to 0 (completly left)
+            //usefull if strings are too long
+            _view.edt_cfirstname.setCaretPosition(0);
+            _view.edt_clastname.setCaretPosition(0);
+            _view.edt_cusername.setCaretPosition(0);
+            _view.edt_cpassword.setCaretPosition(0);
+            _view.edt_cemail.setCaretPosition(0);
+            
         } catch (NullPointerException E){
             Error_Frame.Error("ID not found");
         } catch (NumberFormatException E) {
