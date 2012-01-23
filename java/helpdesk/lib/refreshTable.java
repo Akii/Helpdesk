@@ -26,6 +26,7 @@ public class refreshTable extends Thread {
       this.f_model = f_model;
       this.h_model = h_model;
       this.p_model = p_model;
+      this._view = _view;
     }
    
     /*****************
