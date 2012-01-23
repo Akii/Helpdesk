@@ -2,31 +2,29 @@ package Helpdesk.java.helpdesk.lib;
 /******************
  * Imports
  ******************/
+import Helpdesk.java.helpdesk.mvc.Model.Counter;
 import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
 import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
 import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
 import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
 import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
+import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
+import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 
 public class refreshTable extends Thread {
-    CustomerTable c_model;
-    EmployeeTable e_model;
-    FullticketTable f_model;
-    HistoryTable h_model;
-    ProductTable p_model;
+    String c_model;
+    String e_model;
+    String f_model;
+    String h_model;
+    String p_model;
+    Main_Frame _view;
     
-    public refreshTable(CustomerTable c_model, EmployeeTable e_model,
-                               FullticketTable f_model, HistoryTable h_model,
-                               ProductTable p_model) {
-      if (c_model != null)
+    public refreshTable(String c_model, String e_model, String f_model, String h_model,
+                               String p_model, Main_Frame _view) {
       this.c_model = c_model;
-      if (e_model != null)
       this.e_model = e_model;
-      if (f_model != null)
       this.f_model = f_model;
-      if (h_model != null)
       this.h_model = h_model;
-      if (p_model != null)
       this.p_model = p_model;
     }
    
@@ -35,15 +33,41 @@ public class refreshTable extends Thread {
     ********************/
     @Override
     public void run() {
-      if (this.c_model != null)
-        c_model.showData();
-      if (this.e_model != null)
-        e_model.showData();
-      if (this.f_model != null)
-        f_model.showData("");
-      if (this.h_model != null)
-        h_model.showData();
-      if (this.p_model != null)
-        p_model.showData();
+      try {  
+            if (this.c_model.equals("Customer")) {
+                Thread t = new Thread (CustomerTable.getInstance());
+                t.start();
+                t.join();
+            }
+            if (this.e_model.equals("Employee")){
+                Thread t = new Thread (EmployeeTable.getInstance());
+                t.start();
+                t.join();
+            }
+            if (this.f_model.equals("Fullticket")) {
+                FullticketTable.getInstance().setStatus("");
+                Thread t = new Thread (FullticketTable.getInstance());
+                t.start();
+                t.join();
+            }
+            if (this.h_model.equals("History")) {
+                Thread t = new Thread (HistoryTable.getInstance());
+                t.start();
+                t.join();
+            }
+            if (this.p_model.equals("Product")) {
+                Thread t = new Thread (ProductTable.getInstance());
+                t.start();
+                t.join();
+            }
+            if (_view != null) {
+                Thread t = new Counter (_view);
+                t.start();
+                t.join();
+            }
+      } catch (InterruptedException e) {
+          Error_Frame.Error(e.toString());
+      }
     }
+    
 }

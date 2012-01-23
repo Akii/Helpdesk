@@ -5,7 +5,7 @@ package Helpdesk.java.helpdesk.mvc.Model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-     public class HistoryTable extends AbstractTableModel {
+     public class HistoryTable extends AbstractTableModel implements Runnable{
         private static HistoryTable instance = new HistoryTable();
         private String[] columnNames = {"Ticket ID", "Changed on", "Column name", 
                                         "Column value"};
@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 
         
         private HistoryTable() {}
-        //Singleton class - Thread secure
+        //Initialization-on-demand holder idiom - Singleton
         public static HistoryTable getInstance() {
 		return instance;
 	}
@@ -23,7 +23,8 @@ import javax.swing.table.AbstractTableModel;
         /**************************
         *  set data into jtable
         ****************************/
-        public void showData() {
+    @Override
+        public void run() {
             arr_data = History.showHistory();
             data = new Object[arr_data.size()][];
             for (int i = 0; i < arr_data.size(); i++) {

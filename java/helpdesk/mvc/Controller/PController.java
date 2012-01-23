@@ -6,7 +6,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import Helpdesk.java.helpdesk.lib.refreshTable;
 import Helpdesk.java.helpdesk.mvc.Model.Product;
-import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
 import Helpdesk.java.helpdesk.mvc.View.Product_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.awt.event.FocusAdapter;
@@ -108,7 +107,7 @@ public class PController implements Runnable{
                         newProduct.newProduct();
                     }
                     //After update or create, refresh table 
-                    new refreshTable(null, null, null, null, ProductTable.getInstance()).start();
+                    new refreshTable("", "", "", "", "Product", null).start();
                     _view.dispose();
                 }
             } catch (NumberFormatException ev) {

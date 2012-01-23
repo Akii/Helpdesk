@@ -6,9 +6,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import Helpdesk.java.helpdesk.lib.refreshTable;
 import Helpdesk.java.helpdesk.mvc.Model.Customer;
-import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
 import Helpdesk.java.helpdesk.mvc.Model.Employee;
-import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
 import Helpdesk.java.helpdesk.mvc.View.CE_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.awt.event.FocusAdapter;
@@ -140,7 +138,7 @@ public class CEController implements Runnable{
                     }
                 }
                 //after update or create - refresh table and dispose frame
-                new refreshTable(CustomerTable.getInstance(), EmployeeTable.getInstance(), null, null, null).start();
+                new refreshTable("Customer", "Employee", "", "", "", null).start();
                 _view.dispose();
             }
          } catch (NumberFormatException evt) {

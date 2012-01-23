@@ -38,7 +38,7 @@ import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 public class MainController {
     private Main_Frame _view;
     //Deactivate refresh button for n sec to prevent DB connection overflow
-    private Integer Refreshbtn_Timer = 2500; 
+    private Integer Refreshbtn_Timer = 2000; 
    
         public MainController (Main_Frame _view) {
             this._view = _view;
@@ -129,13 +129,11 @@ public class MainController {
       class btn_refreshListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) { 
-            new refreshTable(CustomerTable.getInstance(), EmployeeTable.getInstance(), FullticketTable.getInstance(), 
-                            HistoryTable.getInstance(), ProductTable.getInstance()).start();
+            new refreshTable("Customer", "Employee", "Fullticket", "History", "Product", _view).start();
             //Set CellRenderer for icons in JTable
             _view.table_fullticket.getColumnModel().getColumn(2).setCellRenderer(new ImageRenderer());
             //Deactivate refresh button for 2 sec to prevent DB connection overflow
             _view.btn_refresh.setEnabled(false);
-            new Counter (_view).start();
             new Timer().schedule(new btn_activate(), Refreshbtn_Timer);
         }
       }
@@ -156,28 +154,31 @@ public class MainController {
       class btn_setFullListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            new refreshTable(null, null, FullticketTable.getInstance(), null, null).start();
+            new refreshTable("", "", "Fullticket", "", "", null).start();
           }
       }
                  
       class btn_setOpenListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            FullticketTable.getInstance().showData("Open");
+            FullticketTable.getInstance().setStatus("Open");
+            FullticketTable.getInstance().run();
           }
       }
       
       class btn_setProcessListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            FullticketTable.getInstance().showData("In process");
+            FullticketTable.getInstance().setStatus("In process");  
+            FullticketTable.getInstance().run();
           }
       }
       
       class btn_setClosedListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            FullticketTable.getInstance().showData("Closed");
+            FullticketTable.getInstance().setStatus("Closed");  
+            FullticketTable.getInstance().run();
           }
       }
       
@@ -623,13 +624,13 @@ public class MainController {
             public void actionPerformed(ActionEvent event) {
                 if ("Employee".equals(man)) {
                    Employee.deleteEmployee(select);
-                   EmployeeTable.getInstance().showData();
+                   EmployeeTable.getInstance().run();
                 } else if ("Customer".equals(man)) {
                    Customer.deleteCustomer(select);
-                   CustomerTable.getInstance().showData();
+                   CustomerTable.getInstance().run();
                 } else if ("Product".equals(man)) {
                    Product.deleteProduct(select);
-                   ProductTable.getInstance().showData();
+                   ProductTable.getInstance().run();
                 }
             }
 	});

@@ -18,7 +18,6 @@ public class Counter extends Thread {
      * get ticket status from db
      *******************************/
     public static Object[] getCount() {
-        Object[] Array;
         ArrayList<Object> ArrayList = new ArrayList<Object>();
         Database db = MainModel.dbconnect();
     try {
@@ -26,8 +25,7 @@ public class Counter extends Thread {
         db.prepare(query);
 	ResultSet rs = db.executeQuery();         
 	while(rs.next()) {
-               Array = new String[]{rs.getString(rs.getMetaData().getColumnName(1))};
-               ArrayList.add(Array[0]); 
+               ArrayList.add(rs.getString(rs.getMetaData().getColumnName(1))); 
 	}
 	db.close();      
         } catch (SQLException e) {

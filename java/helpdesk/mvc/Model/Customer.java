@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import Helpdesk.java.helpdesk.lib.db.Database;
 import java.util.ArrayList;
 
-public class Customer extends MainModel{
+public class Customer extends MainModel {
     public String c_firstname;
     public String c_lastname;
     public String c_username;

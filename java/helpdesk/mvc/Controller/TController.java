@@ -12,8 +12,6 @@ import Helpdesk.java.helpdesk.mvc.Model.Comp;
 import Helpdesk.java.helpdesk.lib.refreshTable;
 import Helpdesk.java.helpdesk.mvc.Model.CategoryModel;
 import Helpdesk.java.helpdesk.mvc.Model.Counter;
-import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
-import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
 import Helpdesk.java.helpdesk.mvc.Model.Product;
 import Helpdesk.java.helpdesk.mvc.Model.ProductInv;
 import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
@@ -239,7 +237,7 @@ public class TController implements Runnable{
                     
                 }
                 //Refresh Fullticket and History table
-                new refreshTable(null, null, FullticketTable.getInstance(), HistoryTable.getInstance(), null).start();
+                new refreshTable("", "", "Fullticket", "History", "", main).start();
                 //Count ticket status for fullticket control buttons -
                 //timer to prevent connection link lost
                 new Timer().schedule(new Count(), 600);

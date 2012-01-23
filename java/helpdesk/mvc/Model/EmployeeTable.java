@@ -5,7 +5,7 @@ package Helpdesk.java.helpdesk.mvc.Model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
     
-     public class EmployeeTable extends AbstractTableModel {
+     public class EmployeeTable extends AbstractTableModel implements Runnable{
         private static EmployeeTable instance = new EmployeeTable();
         private String[] columnNames = {"EID", "Firstname", "Lastname", "Username", "Troubleshooter", "Password"};
         private Object[][] data      = {};
@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
         
         private EmployeeTable() {}
-        //Singleton class - Thread secure
+        //Initialization-on-demand holder idiom - Singleton
         public static EmployeeTable getInstance() {
 		return instance;
 	}
@@ -21,7 +21,8 @@ import javax.swing.table.AbstractTableModel;
         /**************************
         *  set data into jtable
         ****************************/
-        public void showData() {
+    @Override
+        public void run() {
             arr_data = Employee.showAll();
             data = new Object[arr_data.size()][];
             for (int i = 0; i < arr_data.size(); i++) {

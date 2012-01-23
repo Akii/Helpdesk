@@ -75,8 +75,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         table_employee.setModel(EmployeeTable.getInstance());
         table_product.setModel(ProductTable.getInstance());
         table_history.setModel(HistoryTable.getInstance());
-        new refreshTable(CustomerTable.getInstance(), EmployeeTable.getInstance(), FullticketTable.getInstance(), 
-                         HistoryTable.getInstance(), ProductTable.getInstance()).start();
+        new refreshTable("Customer", "Employee", "Fullticket", "History", "Product", null).start();
         table_fullticket.getColumnModel().getColumn(2).setCellRenderer(new ImageRenderer());
         initTable();
     }

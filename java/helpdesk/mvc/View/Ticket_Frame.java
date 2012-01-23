@@ -114,7 +114,7 @@ public class Ticket_Frame extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
         jLabel8.setText("Customer ID");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 80, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 80, -1));
 
         jLabel10.setText(" Note");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 60, -1));
@@ -126,17 +126,17 @@ public class Ticket_Frame extends javax.swing.JFrame {
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 60, -1));
 
         jLabel13.setText("Created on");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 70, 17));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 70, 17));
 
         jLabel14.setText("Last Update");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 80, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 80, -1));
         getContentPane().add(edt_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 183, -1));
 
         edt_created.setEditable(false);
-        getContentPane().add(edt_created, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 220, -1));
+        getContentPane().add(edt_created, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 250, -1));
 
         edt_update.setEditable(false);
-        getContentPane().add(edt_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 220, -1));
+        getContentPane().add(edt_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 250, -1));
         getContentPane().add(edt_problem, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 182, -1));
 
         edt_solution.setColumns(20);
@@ -155,10 +155,10 @@ public class Ticket_Frame extends javax.swing.JFrame {
         getContentPane().add(cmb_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 180, -1));
         getContentPane().add(edt_note, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 182, -1));
         getContentPane().add(cmb_eID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 180, -1));
-        getContentPane().add(cmb_cID, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 220, -1));
+        getContentPane().add(cmb_cID, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 250, -1));
 
         chb_new.setText("new Ticket?");
-        getContentPane().add(chb_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 110, -1));
+        getContentPane().add(chb_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 110, -1));
 
         jLabel6.setText("Problem");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 70, -1));
@@ -168,11 +168,11 @@ public class Ticket_Frame extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, 210));
 
         jLabel9.setText("Product");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 70, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 70, -1));
 
         jScrollPane1.setViewportView(ls_products);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 220, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 250, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

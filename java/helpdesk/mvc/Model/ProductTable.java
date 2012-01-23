@@ -5,19 +5,20 @@ package Helpdesk.java.helpdesk.mvc.Model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-     public class ProductTable extends AbstractTableModel {
+     public class ProductTable extends AbstractTableModel implements Runnable{
         private static ProductTable instance = new ProductTable();
         private String[] columnNames = {"PID", "Name", "Description"};
         private Object[][] data      = {};
         private ArrayList<Product> arr_data;
 
         private ProductTable() {}
-        //Singleton class - Thread secure
+        //Initialization-on-demand holder idiom - Singleton
         public static ProductTable getInstance() {
 		return instance;
 	}
         
-        public void showData() {
+    @Override
+        public void run() {
             arr_data = Product.showAll();
             data = new Object[arr_data.size()][];
             for (int i = 0; i < arr_data.size(); i++) {

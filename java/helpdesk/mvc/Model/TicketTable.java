@@ -5,7 +5,7 @@ package Helpdesk.java.helpdesk.mvc.Model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-     public class TicketTable extends AbstractTableModel {
+     public class TicketTable extends AbstractTableModel implements Runnable{
         private static TicketTable instance = new TicketTable();
         private String[] columnNames = {"TID", "Customer CID", "employee EID", "CategoryID", 
                                         "StatusID", "Topic", "Problem", "Note", "Solution",
@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
         private ArrayList<Ticket> arr_data;
 
         private TicketTable() {}
-        //Singleton class - Thread secure
+        //Initialization-on-demand holder idiom - Singleton
         public static TicketTable getInstance() {
             return instance;
 	}
@@ -23,7 +23,8 @@ import javax.swing.table.AbstractTableModel;
         /**************************
         *  set data into jtable
         ****************************/
-        public void showData() {
+    @Override
+        public void run() {
             arr_data = Ticket.showAll();
             data = new Object[arr_data.size()][];
             for (int i = 0; i < arr_data.size(); i++) {
