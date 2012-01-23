@@ -46,11 +46,6 @@ abstract class Controller implements IController
 	protected $response;
 	
 	/**
-	 * @var array The ControllerPluginContainer goes here
-	 */
-	protected $plugins = null;
-	
-	/**
 	 * @var View Instance of a view
 	 */
 	public $view = null;

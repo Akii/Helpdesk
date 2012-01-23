@@ -97,12 +97,7 @@ abstract class Model
 		}
 		else
 		{
-			$out = array();
-			while($row = $db->fetch_array("assoc"))
-			{
-				$out[] = $row;
-			}
-			return $out;
+			return $db->fetchAll();
 		}
 	}
 	
