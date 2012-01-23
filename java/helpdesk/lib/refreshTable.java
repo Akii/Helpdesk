@@ -37,33 +37,33 @@ public class refreshTable extends Thread {
             if (this.c_model.equals("Customer")) {
                 Thread t = new Thread (CustomerTable.getInstance());
                 t.start();
-                t.join();
+                t.join(400);
             }
             if (this.e_model.equals("Employee")){
                 Thread t = new Thread (EmployeeTable.getInstance());
                 t.start();
-                t.join();
+                t.join(400);
             }
             if (this.f_model.equals("Fullticket")) {
                 FullticketTable.getInstance().setStatus("");
                 Thread t = new Thread (FullticketTable.getInstance());
                 t.start();
-                t.join();
+                t.join(400);
             }
             if (this.h_model.equals("History")) {
                 Thread t = new Thread (HistoryTable.getInstance());
                 t.start();
-                t.join();
+                t.join(400);
             }
             if (this.p_model.equals("Product")) {
                 Thread t = new Thread (ProductTable.getInstance());
                 t.start();
-                t.join();
+                t.join(400);
             }
             if (_view != null) {
                 Thread t = new Counter (_view);
                 t.start();
-                t.join();
+                t.join(400);
             }
       } catch (InterruptedException e) {
           Error_Frame.Error(e.toString());
