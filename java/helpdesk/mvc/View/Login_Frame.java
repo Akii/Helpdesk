@@ -40,6 +40,7 @@ public class Login_Frame extends javax.swing.JFrame implements Runnable{
             (Toolkit.getDefaultToolkit().getScreenSize().height-getSize().height) / 2
         );
         
+        getRootPane().setDefaultButton(btn_login);
         //read string from file and fill textfield
         String [] Array = LoginData.readSQL ();
         txf_host.setText(Array[0]);
@@ -175,7 +176,7 @@ public class Login_Frame extends javax.swing.JFrame implements Runnable{
                             txf_user.getText(), String.valueOf(txf_pw.getPassword()));
         } catch (MySQLSyntaxErrorException e) {
             failed = true;
-            Error_Frame.Error("Please fill out completly"); 
+            Error_Frame.Error("Please fill out completly\n\n"+ e.getMessage()); 
         } catch (com.mysql.jdbc.exceptions.jdbc4.CommunicationsException e) {
             failed = true;
             Error_Frame.Error("No database found - Please check data and try again\n\n" + e.getMessage()); 
