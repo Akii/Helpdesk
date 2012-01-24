@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CategoryModel {
         private ArrayList<Category> arr_data;
-        public void CategoryModel () {
+        public CategoryModel () {
             this.arr_data = Category.showAll();
         }
         

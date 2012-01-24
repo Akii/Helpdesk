@@ -8,12 +8,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import Helpdesk.java.helpdesk.mvc.Model.Comp;
 import Helpdesk.java.helpdesk.lib.refreshTable;
-import Helpdesk.java.helpdesk.mvc.Model.CategoryModel;
-import Helpdesk.java.helpdesk.mvc.Model.Product;
-import Helpdesk.java.helpdesk.mvc.Model.ProductInv;
-import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
-import Helpdesk.java.helpdesk.mvc.Model.StatusModel;
-import Helpdesk.java.helpdesk.mvc.Model.Ticket;
+import Helpdesk.java.helpdesk.mvc.Model.FacadeModel;
 import Helpdesk.java.helpdesk.mvc.View.Ticket_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
@@ -28,18 +23,16 @@ public class TController implements Runnable{
     private Main_Frame main;
     private Ticket_Frame _view;
     private String sol="",note="";
-    private StatusModel s_model;
-    private CategoryModel ca_model;
     private DefaultListModel model;
-
+    private FacadeModel fa;
+    
     public TController(Integer ID,Main_Frame main) {
         this.ID = ID;  
         this.main = main;
         this._view = new Ticket_Frame();
-        this.s_model = new StatusModel();
-        s_model.StatusModel();
-        this.ca_model = new CategoryModel();
-        ca_model.CategoryModel();
+        this.fa = new FacadeModel();
+        fa.newStatus();
+        fa.newCategory();
         addListener();
     }
     
@@ -66,15 +59,15 @@ public class TController implements Runnable{
       **************************************/
     
     private void init() {
-        _view.cmb_status.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(4).toArray(
-                                  new Object[Ticket.Ticket_ComboBox(4).size()])));
-        _view.cmb_category.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(3).toArray(
-                                    new Object[Ticket.Ticket_ComboBox(3).size()])));
-        _view.cmb_eID.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(2).toArray(
-                               new Object[Ticket.Ticket_ComboBox(2).size()])));
-        _view.cmb_cID.setModel(new javax.swing.DefaultComboBoxModel(Ticket.Ticket_ComboBox(1).toArray(
-                               new Object[Ticket.Ticket_ComboBox(1).size()])));
-        ArrayList <String> list = Product.showName();
+        _view.cmb_status.setModel(new javax.swing.DefaultComboBoxModel(fa.Ticket_ComboBox(4).toArray(
+                                  new Object[fa.Ticket_ComboBox(4).size()])));
+        _view.cmb_category.setModel(new javax.swing.DefaultComboBoxModel(fa.Ticket_ComboBox(3).toArray(
+                                    new Object[fa.Ticket_ComboBox(3).size()])));
+        _view.cmb_eID.setModel(new javax.swing.DefaultComboBoxModel(fa.Ticket_ComboBox(2).toArray(
+                               new Object[fa.Ticket_ComboBox(2).size()])));
+        _view.cmb_cID.setModel(new javax.swing.DefaultComboBoxModel(fa.Ticket_ComboBox(1).toArray(
+                               new Object[fa.Ticket_ComboBox(1).size()])));
+        ArrayList <String> list = fa.showProductName();
         model = new DefaultListModel();
         for (int i=0; i <= list.size()-1; i++) {
             model.addElement((String)list.get(i));
@@ -142,11 +135,13 @@ public class TController implements Runnable{
     class btn_saveListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
+            FacadeModel fa = new FacadeModel();
+            fa.newCategory();
+            fa.newStatus();
             //There are no identical primary key 
             //so it have to delete all involved product from the ticket
             if (ID != null) {
-                ProductInv inv_model = new ProductInv(ID,null);
-                inv_model.deleteInvProduct();
+                fa.deleteInvProduct(ID);
             }
             
            try {
@@ -171,15 +166,13 @@ public class TController implements Runnable{
                 //Check checkbox "new Ticket"
                 if (_view.chb_new.getSelectedObjects() == null) {
                     ID = Integer.parseInt (_view.edt_ID.getText());  
-                    
                     //Update Ticket block ###################################################
-                    Ticket updateTicket = new Ticket (ID,
+                    fa.updateTicket(ID,
                     (Integer)_view.cmb_cID.getSelectedItem(),noEm,
-                    ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
-                    s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
+                    fa.getCategoryModel().getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
+                    fa.getStatusModel().getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
                     _view.edt_topic.getText(), _view.edt_problem.getText(),
                     note, sol, _view.edt_created.getText(), currentTimestamp.toString());
-                    updateTicket.updateTicket(ID);
                     //######################################################################
                     
                     //Set products  #########################################################
@@ -194,24 +187,22 @@ public class TController implements Runnable{
                         for (int i=0; i<= Array.length-1; i++) {
                              do {
                                  a++;
-                             } while (!ProductTable.getInstance().getValueAt(a, 1).equals(Array[i]));
-                             _intarr [i] = ProductTable.getInstance().getValueAt(a, 0);
+                             } while (!fa.getProductTable().getValueAt(a, 1).equals(Array[i]));
+                             _intarr [i] = fa.getProductTable().getValueAt(a, 0);
                          }
                         //Create new involved product/s
-                        ProductInv Productinv = new ProductInv (ID, _intarr);
-                        Productinv.newInvProduct();
+                        fa.newInvProduct(ID, _intarr);
                     }
                     //######################################################################
                     
                 } else {
-                    
+
                     //Create Ticket block ##################################################
-                    Ticket newTicket = new Ticket (null,(Integer)_view.cmb_cID.getSelectedItem(),noEm,
-                    ca_model.getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
-                    s_model.getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
+                    Integer _int = fa.newTicket(null,(Integer)_view.cmb_cID.getSelectedItem(),noEm,
+                    fa.getCategoryModel().getCategoryObjectID((String)_view.cmb_category.getSelectedItem()),
+                    fa.getStatusModel().getStatusObjectID((String)_view.cmb_status.getSelectedItem()),
                     _view.edt_topic.getText(),_view.edt_problem.getText(),note,sol,currentTimestamp.toString(),
                     currentTimestamp.toString());
-                    Integer _int = newTicket.newTicket();
                     //#######################################################################
                     
                     //Set products  #########################################################
@@ -224,25 +215,22 @@ public class TController implements Runnable{
                         for (int i=0; i<= Array.length-1; i++) {
                              do {
                                  a++;
-                             } while (!ProductTable.getInstance().getValueAt(a, 1).equals(Array[i]));
-                             _intarr [i] = ProductTable.getInstance().getValueAt(a, 0);
+                             } while (!fa.getProductTable().getValueAt(a, 1).equals(Array[i]));
+                             _intarr [i] = fa.getProductTable().getValueAt(a, 0);
                          }
-                        ProductInv Productinv = new ProductInv (_int, _intarr);
-                        Productinv.newInvProduct();
+                        fa.newInvProduct(_int, _intarr);
                     }
                     //########################################################################
                     
                 }
                 //Refresh Fullticket and History table
                 new refreshTable("", "", "Fullticket", "History", "", main).start();
-                //Count ticket status for fullticket control buttons -
-                //timer to prevent connection link lost
                 _view.dispose();
             }
         } catch (NumberFormatException ev) {
               Error_Frame.Error("Please use only number for ID\n\n" + ev.getMessage());
         } catch (Exception ev) {
-              Error_Frame.Error(ev.getMessage()); 
+              Error_Frame.Error(ev.toString()); 
         }
         }
     }
@@ -278,7 +266,7 @@ public class TController implements Runnable{
       **************************************/
     public void search (Integer ID) {
         try {
-            String [] Array = Ticket.searchTicket(ID);
+            String [] Array = fa.searchTicket(ID);
             _view.edt_ID.setText(ID.toString());
             _view.edt_topic.setText(Array[4]);
             _view.edt_problem.setText(Array[5]);

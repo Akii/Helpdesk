@@ -101,7 +101,7 @@ public class Ticket extends MainModel {
 	/*******************
          * update ticket
          *********************/
-        public void updateTicket(Integer ID) {
+        public void updateTicket() {
 	Database db = dbconnect();
         String noEmployee = null;
 		try {
@@ -127,7 +127,7 @@ public class Ticket extends MainModel {
                         db.bind_param(8, this.Solution);
                         db.bind_param(9, this.created_on);
                         db.bind_param(10, this.last_update);
-                        db.bind_param(11, ID.toString());
+                        db.bind_param(11, this.TID.toString());
 			db.executeUpdate();
 			db.close();
 			} catch(SQLException e){	

@@ -56,7 +56,11 @@ import javax.swing.table.AbstractTableModel;
 
     @Override
         public Object getValueAt(int row, int col) {
-            return data[row][col];
+            try {
+                return data[row][col];
+            } catch (java.lang.NullPointerException e) {
+                return data[0][0];
+            }
         }
         
         @Override

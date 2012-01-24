@@ -5,18 +5,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import Helpdesk.java.helpdesk.lib.refreshTable;
-import Helpdesk.java.helpdesk.mvc.Model.Product;
+import Helpdesk.java.helpdesk.mvc.Model.FacadeModel;
 import Helpdesk.java.helpdesk.mvc.View.Product_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 public class PController implements Runnable{
+    private FacadeModel fa;
     private Integer ID;;
     private Product_Frame _view;
     
     public PController (Integer ID) {
           this.ID = ID;  
+          this.fa = new FacadeModel();
           this._view = new Product_Frame();
           addListener();
     }
@@ -92,6 +94,7 @@ public class PController implements Runnable{
      class btn_saveListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {  
+        FacadeModel fa = new FacadeModel();
         //Send error message if one of these textfields are empty
             try {
                 if (_view.edt_name.getText().isEmpty() || _view.edt_description.getText().isEmpty()) {
@@ -100,11 +103,9 @@ public class PController implements Runnable{
                     //Check checkbox then create or update product
                     if (_view.chb_new.getSelectedObjects() == null) {
                         ID = Integer.parseInt (_view.edt_ID.getText()); 
-                        Product updateProduct = new Product (ID,_view.edt_name.getText(),_view.edt_description.getText());
-                        updateProduct.updateProduct(ID);
+                        fa.updateProduct(ID,_view.edt_name.getText(),_view.edt_description.getText());
                     } else {
-                        Product newProduct = new Product (null,_view.edt_name.getText(),_view.edt_description.getText());
-                        newProduct.newProduct();
+                        fa.newProduct(null,_view.edt_name.getText(),_view.edt_description.getText());
                     }
                     //After update or create, refresh table 
                     new refreshTable("", "", "", "", "Product", null).start();
@@ -146,7 +147,7 @@ public class PController implements Runnable{
       **************************************/
     public void psearch (Integer ID) {
             _view.edt_ID.setText(ID.toString());
-            String [] Array = Product.searchProduct(ID);
+            String [] Array = fa.searchProduct(ID);
             _view.edt_name.setText(Array[0]);
             _view.edt_description.setText(Array[1]);
     }

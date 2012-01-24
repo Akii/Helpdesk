@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import Helpdesk.java.helpdesk.lib.refreshTable;
-import Helpdesk.java.helpdesk.mvc.Model.Customer;
-import Helpdesk.java.helpdesk.mvc.Model.Employee;
+import Helpdesk.java.helpdesk.mvc.Model.FacadeModel;
 import Helpdesk.java.helpdesk.mvc.View.CE_Frame;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.awt.event.FocusAdapter;
@@ -16,10 +15,12 @@ public class CEController implements Runnable{
     private Integer ID,runtime=0;
     private String EqualPW,choose;
     private CE_Frame _view;
+    private FacadeModel fa;
     
     public CEController (Integer ID,String choose) {
           this.ID = ID;  
           this.choose = choose;
+          this.fa = new FacadeModel();
           this._view =  new CE_Frame(choose);
           addListener();
     }
@@ -100,41 +101,37 @@ public class CEController implements Runnable{
                     ID = Integer.parseInt (_view.edt_ID.getText());  
                     //check which one we have chosen
                     if ("Customer".equals(choose)) {
-                        Customer updateCustomer = new Customer (ID,         
+                        fa.updateCustomer(ID,         
                         _view.edt_cfirstname.getText(),
                         _view.edt_clastname.getText(),
                         _view.edt_cusername.getText(),
                         _view.edt_cpassword.getText(),
                         _view.edt_ctelephone.getText(),
-                        _view.edt_cemail.getText());
-                        updateCustomer.updateCustomer (ID, equal);
+                        _view.edt_cemail.getText(),equal);
                     } else { 
-                        Employee updateEmployee = new Employee (ID,         
+                        fa.updateEmployee(ID,         
                         _view.edt_cfirstname.getText(),
                         _view.edt_clastname.getText(),
                         _view.edt_cusername.getText(),
                         Integer.parseInt (_view.edt_cemail.getText()),
-                        _view.edt_cpassword.getText());
-                        updateEmployee.updateEmployee (ID, equal);
+                        _view.edt_cpassword.getText(),equal);
                     }
                 } else {
                     if ("Customer".equals(choose)) {
-                        Customer newCustomer = new Customer (ID,         
+                        fa.newCustomer(ID,         
                         _view.edt_cfirstname.getText(),
                         _view.edt_clastname.getText(),
                         _view.edt_cusername.getText(),
                         _view.edt_cpassword.getText(),
                         _view.edt_ctelephone.getText(),
                         _view.edt_cemail.getText());
-                        newCustomer.newCustomer();
                     } else { 
-                        Employee newEmployee = new Employee (ID,         
+                        fa.newEmployee(ID,         
                         _view.edt_cfirstname.getText(),
                         _view.edt_clastname.getText(),
                         _view.edt_cusername.getText(),
                         Integer.parseInt (_view.edt_cemail.getText()),
                         _view.edt_cpassword.getText());
-                        newEmployee.newEmployee();
                     }
                 }
                 //after update or create - refresh table and dispose frame
@@ -183,7 +180,7 @@ public class CEController implements Runnable{
         try {
             _view.edt_ID.setText(ID.toString());
             if ("Customer".equals(choose)) {
-                String [] Array = Customer.searchCustomer(ID);
+                String [] Array = fa.searchCustomer(ID);
                 _view.edt_cfirstname.setText(Array[0]);
                 _view.edt_clastname.setText(Array[1]);
                 _view.edt_cusername.setText(Array[2]);
@@ -192,7 +189,7 @@ public class CEController implements Runnable{
                 _view.edt_cemail.setText(Array[5]);
                 this.EqualPW = Array[3];
             } else {
-                String [] Array = Employee.searchEmployee(ID);
+                String [] Array = fa.searchEmployee(ID);
                 _view.edt_cfirstname.setText(Array[0]);
                 _view.edt_clastname.setText(Array[1]);
                 _view.edt_cusername.setText(Array[2]);

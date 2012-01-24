@@ -63,7 +63,7 @@ public class Product extends MainModel{
 	/*******************
          * update product
          *********************/
-	public void updateProduct(Integer ID) {
+	public void updateProduct() {
 		try {
 			Database db = dbconnect();
                          String query = "UPDATE product SET name = ?, "
@@ -72,7 +72,7 @@ public class Product extends MainModel{
 			db.prepare(query);
                         db.bind_param(1, this.name);
                         db.bind_param(2, this.description);
-                        db.bind_param(3, ID.toString());
+                        db.bind_param(3, this.ID.toString());
 			db.executeUpdate();
 			db.close();
 			} catch(SQLException e){

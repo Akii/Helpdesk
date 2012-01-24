@@ -21,26 +21,19 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import Helpdesk.java.helpdesk.lib.refreshTable;
-import Helpdesk.java.helpdesk.mvc.Model.Customer;
-import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
-import Helpdesk.java.helpdesk.mvc.Model.Employee;
-import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
-import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
-import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
-import Helpdesk.java.helpdesk.mvc.Model.HtmlModel;
-import Helpdesk.java.helpdesk.mvc.Model.Product;
-import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import Helpdesk.java.helpdesk.lib.ImageRenderer;
-import Helpdesk.java.helpdesk.mvc.Model.Counter;
+import Helpdesk.java.helpdesk.mvc.Model.FacadeModel;
 import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
 
 public class MainController {
+    private FacadeModel fa;
     private Main_Frame _view;
     //Deactivate refresh button for n sec to prevent DB connection overflow
     private Integer Refreshbtn_Timer = 2000; 
    
         public MainController (Main_Frame _view) {
+            this.fa = new FacadeModel();
             this._view = _view;
             addListener();
             init();
@@ -81,7 +74,12 @@ public class MainController {
     private void init () {
             _view.btn_refresh.setEnabled(false);
             new Timer().schedule(new btn_activate(), Refreshbtn_Timer);
-            new Counter (_view).start();
+            _view.table_fullticket.setModel(fa.getFullticketTable());
+            _view.table_customer.setModel(fa.getCustomerTable());
+            _view.table_employee.setModel(fa.getEmployeeTable());
+            _view.table_product.setModel(fa.getProductTable());
+            _view.table_history.setModel(fa.getHistoryTable());
+            new refreshTable("Customer", "Employee", "Fullticket", "History", "Product", _view).start();
     }
     
      /*************************************
@@ -161,24 +159,24 @@ public class MainController {
       class btn_setOpenListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            FullticketTable.getInstance().setStatus("Open");
-            FullticketTable.getInstance().run();
+            fa.getFullticketTable().setStatus("Open");
+            fa.FullticketTableRun();
           }
       }
       
       class btn_setProcessListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            FullticketTable.getInstance().setStatus("In process");  
-            FullticketTable.getInstance().run();
+            fa.getFullticketTable().setStatus("In process");  
+            fa.FullticketTableRun();
           }
       }
       
       class btn_setClosedListener implements ActionListener{
           @Override
           public void actionPerformed(ActionEvent e) {  
-            FullticketTable.getInstance().setStatus("Closed");  
-            FullticketTable.getInstance().run();
+            fa.getFullticketTable().setStatus("Closed");  
+            fa.FullticketTableRun();
           }
       }
       
@@ -194,7 +192,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(FullticketTable.getInstance());
+             new TableRowSorter<TableModel>(fa.getFullticketTable());
              _view.table_fullticket.setRowSorter(sorter);
              filter(_view.edt_filterfullticket.getText(),sorter);
          }
@@ -212,7 +210,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(HistoryTable.getInstance());
+             new TableRowSorter<TableModel>(fa.getHistoryTable());
              _view.table_history.setRowSorter(sorter);
              filter(_view.edt_filtertickethis.getText(),sorter);
          }
@@ -230,7 +228,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(ProductTable.getInstance());
+             new TableRowSorter<TableModel>(fa.getProductTable());
              _view.table_product.setRowSorter(sorter);
              filter(_view.edt_filterproduct.getText(),sorter);
          }
@@ -248,7 +246,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(EmployeeTable.getInstance());
+             new TableRowSorter<TableModel>(fa.getEmployeeTable());
              _view.table_employee.setRowSorter(sorter);
              filter(_view.edt_filteremployee.getText(),sorter);
          }
@@ -266,7 +264,7 @@ public class MainController {
          @Override
          public void keyReleased(KeyEvent e) {
              TableRowSorter<TableModel> sorter =
-             new TableRowSorter<TableModel>(CustomerTable.getInstance());
+             new TableRowSorter<TableModel>(fa.getCustomerTable());
              _view.table_customer.setRowSorter(sorter);
              filter(_view.edt_filtercustomer.getText(),sorter);
          }
@@ -545,7 +543,7 @@ public class MainController {
 	   if( event.getSource() == _view.table_fullticket.getSelectionModel() && event.getFirstIndex() >= 0) {
 		// Determine the selected item    
 		Integer integer = (Integer)_view.table_fullticket.getValueAt(_view.table_fullticket.getSelectedRow(), 0);
-                _view.txp_fullticket.setText(HtmlModel.Htmlfullticket(integer).toString());
+                _view.txp_fullticket.setText(fa.Htmlfullticket(integer).toString());
                  //set vertical scrollbar to top 
                  javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     @Override
@@ -560,7 +558,7 @@ public class MainController {
 		Integer integer = (Integer)_view.table_history.getValueAt(_view.table_history.getSelectedRow(), 0);
                 String changed = (String)_view.table_history.getValueAt(_view.table_history.getSelectedRow(), 1);
                 String name = (String)_view.table_history.getValueAt(_view.table_history.getSelectedRow(), 2);
-                _view.txp_history.setText(HtmlModel.Htmlhistory(integer,changed,name).toString());
+                _view.txp_history.setText(fa.Htmlhistory(integer,changed,name).toString());
                  javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() { 
@@ -571,7 +569,7 @@ public class MainController {
          //product table
           if( event.getSource() == _view.table_product.getSelectionModel() && event.getFirstIndex() >= 0) {
 		Integer integer = (Integer)_view.table_product.getValueAt(_view.table_product.getSelectedRow(), 0);
-                _view.txp_product.setText(HtmlModel.Htmlproduct(integer).toString());
+                _view.txp_product.setText(fa.Htmlproduct(integer).toString());
                  javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() { 
@@ -623,14 +621,14 @@ public class MainController {
             @Override
             public void actionPerformed(ActionEvent event) {
                 if ("Employee".equals(man)) {
-                   Employee.deleteEmployee(select);
-                   EmployeeTable.getInstance().run();
+                   fa.deleteEmployee(select);
+                   fa.EmployeeTableRun();
                 } else if ("Customer".equals(man)) {
-                   Customer.deleteCustomer(select);
-                   CustomerTable.getInstance().run();
+                   fa.deleteCustomer(select);
+                   fa.CustomerTableRun();
                 } else if ("Product".equals(man)) {
-                   Product.deleteProduct(select);
-                   ProductTable.getInstance().run();
+                   fa.deleteProduct(select);
+                   fa.ProductTableRun();
                 }
             }
 	});

@@ -77,7 +77,7 @@ public class Employee extends MainModel{
 	/*******************
          * update employee
          *********************/
-	public void updateEmployee(Integer ID,boolean equal) {
+	public void updateEmployee(boolean equal) {
 		Database db = dbconnect();
 		try {
                     StringBuilder query = new StringBuilder ();
@@ -96,7 +96,7 @@ public class Employee extends MainModel{
                         db.bind_param(3, this.e_username);
                         db.bind_param(4, this.e_pw);
                         db.bind_param(5, this.e_trb.toString());
-			db.bind_param(6, ID.toString());
+			db.bind_param(6, this.EID.toString());
                         db.executeUpdate();
 			db.close();
 			

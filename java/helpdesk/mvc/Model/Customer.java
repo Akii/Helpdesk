@@ -77,7 +77,7 @@ public Customer(Integer CID,String firstname, String lastname, String username,S
 	/*******************
          * update customer
          *********************/
-        public void updateCustomer(Integer ID, boolean equal) {
+        public void updateCustomer(boolean equal) {
 		Database db = dbconnect();
 		try {
                     StringBuilder query = new StringBuilder ();
@@ -97,7 +97,7 @@ public Customer(Integer CID,String firstname, String lastname, String username,S
                         db.bind_param(4, this.c_pw);
                         db.bind_param(5, this.c_tel);
                         db.bind_param(6, this.c_email);
-                        db.bind_param(7, ID.toString());
+                        db.bind_param(7, this.CID.toString());
 			db.executeUpdate();
 			db.close();
 			

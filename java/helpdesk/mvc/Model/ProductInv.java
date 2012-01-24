@@ -41,13 +41,13 @@ public class ProductInv extends MainModel {
          /*******************
          * delete involved product
          *********************/
-	public void deleteInvProduct() {
+	public static void deleteInvProduct(Integer TID) {
             try {
 			Database db = dbconnect();
                          String query = "DELETE FROM products_involved "
                                       + "WHERE ticket_TID = ?";
 			db.prepare(query);
-                        db.bind_param(1, this.TID.toString());
+                        db.bind_param(1, TID.toString());
 			db.executeUpdate();
                         db.close();
             } catch (SQLException e) {

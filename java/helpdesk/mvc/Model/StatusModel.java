@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class StatusModel {
         private ArrayList<Status> arr_data;
-        public void StatusModel () {
+        public StatusModel () {
             this.arr_data = Status.showAll();
         }
         
