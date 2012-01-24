@@ -44,6 +44,8 @@ public class MainController {
         this._view.setbtn_addeditEListener(new btn_addeditEListener());
         this._view.setbtn_addeditTListener(new btn_addeditTListener());
         this._view.setbtn_addeditPListener(new btn_addeditPListener());
+        
+
         this._view.setbtn_refreshListener(new btn_refreshListener());
         this._view.setbtn_maxListener(new btn_maxListener());
         this._view.setbtn_setFullListener(new btn_setFullListener());
@@ -69,6 +71,11 @@ public class MainController {
         this._view.settable_historyValueListener(new table_fullticketValueListener());
         this._view.settable_productValueListener(new table_fullticketValueListener());
         
+        this._view.setmenu_customerListener(new menu_customerListener());
+        this._view.setmenu_employeeListener(new menu_employeeListener());
+        this._view.setmenu_productListener(new menu_productListener());
+        this._view.setmenu_ticketListener(new menu_ticketListener());
+        this._view.setmenu_quitListener(new menu_quitListener());
     }
     
     private void init () {
@@ -582,7 +589,49 @@ public class MainController {
     }  
        
        
+      /*************************************
+      * 
+      *     Menu Item Listener
+      * 
+      **************************************/
+       
+      class menu_customerListener implements ActionListener{
+          @Override
+          public void actionPerformed(ActionEvent e) {  
+            new Thread (new CEController(null,"Customer")).start();
+          }
+      }
       
+      class menu_employeeListener implements ActionListener{
+          @Override
+          public void actionPerformed(ActionEvent e) {  
+            new Thread (new CEController(null,"Employee")).start();
+          }
+      }
+            
+      class menu_productListener implements ActionListener{
+          @Override
+          public void actionPerformed(ActionEvent e) {  
+            new Thread (new PController(null)).start();
+          }
+      }
+      
+      class menu_ticketListener implements ActionListener{
+          @Override
+          public void actionPerformed(ActionEvent e) {  
+            new Thread (new TController(null,_view)).start();
+          }
+      }
+      
+      class menu_quitListener implements ActionListener{
+          @Override
+          public void actionPerformed(ActionEvent e) {  
+            System.exit(0);
+          }
+      }
+    
+    
+    
     
       /*************************************
       * Doubleclick function 
@@ -676,4 +725,6 @@ public class MainController {
             _view.btn_refresh.setEnabled(true);
         }
     }
+    
+    
 }

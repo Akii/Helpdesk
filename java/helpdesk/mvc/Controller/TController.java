@@ -153,16 +153,19 @@ public class TController implements Runnable{
             } else {
                     //It is important to check if solution or note are empty or same as before
                     //else the history in the db will update an empty string
+                 
                     if (!_view.edt_solution.getText().isEmpty() && !sol.equals(_view.edt_solution.getText())) {
                         sol = _view.edt_solution.getText();
                     }
+                 
                     if (!_view.edt_note.getText().isEmpty() && !note.equals(_view.edt_note.getText())) {
                         note = _view.edt_note.getText();
                     }
+                    
                     if (_view.cmb_eID.getSelectedItem() != "") {
                         noEm = Comp.getEID((String)_view.cmb_eID.getSelectedItem());
                     }
-                    
+
                 //Check checkbox "new Ticket"
                 if (_view.chb_new.getSelectedObjects() == null) {
                     ID = Integer.parseInt (_view.edt_ID.getText());  
@@ -274,9 +277,13 @@ public class TController implements Runnable{
             _view.edt_solution.setText(Array[7]);
             _view.edt_created.setText(Array[8]);
             _view.edt_update.setText(Array[9]);
-            this.sol = Array[7];
-            this.note = Array[6];
             
+            if (Array[7] != null) {
+                this.sol = Array[7];
+            }
+            if (Array[6] != null) {
+                this.note = Array[6];
+            }
             //Loop - looking for same Customer ID and select it
             for (int i=0; i< _view.cmb_cID.getItemCount();i++) {
                 if (Array[0].equals(_view.cmb_cID.getItemAt(i).toString())) {

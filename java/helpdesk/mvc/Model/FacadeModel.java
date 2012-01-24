@@ -243,8 +243,9 @@ public class FacadeModel {
     }
     
     public StatusModel newStatus () {
-        this.statusmodel = new StatusModel();
-        return this.statusmodel;
+        StatusModel sta = new StatusModel();
+        this.statusmodel = sta;
+        return sta;
     }
     
     public  ArrayList<Status> showAllStatus() {

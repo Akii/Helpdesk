@@ -13,12 +13,6 @@ import java.awt.image.ImageObserver;
 import java.io.Serializable;
 import javax.swing.event.InternalFrameListener;
 import javax.swing.event.ListSelectionListener;
-import Helpdesk.java.helpdesk.lib.refreshTable;
-import Helpdesk.java.helpdesk.mvc.Model.CustomerTable;
-import Helpdesk.java.helpdesk.mvc.Model.EmployeeTable;
-import Helpdesk.java.helpdesk.mvc.Model.FullticketTable;
-import Helpdesk.java.helpdesk.mvc.Model.HistoryTable;
-import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
 
 
 public class Main_Frame extends javax.swing.JFrame implements ImageObserver, MenuContainer, Serializable {
@@ -112,8 +106,16 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         btn_addeditE = new javax.swing.JButton();
         btn_refresh = new javax.swing.JButton();
         btn_addeditT = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        btn_max = new javax.swing.JButton();
+        btn_addeditP = new javax.swing.JButton();
+        Logo = new javax.swing.JLabel();
+        intf_fcontrol = new javax.swing.JInternalFrame();
+        btn_setfull = new javax.swing.JButton();
+        btn_setopen = new javax.swing.JButton();
+        btn_setprocess = new javax.swing.JButton();
+        btn_setclosed = new javax.swing.JButton();
+        intf_mycontrol = new javax.swing.JInternalFrame();
         Pane_Overview = new javax.swing.JTabbedPane();
         pane_fullticket = new javax.swing.JPanel();
         scrollpane_fullticket = new javax.swing.JScrollPane();
@@ -149,18 +151,14 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         intf_history = new javax.swing.JInternalFrame();
         scrollpane_his = new javax.swing.JScrollPane();
         txp_history = new javax.swing.JEditorPane();
-        jSeparator1 = new javax.swing.JSeparator();
-        btn_max = new javax.swing.JButton();
-        btn_addeditP = new javax.swing.JButton();
-        Logo = new javax.swing.JLabel();
-        intf_fcontrol = new javax.swing.JInternalFrame();
-        btn_setfull = new javax.swing.JButton();
-        btn_setopen = new javax.swing.JButton();
-        btn_setprocess = new javax.swing.JButton();
-        btn_setclosed = new javax.swing.JButton();
-        intf_mycontrol = new javax.swing.JInternalFrame();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        menu_new = new javax.swing.JMenu();
+        menu_customer = new javax.swing.JMenuItem();
+        menu_employee = new javax.swing.JMenuItem();
+        menu_product = new javax.swing.JMenuItem();
+        menu_ticket = new javax.swing.JMenuItem();
+        menu_quit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Helpdesk");
@@ -215,303 +213,6 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         btn_addeditT.setPreferredSize(new java.awt.Dimension(99, 57));
         btn_addeditT.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btn_addeditT.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        table_fullticket.setAutoCreateRowSorter(true);
-        table_fullticket.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        table_fullticket.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scrollpane_fullticket.setViewportView(table_fullticket);
-
-        intf_fullticket.setClosable(true);
-        intf_fullticket.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        intf_fullticket.setTitle("Fullticket");
-        intf_fullticket.setToolTipText("");
-        intf_fullticket.setMinimumSize(new java.awt.Dimension(566, 469));
-        intf_fullticket.setPreferredSize(new java.awt.Dimension(566, 469));
-        intf_fullticket.setVisible(true);
-
-        txp_fullticket.setBackground(new java.awt.Color(204, 204, 204));
-        txp_fullticket.setContentType("text/html");
-        txp_fullticket.setEditable(false);
-        txp_fullticket.setText("");
-        txp_fullticket.setMinimumSize(new java.awt.Dimension(200, 600));
-        txp_fullticket.setName(""); // NOI18N
-        txp_fullticket.setPreferredSize(new java.awt.Dimension(300, 1000));
-        scrollpane_full.setViewportView(txp_fullticket);
-
-        javax.swing.GroupLayout intf_fullticketLayout = new javax.swing.GroupLayout(intf_fullticket.getContentPane());
-        intf_fullticket.getContentPane().setLayout(intf_fullticketLayout);
-        intf_fullticketLayout.setHorizontalGroup(
-            intf_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_full, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-        );
-        intf_fullticketLayout.setVerticalGroup(
-            intf_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_full, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-        );
-
-        jLabel1.setText("Filter");
-
-        javax.swing.GroupLayout pane_fullticketLayout = new javax.swing.GroupLayout(pane_fullticket);
-        pane_fullticket.setLayout(pane_fullticketLayout);
-        pane_fullticketLayout.setHorizontalGroup(
-            pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_fullticketLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pane_fullticketLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edt_filterfullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
-                    .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(intf_fullticket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        pane_fullticketLayout.setVerticalGroup(
-            pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_fullticketLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intf_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                    .addGroup(pane_fullticketLayout.createSequentialGroup()
-                        .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edt_filterfullticket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))))
-        );
-
-        try {
-            intf_fullticket.setIcon(true);
-        } catch (java.beans.PropertyVetoException e1) {
-            e1.printStackTrace();
-        }
-
-        Pane_Overview.addTab("FullTickets", pane_fullticket);
-
-        table_customer.setAutoCreateRowSorter(true);
-        table_customer.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        table_customer.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scrollpane_customer.setViewportView(table_customer);
-
-        jLabel3.setText("Filter");
-
-        javax.swing.GroupLayout pane_customerLayout = new javax.swing.GroupLayout(pane_customer);
-        pane_customer.setLayout(pane_customerLayout);
-        pane_customerLayout.setHorizontalGroup(
-            pane_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pane_customerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
-                    .addGroup(pane_customerLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edt_filtercustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 1342, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pane_customerLayout.setVerticalGroup(
-            pane_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_customerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(edt_filtercustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
-        );
-
-        Pane_Overview.addTab("Customer", pane_customer);
-
-        table_employee.setAutoCreateRowSorter(true);
-        table_employee.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        table_employee.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scrollpane_employee.setViewportView(table_employee);
-
-        jLabel4.setText("Filter");
-
-        javax.swing.GroupLayout pane_employeeLayout = new javax.swing.GroupLayout(pane_employee);
-        pane_employee.setLayout(pane_employeeLayout);
-        pane_employeeLayout.setHorizontalGroup(
-            pane_employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_employeeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
-                    .addGroup(pane_employeeLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edt_filteremployee, javax.swing.GroupLayout.DEFAULT_SIZE, 1342, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pane_employeeLayout.setVerticalGroup(
-            pane_employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_employeeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(edt_filteremployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
-        );
-
-        Pane_Overview.addTab("Employee", pane_employee);
-
-        table_product.setAutoCreateRowSorter(true);
-        table_product.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        table_product.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scrollpane_product.setViewportView(table_product);
-
-        jLabel5.setText("Filter");
-
-        intf_product.setClosable(true);
-        intf_product.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        intf_product.setTitle("Product");
-        intf_product.setToolTipText("");
-        intf_product.setMinimumSize(new java.awt.Dimension(566, 469));
-        intf_product.setPreferredSize(new java.awt.Dimension(566, 469));
-        intf_product.setVisible(true);
-
-        txp_product.setBackground(new java.awt.Color(204, 204, 204));
-        txp_product.setContentType("text/html");
-        txp_product.setEditable(false);
-        txp_product.setText("");
-        txp_product.setMinimumSize(new java.awt.Dimension(200, 600));
-        txp_product.setName(""); // NOI18N
-        txp_product.setPreferredSize(new java.awt.Dimension(300, 1000));
-        scrollpane_his1.setViewportView(txp_product);
-
-        javax.swing.GroupLayout intf_productLayout = new javax.swing.GroupLayout(intf_product.getContentPane());
-        intf_product.getContentPane().setLayout(intf_productLayout);
-        intf_productLayout.setHorizontalGroup(
-            intf_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_his1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-        );
-        intf_productLayout.setVerticalGroup(
-            intf_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_his1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pane_productLayout = new javax.swing.GroupLayout(pane_product);
-        pane_product.setLayout(pane_productLayout);
-        pane_productLayout.setHorizontalGroup(
-            pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_productLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pane_productLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edt_filterproduct, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
-                    .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(intf_product, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        pane_productLayout.setVerticalGroup(
-            pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_productLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intf_product, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                    .addGroup(pane_productLayout.createSequentialGroup()
-                        .addGroup(pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(edt_filterproduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))))
-        );
-
-        try {
-            intf_product.setIcon(true);
-        } catch (java.beans.PropertyVetoException e1) {
-            e1.printStackTrace();
-        }
-
-        Pane_Overview.addTab("Product", pane_product);
-
-        table_history.setAutoCreateRowSorter(true);
-        table_history.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        table_history.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scrollpane_history.setViewportView(table_history);
-
-        jLabel6.setText("Filter");
-
-        intf_history.setClosable(true);
-        intf_history.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        intf_history.setTitle("History");
-        intf_history.setToolTipText("");
-        intf_history.setMinimumSize(new java.awt.Dimension(566, 469));
-        intf_history.setPreferredSize(new java.awt.Dimension(566, 469));
-        intf_history.setVisible(true);
-
-        txp_history.setBackground(new java.awt.Color(204, 204, 204));
-        txp_history.setContentType("text/html");
-        txp_history.setEditable(false);
-        txp_history.setText("");
-        txp_history.setMinimumSize(new java.awt.Dimension(200, 600));
-        txp_history.setName(""); // NOI18N
-        txp_history.setPreferredSize(new java.awt.Dimension(300, 1000));
-        scrollpane_his.setViewportView(txp_history);
-
-        javax.swing.GroupLayout intf_historyLayout = new javax.swing.GroupLayout(intf_history.getContentPane());
-        intf_history.getContentPane().setLayout(intf_historyLayout);
-        intf_historyLayout.setHorizontalGroup(
-            intf_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_his, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-        );
-        intf_historyLayout.setVerticalGroup(
-            intf_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_his, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pane_historyLayout = new javax.swing.GroupLayout(pane_history);
-        pane_history.setLayout(pane_historyLayout);
-        pane_historyLayout.setHorizontalGroup(
-            pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_historyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pane_historyLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edt_filtertickethis, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
-                    .addComponent(scrollpane_history, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(intf_history, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        pane_historyLayout.setVerticalGroup(
-            pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pane_historyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intf_history, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                    .addGroup(pane_historyLayout.createSequentialGroup()
-                        .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(edt_filtertickethis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_history, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))))
-        );
-
-        try {
-            intf_history.setIcon(true);
-        } catch (java.beans.PropertyVetoException e1) {
-            e1.printStackTrace();
-        }
-
-        Pane_Overview.addTab("Ticket History", pane_history);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Pane_Overview)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Overview", jPanel2);
 
         btn_max.setFont(new java.awt.Font("Tahoma", 0, 12));
         btn_max.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Helpdesk/java/helpdesk/mvc/View/pics/window_fullscreen.png"))); // NOI18N
@@ -593,7 +294,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                 .addComponent(btn_setprocess)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_setclosed)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         intf_mycontrol.setTitle("My Tickets");
@@ -614,11 +315,315 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_mycontrolLayout.setVerticalGroup(
             intf_mycontrolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 206, Short.MAX_VALUE)
         );
+
+        table_fullticket.setAutoCreateRowSorter(true);
+        table_fullticket.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        table_fullticket.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrollpane_fullticket.setViewportView(table_fullticket);
+
+        intf_fullticket.setClosable(true);
+        intf_fullticket.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        intf_fullticket.setTitle("Fullticket");
+        intf_fullticket.setToolTipText("");
+        intf_fullticket.setMinimumSize(new java.awt.Dimension(566, 469));
+        intf_fullticket.setPreferredSize(new java.awt.Dimension(566, 469));
+        intf_fullticket.setVisible(true);
+
+        txp_fullticket.setBackground(new java.awt.Color(204, 204, 204));
+        txp_fullticket.setContentType("text/html");
+        txp_fullticket.setEditable(false);
+        txp_fullticket.setText("");
+        txp_fullticket.setMinimumSize(new java.awt.Dimension(200, 600));
+        txp_fullticket.setName(""); // NOI18N
+        txp_fullticket.setPreferredSize(new java.awt.Dimension(300, 1000));
+        scrollpane_full.setViewportView(txp_fullticket);
+
+        javax.swing.GroupLayout intf_fullticketLayout = new javax.swing.GroupLayout(intf_fullticket.getContentPane());
+        intf_fullticket.getContentPane().setLayout(intf_fullticketLayout);
+        intf_fullticketLayout.setHorizontalGroup(
+            intf_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollpane_full, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+        );
+        intf_fullticketLayout.setVerticalGroup(
+            intf_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollpane_full, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+        );
+
+        jLabel1.setText("Filter");
+
+        javax.swing.GroupLayout pane_fullticketLayout = new javax.swing.GroupLayout(pane_fullticket);
+        pane_fullticket.setLayout(pane_fullticketLayout);
+        pane_fullticketLayout.setHorizontalGroup(
+            pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_fullticketLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pane_fullticketLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edt_filterfullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
+                    .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(intf_fullticket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pane_fullticketLayout.setVerticalGroup(
+            pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_fullticketLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(intf_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addGroup(pane_fullticketLayout.createSequentialGroup()
+                        .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edt_filterfullticket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))))
+        );
+
+        try {
+            intf_fullticket.setIcon(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+
+        Pane_Overview.addTab("FullTickets", pane_fullticket);
+
+        table_customer.setAutoCreateRowSorter(true);
+        table_customer.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        table_customer.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrollpane_customer.setViewportView(table_customer);
+
+        jLabel3.setText("Filter");
+
+        javax.swing.GroupLayout pane_customerLayout = new javax.swing.GroupLayout(pane_customer);
+        pane_customer.setLayout(pane_customerLayout);
+        pane_customerLayout.setHorizontalGroup(
+            pane_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pane_customerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 1375, Short.MAX_VALUE)
+                    .addGroup(pane_customerLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edt_filtercustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 1347, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pane_customerLayout.setVerticalGroup(
+            pane_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_customerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(edt_filtercustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
+        );
+
+        Pane_Overview.addTab("Customer", pane_customer);
+
+        table_employee.setAutoCreateRowSorter(true);
+        table_employee.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        table_employee.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrollpane_employee.setViewportView(table_employee);
+
+        jLabel4.setText("Filter");
+
+        javax.swing.GroupLayout pane_employeeLayout = new javax.swing.GroupLayout(pane_employee);
+        pane_employee.setLayout(pane_employeeLayout);
+        pane_employeeLayout.setHorizontalGroup(
+            pane_employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_employeeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 1375, Short.MAX_VALUE)
+                    .addGroup(pane_employeeLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edt_filteremployee, javax.swing.GroupLayout.DEFAULT_SIZE, 1347, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pane_employeeLayout.setVerticalGroup(
+            pane_employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_employeeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(edt_filteremployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
+        );
+
+        Pane_Overview.addTab("Employee", pane_employee);
+
+        table_product.setAutoCreateRowSorter(true);
+        table_product.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        table_product.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrollpane_product.setViewportView(table_product);
+
+        jLabel5.setText("Filter");
+
+        intf_product.setClosable(true);
+        intf_product.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        intf_product.setTitle("Product");
+        intf_product.setToolTipText("");
+        intf_product.setMinimumSize(new java.awt.Dimension(566, 469));
+        intf_product.setPreferredSize(new java.awt.Dimension(566, 469));
+        intf_product.setVisible(true);
+
+        txp_product.setBackground(new java.awt.Color(204, 204, 204));
+        txp_product.setContentType("text/html");
+        txp_product.setEditable(false);
+        txp_product.setText("");
+        txp_product.setMinimumSize(new java.awt.Dimension(200, 600));
+        txp_product.setName(""); // NOI18N
+        txp_product.setPreferredSize(new java.awt.Dimension(300, 1000));
+        scrollpane_his1.setViewportView(txp_product);
+
+        javax.swing.GroupLayout intf_productLayout = new javax.swing.GroupLayout(intf_product.getContentPane());
+        intf_product.getContentPane().setLayout(intf_productLayout);
+        intf_productLayout.setHorizontalGroup(
+            intf_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollpane_his1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+        );
+        intf_productLayout.setVerticalGroup(
+            intf_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollpane_his1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pane_productLayout = new javax.swing.GroupLayout(pane_product);
+        pane_product.setLayout(pane_productLayout);
+        pane_productLayout.setHorizontalGroup(
+            pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_productLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pane_productLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edt_filterproduct, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
+                    .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(intf_product, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pane_productLayout.setVerticalGroup(
+            pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_productLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(intf_product, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addGroup(pane_productLayout.createSequentialGroup()
+                        .addGroup(pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(edt_filterproduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))))
+        );
+
+        try {
+            intf_product.setIcon(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+
+        Pane_Overview.addTab("Product", pane_product);
+
+        table_history.setAutoCreateRowSorter(true);
+        table_history.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        table_history.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrollpane_history.setViewportView(table_history);
+
+        jLabel6.setText("Filter");
+
+        intf_history.setClosable(true);
+        intf_history.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        intf_history.setTitle("History");
+        intf_history.setToolTipText("");
+        intf_history.setMinimumSize(new java.awt.Dimension(566, 469));
+        intf_history.setPreferredSize(new java.awt.Dimension(566, 469));
+        intf_history.setVisible(true);
+
+        txp_history.setBackground(new java.awt.Color(204, 204, 204));
+        txp_history.setContentType("text/html");
+        txp_history.setEditable(false);
+        txp_history.setText("");
+        txp_history.setMinimumSize(new java.awt.Dimension(200, 600));
+        txp_history.setName(""); // NOI18N
+        txp_history.setPreferredSize(new java.awt.Dimension(300, 1000));
+        scrollpane_his.setViewportView(txp_history);
+
+        javax.swing.GroupLayout intf_historyLayout = new javax.swing.GroupLayout(intf_history.getContentPane());
+        intf_history.getContentPane().setLayout(intf_historyLayout);
+        intf_historyLayout.setHorizontalGroup(
+            intf_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollpane_his, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+        );
+        intf_historyLayout.setVerticalGroup(
+            intf_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollpane_his, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pane_historyLayout = new javax.swing.GroupLayout(pane_history);
+        pane_history.setLayout(pane_historyLayout);
+        pane_historyLayout.setHorizontalGroup(
+            pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_historyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pane_historyLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edt_filtertickethis, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
+                    .addComponent(scrollpane_history, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(intf_history, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pane_historyLayout.setVerticalGroup(
+            pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pane_historyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(intf_history, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addGroup(pane_historyLayout.createSequentialGroup()
+                        .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(edt_filtertickethis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollpane_history, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))))
+        );
+
+        try {
+            intf_history.setIcon(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+
+        Pane_Overview.addTab("Ticket History", pane_history);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
+
+        menu_new.setText("New");
+
+        menu_customer.setText("Add Customer");
+        menu_new.add(menu_customer);
+
+        menu_employee.setText("Add Employee");
+        menu_new.add(menu_employee);
+
+        menu_product.setText("Add Product");
+        menu_new.add(menu_product);
+
+        menu_ticket.setText("Add Ticket");
+        menu_new.add(menu_ticket);
+
+        fileMenu.add(menu_new);
+
+        menu_quit.setText("Quit");
+        fileMenu.add(menu_quit);
+
         menuBar.add(fileMenu);
 
         setJMenuBar(menuBar);
@@ -635,7 +640,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                             .addComponent(intf_mycontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(intf_fcontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1))
+                        .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 1400, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -672,12 +677,12 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(intf_fcontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(intf_fcontrol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(intf_mycontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
+                    .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -820,6 +825,31 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
     public void settable_productValueListener(ListSelectionListener l){
         this.table_product.getSelectionModel().addListSelectionListener(l);
     }
+    
+    /******************************
+     *  Menu item Listener
+     ******************************/    
+    
+    public void setmenu_customerListener(ActionListener l){
+        this.menu_customer.addActionListener(l);
+    }
+    
+    public void setmenu_employeeListener(ActionListener l){
+        this.menu_employee.addActionListener(l);
+    }
+    
+    public void setmenu_productListener(ActionListener l){
+        this.menu_product.addActionListener(l);
+    }
+    
+    public void setmenu_ticketListener(ActionListener l){
+        this.menu_ticket.addActionListener(l);
+    }
+    
+    public void setmenu_quitListener(ActionListener l){
+        this.menu_quit.addActionListener(l);
+    }
+    
     //</editor-fold>
 
     
@@ -852,10 +882,14 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem menu_customer;
+    private javax.swing.JMenuItem menu_employee;
+    private javax.swing.JMenu menu_new;
+    private javax.swing.JMenuItem menu_product;
+    private javax.swing.JMenuItem menu_quit;
+    private javax.swing.JMenuItem menu_ticket;
     private javax.swing.JPanel pane_customer;
     private javax.swing.JPanel pane_employee;
     private javax.swing.JPanel pane_fullticket;
