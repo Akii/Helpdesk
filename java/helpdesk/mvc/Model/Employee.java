@@ -48,7 +48,7 @@ public class Employee extends MainModel{
                 return employees;
 	}
     
-      /*************************
+       /*************************
         *  Create new employee
         *  Placeholder "?" - Using db.bind_param
         *  to prevent SQL injection

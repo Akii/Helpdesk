@@ -55,9 +55,9 @@ public class CEController implements Runnable{
                         csearch(Integer.parseInt (Str));  
                 }
             } catch (NullPointerException E){
-                Error_Frame.Error("ID not found");
+                Error_Frame.Error("ID not found \n\n" + E.getMessage());
             } catch (NumberFormatException E) {
-                Error_Frame.Error("Please use only number for ID");
+                Error_Frame.Error("Please use only number for ID\n\n" + E.getMessage());
             }
         }
     }
@@ -142,9 +142,9 @@ public class CEController implements Runnable{
                 _view.dispose();
             }
          } catch (NumberFormatException evt) {
-                Error_Frame.Error("Please use only number for ID / Troubleshooter");
+                Error_Frame.Error("Please use only number for ID / Troubleshooter\n\n" + evt.getMessage());
          } catch (NullPointerException evt) {
-                Error_Frame.Error("Wrong ID\n" + evt.toString()); 
+                Error_Frame.Error("Wrong ID\n\n" + evt.getMessage()); 
          }
         }
     }
@@ -200,7 +200,7 @@ public class CEController implements Runnable{
                 _view.edt_cemail.setText(Array[4]);
                 this.EqualPW = Array[3];
             } 
-            //set testposition to 0 (completly left)
+            //Set textposition to 0 (completely left)
             //usefull if strings are too long
             _view.edt_cfirstname.setCaretPosition(0);
             _view.edt_clastname.setCaretPosition(0);
@@ -209,9 +209,9 @@ public class CEController implements Runnable{
             _view.edt_cemail.setCaretPosition(0);
             
         } catch (NullPointerException E){
-            Error_Frame.Error("ID not found");
+            Error_Frame.Error("ID not found\n\n" + E.getMessage());
         } catch (NumberFormatException E) {
-            Error_Frame.Error("Please use only number for ID");
+            Error_Frame.Error("Please use only number for ID\n\n" + E.getMessage());
         }
     }
 }

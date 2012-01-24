@@ -52,9 +52,9 @@ public class PController implements Runnable{
                         psearch(Integer.parseInt (Str));  
                 }
             } catch (NullPointerException E){
-                Error_Frame.Error("ID not found");
+                Error_Frame.Error("ID not found\n\n" + E.getMessage());
             } catch (NumberFormatException E) {
-                Error_Frame.Error("Please use only number for ID");
+                Error_Frame.Error("Please use only number for ID\n\n" + E.getMessage());
             }
         }
     }
@@ -82,9 +82,9 @@ public class PController implements Runnable{
             try {
                 psearch(Integer.parseInt(_view.edt_ID.getText()));
             } catch (NullPointerException E){
-                Error_Frame.Error("ID not found");
+                Error_Frame.Error("ID not found\n\n" + E.getMessage());
             } catch (NumberFormatException E) {
-                Error_Frame.Error("Please use only number for ID");
+                Error_Frame.Error("Please use only number for ID\n\n" + E.getMessage());
             }
         }
     }
@@ -111,9 +111,9 @@ public class PController implements Runnable{
                     _view.dispose();
                 }
             } catch (NumberFormatException ev) {
-                Error_Frame.Error("Please use only number for ID");
+                Error_Frame.Error("Please use only number for ID\n\n" + ev.getMessage());
             } catch (Exception ev) {
-                Error_Frame.Error(e.toString()); 
+                Error_Frame.Error(ev.getMessage()); 
             }
         }
     }

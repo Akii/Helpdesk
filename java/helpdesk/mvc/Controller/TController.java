@@ -6,12 +6,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.Timer;
-import java.util.TimerTask;
 import Helpdesk.java.helpdesk.mvc.Model.Comp;
 import Helpdesk.java.helpdesk.lib.refreshTable;
 import Helpdesk.java.helpdesk.mvc.Model.CategoryModel;
-import Helpdesk.java.helpdesk.mvc.Model.Counter;
 import Helpdesk.java.helpdesk.mvc.Model.Product;
 import Helpdesk.java.helpdesk.mvc.Model.ProductInv;
 import Helpdesk.java.helpdesk.mvc.Model.ProductTable;
@@ -117,9 +114,9 @@ public class TController implements Runnable{
                         search(Integer.parseInt (Str));  
                 }
             } catch (NullPointerException E){
-                Error_Frame.Error("ID not found");
+                Error_Frame.Error("ID not found\n\n" + E.getMessage());
             } catch (NumberFormatException E) {
-                Error_Frame.Error("Please use only number for ID");
+                Error_Frame.Error("Please use only number for ID\n\n" + E.getMessage());
             }
         }
     }
@@ -240,29 +237,16 @@ public class TController implements Runnable{
                 new refreshTable("", "", "Fullticket", "History", "", main).start();
                 //Count ticket status for fullticket control buttons -
                 //timer to prevent connection link lost
-                new Timer().schedule(new Count(), 600);
                 _view.dispose();
             }
         } catch (NumberFormatException ev) {
-              Error_Frame.Error("Please use only number for ID");
+              Error_Frame.Error("Please use only number for ID\n\n" + ev.getMessage());
         } catch (Exception ev) {
-              Error_Frame.Error(ev.toString()); 
+              Error_Frame.Error(ev.getMessage()); 
         }
         }
     }
-    
-    
-      /*************************************
-      * 
-      *     Timer
-      * 
-      **************************************/
-    class Count extends TimerTask {
-        @Override
-        public void run() {
-                new Counter(main).start();
-        }
-    }
+ 
     
       /*************************************
       * Checkbox - ItemListener
@@ -335,7 +319,6 @@ public class TController implements Runnable{
                    //save index into a array
                    indices [i] = a;  
             }
-            //JDK 7 function - select all indices from this array
             _view.ls_products.setSelectedIndices(indices);
             
            _view.cmb_category.setSelectedIndex(Integer.parseInt(Array[2])-1);
@@ -344,11 +327,11 @@ public class TController implements Runnable{
            //otherwise the function "delete InvProduct" will not start and we get an error msg (duplicate primary key)
            this.ID = ID;
         } catch (NullPointerException E){
-            Error_Frame.Error("ID not found");
+            Error_Frame.Error("ID not found\n\n" + E.getMessage());
         } catch (NumberFormatException E) {
-            Error_Frame.Error(E.toString());
+            Error_Frame.Error(E.getMessage());
         } catch (Exception E) {
-            Error_Frame.Error(E.toString());
+            Error_Frame.Error(E.getMessage());
         }
     }
 }
