@@ -4,9 +4,6 @@ package Helpdesk.java.helpdesk.lib;
  ******************/
 import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SecretKey;

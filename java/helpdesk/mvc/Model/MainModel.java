@@ -8,12 +8,13 @@ import Helpdesk.java.helpdesk.lib.db.MysqlDatabase;
 public abstract class MainModel {
 
     public static Database dbconnect() {
-	   Database db = null;
+	Database db = null;
 	try {
-
+                // Get the db from the singleton class MysqlDatabase 
+                // plus saved login information like host,port,db name ..
+                // and then connect
 		db = MysqlDatabase.getInstance();
                 db.connect();
-                
 	} catch (SQLException e) {
 		Error_Frame.Error(e.toString());
 	} catch (Exception e) {

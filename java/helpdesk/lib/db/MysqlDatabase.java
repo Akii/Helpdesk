@@ -30,10 +30,9 @@ public class MysqlDatabase extends Database {
         }
 	
 	public static Database getInstance() throws Exception {
-		// that was convenient, protected variables ftw
 		// this enables us to call Database.getInstance() at any
 		// given point in the runtime after initializing the db
-		// once, for example in the Main method
+		// once, for example in the Main method (Singleton Pattern)
 		if(Database.db == null) {
 			Database.db = new MysqlDatabase();
 		}

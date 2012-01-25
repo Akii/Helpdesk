@@ -15,7 +15,6 @@ import javax.swing.table.AbstractTableModel;
         private Object[][] data      = {};
         private ArrayList<FullTicket> arr_data;
         
-        
         private FullticketTable() {}
         //Initialization-on-demand holder idiom - Singleton
         public static FullticketTable getInstance() {

@@ -47,6 +47,7 @@ public class Login_Frame extends javax.swing.JFrame implements Runnable{
         txf_port.setText(Array[1]);
         txf_database.setText(Array[2]);   
         txf_user.setText(Array[3]);
+        txf_pw.setText(Array[4]);
         this.setVisible(true);
     }
 
@@ -165,9 +166,9 @@ public class Login_Frame extends javax.swing.JFrame implements Runnable{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-     /*
+     /***************************
     *  Button event - SQL Login
-    */
+    *******************************/
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         boolean failed = false;
         try {

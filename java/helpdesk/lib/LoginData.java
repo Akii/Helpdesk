@@ -68,7 +68,6 @@ public class LoginData {
         } catch (Exception e) {
             Error_Frame.Error(e.getMessage());
         }
-        
         return Array;
     }
 }
