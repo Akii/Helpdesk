@@ -10,11 +10,32 @@ use de\helpdesk\Model as Model;
 class UserComponent extends Component
 {
 	/**
+	 * Instance of the user if logged in
+	 */
+	public $user = null;
+
+	/**
 	 * @Override
 	 */
 	public function startup()
 	{
-		$this->refreshLink();
+		$this->restore();
+		$this->setLoginHead();
+	}
+	
+	private function restore()
+	{
+		if(isset($_SESSION["bLoggedIn"]) && $_SESSION["bLoggedIn"] === true)
+		{
+			$customer = Model\CustomerModel::getByID($_SESSION["user_id"]);
+			if($customer->bDeleted === "0")
+			{
+				$this->user = $customer;
+				return;
+			}
+		}
+		
+		$this->logout();
 	}
 	
 	/**
@@ -46,8 +67,7 @@ class UserComponent extends Component
 			$_SESSION["user_id"] = $ok;
 			$_SESSION["bLoggedIn"] = true;
 			
-			$this->refreshLink();
-			
+			$this->user = Model\CustomerModel::getByID($ok);
 			return true;
 		}
 		
@@ -68,24 +88,12 @@ class UserComponent extends Component
 	/**
 	 * Regenerates the link on the top of the page
 	 */
-	private function refreshLink()
+	private function setLoginHead()
 	{
-		if(isset($this->controller->components["Session"]) && $this->controller->components["Session"]->hasStarted())
+		if($this->user !== null)
 		{
-			if($_SESSION["bLoggedIn"] === true && $_SESSION["user_id"] > 0)
-			{
-				$model = Model\CustomerModel::getByID($_SESSION["user_id"]);
-				
-				if($model !== null && $model->bDeleted === "0")
-				{
-					$this->controller->view_params["_login"] = sprintf('Welcome %s. <a href="/user/panel">Control Panel</a> <a href="/user/logout">Logout</a>', $model->firstName . " " . $model->lastName);
-					return;
-				}
-				else
-				{
-					$this->logout();
-				}
-			}
+			$this->controller->view_params["_login"] = sprintf('Welcome %s. <a href="/user/panel">Control Panel</a> <a href="/user/logout">Logout</a>', $this->user->firstName . " " . $this->user->lastName);
+			return;
 		}
 		
 		$this->controller->view_params["_login"] = 'Welcome guest. <a href="/user/login">Login</a>';
