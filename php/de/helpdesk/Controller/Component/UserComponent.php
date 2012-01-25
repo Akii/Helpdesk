@@ -76,7 +76,7 @@ class UserComponent extends Component
 			{
 				$model = Model\CustomerModel::getByID($_SESSION["user_id"]);
 				
-				if($model !== null)
+				if($model !== null && $model->bDeleted === "0")
 				{
 					$this->controller->view_params["_login"] = sprintf('Welcome %s. <a href="/user/panel">Control Panel</a> <a href="/user/logout">Logout</a>', $model->firstName . " " . $model->lastName);
 					return;

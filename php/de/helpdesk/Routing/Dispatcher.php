@@ -52,8 +52,8 @@ class Dispatcher
 		if($controller === NULL)
 			throw new Error\Exception("Failed to load the controller");
 			
-		if(!($controller instanceof Controller\Controller))
-			throw new Error\Exception("The controller " . $controller::$name . " does not inherit from Controller.");
+		if(!($controller instanceof Controller\IController))
+			throw new Error\Exception("The controller " . $controller::$name . " does not implement the interface IController.");
 		
 		$controller->startup();
 		$controller->invoke($this->action);
