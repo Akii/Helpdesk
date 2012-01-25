@@ -3,37 +3,82 @@
 <Form version="1.6" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
+      <Properties>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="btn_addeditC"/>
+        </Property>
+      </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
           <Properties>
-            <Property name="mnemonic" type="int" value="102"/>
+            <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="KeyEvent.VK_ALT" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="btn_addeditC"/>
+            </Property>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+              <ComponentRef name="null"/>
+            </Property>
+          </AccessibilityProperties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="menu_new">
               <Properties>
                 <Property name="text" type="java.lang.String" value="New"/>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+                  <ComponentRef name="fileMenu"/>
+                </Property>
+              </AccessibilityProperties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="menu_customer">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add Customer"/>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+                      <ComponentRef name="menu_new"/>
+                    </Property>
+                  </AccessibilityProperties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menu_employee">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add Employee"/>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+                      <ComponentRef name="menu_new"/>
+                    </Property>
+                  </AccessibilityProperties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menu_product">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add Product"/>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+                      <ComponentRef name="menu_new"/>
+                    </Property>
+                  </AccessibilityProperties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menu_ticket">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add Ticket"/>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+                      <ComponentRef name="menu_new"/>
+                    </Property>
+                  </AccessibilityProperties>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -41,6 +86,11 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quit"/>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+                  <ComponentRef name="fileMenu"/>
+                </Property>
+              </AccessibilityProperties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -145,7 +195,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="intf_mycontrol" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="Pane_Overview" pref="629" max="32767" attributes="0"/>
+                  <Component id="Pane_Overview" pref="645" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -345,8 +395,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btn_setopen" alignment="0" pref="99" max="32767" attributes="1"/>
                       <Component id="btn_setfull" alignment="0" pref="99" max="32767" attributes="1"/>
+                      <Component id="btn_setopen" alignment="0" pref="99" max="32767" attributes="1"/>
                       <Component id="btn_setprocess" alignment="0" max="32767" attributes="1"/>
                       <Component id="btn_setclosed" alignment="0" max="32767" attributes="1"/>
                   </Group>
@@ -365,7 +415,7 @@
                   <Component id="btn_setprocess" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btn_setclosed" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="94" max="32767" attributes="0"/>
+                  <EmptySpace pref="178" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -455,7 +505,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="206" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="138" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -496,14 +546,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="intf_fullticket" alignment="1" pref="590" max="32767" attributes="0"/>
+                          <Component id="intf_fullticket" alignment="1" pref="606" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="edt_filterfullticket" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_fullticket" pref="564" max="32767" attributes="0"/>
+                              <Component id="scrollpane_fullticket" pref="580" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -559,7 +609,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpane_full" alignment="0" pref="561" max="32767" attributes="0"/>
+                      <Component id="scrollpane_full" alignment="0" pref="577" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -643,7 +693,7 @@
                           <Component id="edt_filtercustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollpane_customer" pref="564" max="32767" attributes="0"/>
+                      <Component id="scrollpane_customer" pref="580" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -721,7 +771,7 @@
                           <Component id="edt_filteremployee" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollpane_employee" pref="564" max="32767" attributes="0"/>
+                      <Component id="scrollpane_employee" pref="580" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -792,14 +842,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="intf_product" alignment="0" pref="590" max="32767" attributes="0"/>
+                          <Component id="intf_product" alignment="0" pref="606" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="edt_filterproduct" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_product" pref="564" max="32767" attributes="0"/>
+                              <Component id="scrollpane_product" pref="580" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -866,7 +916,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpane_his1" alignment="0" pref="561" max="32767" attributes="0"/>
+                      <Component id="scrollpane_his1" alignment="0" pref="577" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -937,14 +987,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="intf_history" alignment="0" pref="590" max="32767" attributes="0"/>
+                          <Component id="intf_history" alignment="0" pref="606" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="edt_filtertickethis" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollpane_history" pref="564" max="32767" attributes="0"/>
+                              <Component id="scrollpane_history" pref="580" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1010,7 +1060,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpane_his" alignment="0" pref="561" max="32767" attributes="0"/>
+                      <Component id="scrollpane_his" alignment="0" pref="577" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>

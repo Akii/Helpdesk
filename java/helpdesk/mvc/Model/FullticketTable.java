@@ -59,7 +59,7 @@ import javax.swing.table.AbstractTableModel;
             try {
                 return data[row][col];
             } catch (java.lang.NullPointerException e) {
-                return data[0][0];
+                return data[1][1];
             }
         }
         

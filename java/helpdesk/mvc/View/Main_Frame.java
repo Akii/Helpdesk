@@ -7,12 +7,14 @@ import java.awt.Frame;
 import java.awt.MenuContainer;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
 import java.io.Serializable;
 import javax.swing.event.InternalFrameListener;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.MenuListener;
 
 
 public class Main_Frame extends javax.swing.JFrame implements ImageObserver, MenuContainer, Serializable {
@@ -277,8 +279,8 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, intf_fcontrolLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(intf_fcontrolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_setopen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                     .addComponent(btn_setfull, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(btn_setopen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                     .addComponent(btn_setprocess, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_setclosed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -294,7 +296,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                 .addComponent(btn_setprocess)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_setclosed)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         intf_mycontrol.setTitle("My Tickets");
@@ -315,7 +317,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_mycontrolLayout.setVerticalGroup(
             intf_mycontrolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
+            .addGap(0, 138, Short.MAX_VALUE)
         );
 
         table_fullticket.setAutoCreateRowSorter(true);
@@ -348,7 +350,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_fullticketLayout.setVerticalGroup(
             intf_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_full, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            .addComponent(scrollpane_full, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Filter");
@@ -373,13 +375,13 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
             .addGroup(pane_fullticketLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intf_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addComponent(intf_fullticket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addGroup(pane_fullticketLayout.createSequentialGroup()
                         .addGroup(pane_fullticketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(edt_filterfullticket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))))
+                        .addComponent(scrollpane_fullticket, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))))
         );
 
         try {
@@ -419,7 +421,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                     .addComponent(jLabel3)
                     .addComponent(edt_filtercustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
+                .addComponent(scrollpane_customer, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
         );
 
         Pane_Overview.addTab("Customer", pane_customer);
@@ -453,7 +455,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                     .addComponent(jLabel4)
                     .addComponent(edt_filteremployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
+                .addComponent(scrollpane_employee, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
         );
 
         Pane_Overview.addTab("Employee", pane_employee);
@@ -490,7 +492,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_productLayout.setVerticalGroup(
             intf_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_his1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            .addComponent(scrollpane_his1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pane_productLayout = new javax.swing.GroupLayout(pane_product);
@@ -513,13 +515,13 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
             .addGroup(pane_productLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intf_product, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addComponent(intf_product, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addGroup(pane_productLayout.createSequentialGroup()
                         .addGroup(pane_productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(edt_filterproduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))))
+                        .addComponent(scrollpane_product, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))))
         );
 
         try {
@@ -562,7 +564,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
         );
         intf_historyLayout.setVerticalGroup(
             intf_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollpane_his, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            .addComponent(scrollpane_his, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pane_historyLayout = new javax.swing.GroupLayout(pane_history);
@@ -585,13 +587,13 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
             .addGroup(pane_historyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intf_history, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addComponent(intf_history, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addGroup(pane_historyLayout.createSequentialGroup()
                         .addGroup(pane_historyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(edt_filtertickethis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane_history, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))))
+                        .addComponent(scrollpane_history, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))))
         );
 
         try {
@@ -602,29 +604,41 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
 
         Pane_Overview.addTab("Ticket History", pane_history);
 
-        fileMenu.setMnemonic('f');
+        menuBar.setNextFocusableComponent(btn_addeditC);
+
+        fileMenu.setMnemonic(KeyEvent.VK_ALT);
         fileMenu.setText("File");
+        fileMenu.setToolTipText("");
+        fileMenu.setContentAreaFilled(false);
+        fileMenu.setNextFocusableComponent(btn_addeditC);
 
         menu_new.setText("New");
 
         menu_customer.setText("Add Customer");
         menu_new.add(menu_customer);
+        menu_customer.getAccessibleContext().setAccessibleParent(menu_new);
 
         menu_employee.setText("Add Employee");
         menu_new.add(menu_employee);
+        menu_employee.getAccessibleContext().setAccessibleParent(menu_new);
 
         menu_product.setText("Add Product");
         menu_new.add(menu_product);
+        menu_product.getAccessibleContext().setAccessibleParent(menu_new);
 
         menu_ticket.setText("Add Ticket");
         menu_new.add(menu_ticket);
+        menu_ticket.getAccessibleContext().setAccessibleParent(menu_new);
 
         fileMenu.add(menu_new);
+        menu_new.getAccessibleContext().setAccessibleParent(fileMenu);
 
         menu_quit.setText("Quit");
         fileMenu.add(menu_quit);
+        menu_quit.getAccessibleContext().setAccessibleParent(fileMenu);
 
         menuBar.add(fileMenu);
+        fileMenu.getAccessibleContext().setAccessibleParent(null);
 
         setJMenuBar(menuBar);
 
@@ -682,7 +696,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
                         .addComponent(intf_fcontrol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(intf_mycontrol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE))
+                    .addComponent(Pane_Overview, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -830,6 +844,10 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
      *  Menu item Listener
      ******************************/    
     
+    public void setMenuListener(MenuListener l){
+        fileMenu.addMenuListener(l);
+    }
+    
     public void setmenu_customerListener(ActionListener l){
         this.menu_customer.addActionListener(l);
     }
@@ -871,7 +889,7 @@ public class Main_Frame extends javax.swing.JFrame implements ImageObserver, Men
     public javax.swing.JTextField edt_filterfullticket;
     public javax.swing.JTextField edt_filterproduct;
     public javax.swing.JTextField edt_filtertickethis;
-    private javax.swing.JMenu fileMenu;
+    public javax.swing.JMenu fileMenu;
     private javax.swing.JInternalFrame intf_fcontrol;
     public javax.swing.JInternalFrame intf_fullticket;
     public javax.swing.JInternalFrame intf_history;

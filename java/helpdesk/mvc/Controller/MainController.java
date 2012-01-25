@@ -25,6 +25,8 @@ import Helpdesk.java.helpdesk.mvc.View.Error_Frame;
 import Helpdesk.java.helpdesk.lib.ImageRenderer;
 import Helpdesk.java.helpdesk.mvc.Model.FacadeModel;
 import Helpdesk.java.helpdesk.mvc.View.Main_Frame;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 public class MainController {
     private FacadeModel fa;
@@ -71,11 +73,13 @@ public class MainController {
         this._view.settable_historyValueListener(new table_fullticketValueListener());
         this._view.settable_productValueListener(new table_fullticketValueListener());
         
-        this._view.setmenu_customerListener(new menu_customerListener());
-        this._view.setmenu_employeeListener(new menu_employeeListener());
-        this._view.setmenu_productListener(new menu_productListener());
-        this._view.setmenu_ticketListener(new menu_ticketListener());
+        this._view.setmenu_customerListener(new btn_addeditCListener());
+        this._view.setmenu_employeeListener(new btn_addeditEListener());
+        this._view.setmenu_productListener(new btn_addeditPListener());
+        this._view.setmenu_ticketListener(new btn_addeditTListener());
         this._view.setmenu_quitListener(new menu_quitListener());
+        
+        this._view.setMenuListener(new Menu_Listener());
     }
     
     private void init () {
@@ -286,8 +290,6 @@ public class MainController {
       }
     
         
-       
-       
      /*************************************
       * InternalFrameListener
       * same function as a simply border with iconifiable
@@ -594,34 +596,6 @@ public class MainController {
       *     Menu Item Listener
       * 
       **************************************/
-       
-      class menu_customerListener implements ActionListener{
-          @Override
-          public void actionPerformed(ActionEvent e) {  
-            new Thread (new CEController(null,"Customer")).start();
-          }
-      }
-      
-      class menu_employeeListener implements ActionListener{
-          @Override
-          public void actionPerformed(ActionEvent e) {  
-            new Thread (new CEController(null,"Employee")).start();
-          }
-      }
-            
-      class menu_productListener implements ActionListener{
-          @Override
-          public void actionPerformed(ActionEvent e) {  
-            new Thread (new PController(null)).start();
-          }
-      }
-      
-      class menu_ticketListener implements ActionListener{
-          @Override
-          public void actionPerformed(ActionEvent e) {  
-            new Thread (new TController(null,_view)).start();
-          }
-      }
       
       class menu_quitListener implements ActionListener{
           @Override
@@ -631,7 +605,28 @@ public class MainController {
       }
     
     
-    
+       /*************************************
+      * FocusListener
+      * Maybe java bug? Don´t know but after we selected 
+      * one menu item, our menu didnt hide again. So we 
+      * set up a focusListener on that menu..
+      **************************************/
+    private class Menu_Listener implements MenuListener {
+    @Override
+        public void menuCanceled(MenuEvent e) {
+             _view.fileMenu.setPopupMenuVisible(false);
+        }
+
+        @Override
+        public void menuSelected(MenuEvent e) {
+            _view.fileMenu.setPopupMenuVisible(true);
+        }
+
+        @Override
+        public void menuDeselected(MenuEvent e) {
+            _view.fileMenu.setPopupMenuVisible(false);
+        }
+    }
     
       /*************************************
       * Doubleclick function 

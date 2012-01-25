@@ -1,0 +1,1 @@
+Host:"i-intra-02.informatik.hs-ulm.de"Port:"3306"Database:"dapro01"User:"dapro01"Password:"GT/kEDatUMc="
