@@ -60,8 +60,8 @@ class ErrorController extends Con\Controller
 		$this->view_params["error_code"] = $code;
 		$this->view_params["error_msg"] = $this->codes[$code];
 		
-		if(Core\Configure::read('Debug.level') > 0)
-			$this->view_params["debug"] = $this->exception->getMessage();
+		if(Core\Configure::read('Debug.level') === 2 || (Core\Configure::read('Debug.level') === 1 && !($this->exception instanceOf SQLException)))
+			$this->view_params["debug"] = "<hr/>".$this->exception->getMessage();
 		
 		$file = "error$code";
 		
