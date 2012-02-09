@@ -13,6 +13,7 @@ import javax.crypto.spec.DESKeySpec;
 public class DesEncrypter implements IDesEncrypter {
     Cipher ecipher;
     Cipher dcipher;
+    private static String secretSalt = "mySecretSalt123456789";
 
     DesEncrypter(SecretKey key) {
         try {
@@ -112,6 +113,4 @@ public class DesEncrypter implements IDesEncrypter {
         }
         return null;
     }
-    
-    private static String secretSalt = "mySecretSalt123456789";
 }

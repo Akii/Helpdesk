@@ -25,9 +25,9 @@ import javax.swing.table.AbstractTableModel;
             this.status = status;
         }
         
-        /**************************
-        *  set data into jtable
-        ****************************/
+    /**************************
+    * set data into jtable
+    ****************************/
     @Override
         public void run() {
             arr_data = FullTicket.showAll(status);
