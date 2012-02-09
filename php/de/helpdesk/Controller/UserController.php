@@ -235,6 +235,7 @@ class UserController extends Controller
 		$this->view_params["last_update"] 	= ($ticket->last_update != null) ? date("j M, Y | h:i", strtotime($ticket->last_update)) : "n/a";
 		
 		$this->view_params["solution"] 	= ($ticket->Solution != "") ? $ticket->Solution : "No solution available yet.";
+		$this->view_params["solution"] 	= nl2br($this->view_params["solution"]);
 		
 		$this->view_params["products"] 	= Model\ProductModel::getForTicket($ticket->TID, function($db) {
 			while($row = $db->fetch_array("assoc"))

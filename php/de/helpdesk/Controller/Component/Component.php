@@ -20,9 +20,9 @@ abstract class Component
 	
 	public function __construct($controller)
 	{
-		if($controller instanceof Cont\Controller)
+		if($controller instanceof Cont\IController)
 			$this->controller = $controller;
 		else
-			throw new Error\Exception("Passed argument is not an instance of Controller.");
+			throw new Error\Exception("Passed argument is not an instance of IController.");
 	}
 }
